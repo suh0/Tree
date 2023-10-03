@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int balance = 0; // 초기 잔액
+    private int balance = 220; // 초기 잔액
 
     private TextView balanceTextView;
     private Button button;

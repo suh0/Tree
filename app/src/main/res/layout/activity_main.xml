@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <Button
+            android:id="@+id/my_button"
+            android:layout_width="202dp"
+            android:layout_height="58dp"
+            android:layout_marginEnd="2dp"
+            android:onClick="onButtonClick"
+            android:text="나무 고르기"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="-1dp" />
+
+        <Button
+            android:id="@+id/my_button1"
+            android:layout_width="202dp"
+            android:layout_height="58dp"
+            android:onClick="onButtonClick"
+            android:text="음악 선택 "
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="203dp"
+            tools:layout_editor_absoluteY="-1dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp"
+            tools:context=".MainActivity"
+            tools:layout_editor_absoluteX="123dp"
+            tools:layout_editor_absoluteY="76dp">
+
+            <TextView
+                android:id="@+id/balanceTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="현재 잔액: $0" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/game_image"
+            android:layout_width="135dp"
+            android:layout_height="277dp"
+            android:layout_marginTop="56dp"
+            android:src="@drawable/tree_1"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="27dp" />
+
+        <ImageView
+            android:id="@+id/game_image1"
+            android:layout_width="135dp"
+            android:layout_height="277dp"
+            android:layout_marginTop="56dp"
+            android:src="@drawable/tree_2"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="260dp" />
+
+
+        <TextView
+            android:id="@+id/text_view1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="8dp"
+            android:text="나무 1"
+            android:textSize="18sp"
+            app:layout_constraintHorizontal_bias="0.17"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/game_image" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="84dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="4dp"
+            android:text="구매"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.17"
+            app:layout_constraintStart_toEndOf="@id/text_view1"
+            app:layout_constraintTop_toBottomOf="@id/text_view1"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="8dp"
+            android:text="나무 2"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/game_image" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="84dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:text="구매"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.87"
+            app:layout_constraintStart_toEndOf="@id/text_view1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view1" />
+
+        <ImageView
+            android:id="@+id/game_image2"
+            android:layout_width="135dp"
+            android:layout_height="277dp"
+            android:src="@drawable/tree_3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.518"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="27dp" />
+
+        <ImageView
+            android:id="@+id/game_image3"
+            android:layout_width="148dp"
+            android:layout_height="259dp"
+            android:layout_marginTop="424dp"
+            android:src="@drawable/tree_4"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="244dp" />
+
+        <TextView
+            android:id="@+id/text_view2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="372dp"
+            android:text="나무 3"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/game_image" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="84dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="8dp"
+            android:text="구매"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.17"
+            app:layout_constraintStart_toEndOf="@id/text_view2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="12dp"
+            android:text="나무 4"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/game_image3" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="84dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="8dp"
+            android:text="구매"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.87"
+            app:layout_constraintStart_toEndOf="@id/text_view2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view2" />
+
+        <ImageView
+            android:id="@+id/game_image4"
+            android:layout_width="135dp"
+            android:layout_height="277dp"
+            android:layout_marginTop="768dp"
+            android:src="@drawable/tree_5"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="27dp" />
+
+        <ImageView
+            android:id="@+id/game_image5"
+            android:layout_width="135dp"
+            android:layout_height="277dp"
+            android:layout_marginTop="768dp"
+            android:src="@drawable/tree_6"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="260dp" />
+
+        <TextView
+            android:id="@+id/text_view3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="4dp"
+            android:text="나무 5"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/game_image4" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="84dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="8dp"
+            android:text="구매"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.17"
+            app:layout_constraintStart_toEndOf="@id/text_view3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="716dp"
+            android:text="나무 6"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/game_image" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="84dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="8dp"
+            android:text="구매"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.87"
+            app:layout_constraintStart_toEndOf="@id/text_view3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

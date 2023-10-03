@@ -39,13 +39,13 @@ public class MainActivity extends AppCompatActivity {
                     // 아이템을 구매하는 추가 로직을 여기에 작성하세요.
                 } else {
                     // 잔액이 부족할 경우 처리 (예: 메시지 출력)
-                    Toast.makeText(getApplicationContext(), "잔액이 부족합니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "잔액이 부족합니다.", Toast.LENGTH_SHORT).show();
 
                 }
             }
 
             private void showPurchaseConfirmationDialog() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("구매 확인");
                 builder.setMessage("정말로 이 아이템을 구매하시겠습니까?");
                 builder.setPositiveButton("예", new DialogInterface.OnClickListener() {

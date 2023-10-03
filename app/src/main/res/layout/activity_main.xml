@@ -15,11 +15,11 @@
             android:id="@+id/my_button"
             android:layout_width="202dp"
             android:layout_height="58dp"
-            android:layout_marginEnd="2dp"
             android:onClick="onButtonClick"
             android:text="나무 고르기"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="-1dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
         <Button
             android:id="@+id/my_button1"
@@ -27,48 +27,48 @@
             android:layout_height="58dp"
             android:onClick="onButtonClick"
             android:text="음악 선택 "
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="203dp"
-            tools:layout_editor_absoluteY="-1dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
+        <TextView
+            android:id="@+id/balanceTextView"
+            android:layout_width="124dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginStart="89dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="60dp"
+            android:text="현재 잔액: $0"
+            app:layout_constraintBottom_toTopOf="@+id/game_image1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/game_image"
+            app:layout_constraintTop_toBottomOf="@+id/my_button1" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="16dp"
-            tools:context=".MainActivity"
-            tools:layout_editor_absoluteX="123dp"
-            tools:layout_editor_absoluteY="76dp">
-
-            <TextView
-                android:id="@+id/balanceTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:text="현재 잔액: $0" />
-        </LinearLayout>
 
         <ImageView
             android:id="@+id/game_image"
-            android:layout_width="135dp"
-            android:layout_height="277dp"
-            android:layout_marginTop="56dp"
+            android:layout_width="141dp"
+            android:layout_height="186dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="108dp"
             android:src="@drawable/tree_1"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="27dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/my_button"
+            tools:ignore="MissingConstraints" />
 
         <ImageView
             android:id="@+id/game_image1"
-            android:layout_width="135dp"
-            android:layout_height="277dp"
-            android:layout_marginTop="56dp"
+            android:layout_width="141dp"
+            android:layout_height="186dp"
+            android:layout_marginTop="180dp"
+            android:layout_marginEnd="16dp"
             android:src="@drawable/tree_2"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="260dp" />
-
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/text_view1"
@@ -78,7 +78,6 @@
             android:layout_marginTop="8dp"
             android:text="나무 1"
             android:textSize="18sp"
-            app:layout_constraintHorizontal_bias="0.17"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/game_image" />
 
@@ -91,8 +90,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.17"
             app:layout_constraintStart_toEndOf="@id/text_view1"
-            app:layout_constraintTop_toBottomOf="@id/text_view1"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view1" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -131,11 +130,12 @@
             android:id="@+id/game_image3"
             android:layout_width="148dp"
             android:layout_height="259dp"
-            android:layout_marginTop="424dp"
+            android:layout_marginTop="460dp"
+            android:layout_marginEnd="16dp"
             android:src="@drawable/tree_4"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="244dp" />
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/text_view2"
@@ -151,7 +151,7 @@
         <Button
             android:id="@+id/button2"
             android:layout_width="84dp"
-            android:layout_height="39dp"
+            android:layout_height="49dp"
             android:layout_marginTop="8dp"
             android:text="구매"
             app:layout_constraintEnd_toEndOf="parent"
@@ -173,7 +173,7 @@
         <Button
             android:id="@+id/button3"
             android:layout_width="84dp"
-            android:layout_height="39dp"
+            android:layout_height="49dp"
             android:layout_marginTop="8dp"
             android:text="구매"
             app:layout_constraintEnd_toEndOf="parent"
@@ -186,21 +186,23 @@
             android:id="@+id/game_image4"
             android:layout_width="135dp"
             android:layout_height="277dp"
+            android:layout_marginStart="27dp"
             android:layout_marginTop="768dp"
             android:src="@drawable/tree_5"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="27dp" />
+            tools:ignore="MissingConstraints" />
 
         <ImageView
             android:id="@+id/game_image5"
             android:layout_width="135dp"
             android:layout_height="277dp"
             android:layout_marginTop="768dp"
+            android:layout_marginEnd="16dp"
             android:src="@drawable/tree_6"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="260dp" />
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/text_view3"
@@ -216,7 +218,7 @@
         <Button
             android:id="@+id/button4"
             android:layout_width="84dp"
-            android:layout_height="39dp"
+            android:layout_height="49dp"
             android:layout_marginTop="8dp"
             android:text="구매"
             app:layout_constraintEnd_toEndOf="parent"
@@ -229,7 +231,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="300dp"
-            android:layout_marginTop="716dp"
+            android:layout_marginTop="688dp"
             android:text="나무 6"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -238,7 +240,7 @@
         <Button
             android:id="@+id/button5"
             android:layout_width="84dp"
-            android:layout_height="39dp"
+            android:layout_height="49dp"
             android:layout_marginTop="8dp"
             android:text="구매"
             app:layout_constraintEnd_toEndOf="parent"
@@ -246,6 +248,8 @@
             app:layout_constraintStart_toEndOf="@id/text_view3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_view3" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

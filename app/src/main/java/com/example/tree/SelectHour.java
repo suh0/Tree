@@ -30,12 +30,15 @@ public class SelectHour extends AppCompatActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int selectedHours = Integer.parseInt(hoursSpinner.getSelectedItem().toString().replace("시간", ""));
-
+                int selectedHours = Integer.parseInt(hoursSpinner.getSelectedItem().toString().replace("시간", "")); 
+                //hoursSpinner.getSelectedItem() : 스피너에서 현재 선택된 아이템을 가져오기. 이 경우에는 사용자가 선택한 시간이 선택됨.
+                //toString() : 선택된 아이템을 문자열로 변환. 이렇게 하면 선택된 시간이 문자열 형태로 저장됨.
+                //replace("Hours", "") : 이 부분에서 "Hours"라는 문자열을 빈 문자열로 대체. 즉, "2 Hours"에서 "Hours"를 제거하면 "2 "만 남음.
+                //Integer.parseInt(...): 남은 문자열 '2'를 정수로 변환.
                 Intent intent = new Intent(SelectHour.this, TimerActivity.class);
-                intent.putExtra("selected_hours", selectedHours);
+                intent.putExtra("selected_hours", selectedHours);   //위에서 초기화 한 정수 넘기기
 
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, 1); //넘기기
             }
         });
     }

@@ -12,7 +12,7 @@
 
 
         <Button
-            android:id="@+id/my_button"
+            android:id="@+id/tree_button"
             android:layout_width="202dp"
             android:layout_height="58dp"
             android:onClick="onButtonClick"
@@ -22,7 +22,7 @@
             tools:ignore="MissingConstraints" />
 
         <Button
-            android:id="@+id/my_button1"
+            android:id="@+id/music_button"
             android:layout_width="202dp"
             android:layout_height="58dp"
             android:onClick="onButtonClick"
@@ -45,18 +45,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/game_image"
-            app:layout_constraintTop_toBottomOf="@+id/my_button1" />
+            app:layout_constraintTop_toBottomOf="@+id/music_button" />
 
 
         <ImageView
             android:id="@+id/game_image"
             android:layout_width="141dp"
             android:layout_height="186dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="108dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="104dp"
             android:src="@drawable/tree_1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/my_button"
+            app:layout_constraintTop_toBottomOf="@+id/tree_button"
             tools:ignore="MissingConstraints" />
 
         <ImageView

@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.View;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -23,11 +24,24 @@ public class MainActivity extends AppCompatActivity {
     private Button button5;
     private Button button6;
 
+    private Button music_button;
+
     @SuppressLint("MissingInflatedId")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { //메인 엑티비티가 실행될 때 이 구문을 쫙 실행하라는 의미
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        music_button = findViewById(R.id.music_button);
+        music_button.setOnClickListener(new View.OnClickListener() { //버튼을 실행할 때 onCLick을 실행하라는 의미
+
+            @Override
+            public void onClick(View v) {
+                 Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                 startActivity(intent); //엑티비티 이동해주는 구문
+
+            }
+        });
 
         balanceTextView = findViewById(R.id.balanceTextView);
         button1 = findViewById(R.id.button1);

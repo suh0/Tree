@@ -30,10 +30,18 @@ public class SelectHour extends AppCompatActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int selectedHours = Integer.parseInt(hoursSpinner.getSelectedItem().toString().replace("시간", ""));
+                String selectedTime = hoursSpinner.getSelectedItem().toString();
+
+                long selectedMilliseconds;
+                if (selectedTime.equals("5초")) {
+                    selectedMilliseconds = 5000; // 5초는 5000밀리초
+                } else {
+                    int selectedHours = Integer.parseInt(selectedTime.replace("시간", ""));
+                    selectedMilliseconds = selectedHours * 60 * 60 * 1000;
+                }
 
                 Intent intent = new Intent(SelectHour.this, TimerActivity.class);
-                intent.putExtra("selected_hours", selectedHours);
+                intent.putExtra("selected_milliseconds", selectedMilliseconds); // 변경된 부분
 
                 startActivityForResult(intent, 1);
             }

@@ -4,5 +4,6 @@
         <item>1시간</item>
         <item>2시간</item>
         <item>3시간</item>
+        <item>5초</item>
     </string-array>
 </resources>

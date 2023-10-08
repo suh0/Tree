@@ -30,6 +30,7 @@ public class SelectHour extends AppCompatActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String selectedTime = hoursSpinner.getSelectedItem().toString();
 
                 long selectedMilliseconds;
@@ -37,13 +38,17 @@ public class SelectHour extends AppCompatActivity {
                     selectedMilliseconds = 5000; // 5초는 5000밀리초
                 } else {
                     int selectedHours = Integer.parseInt(selectedTime.replace("시간", ""));
+                    //hoursSpinner.getSelectedItem() : 스피너에서 현재 선택된 아이템을 가져오기. 이 경우에는 사용자가 선택한 시간이 선택됨.
+                    //toString() : 선택된 아이템을 문자열로 변환. 이렇게 하면 선택된 시간이 문자열 형태로 저장됨.
+                    //replace("Hours", "") : 이 부분에서 "Hours"라는 문자열을 빈 문자열로 대체. 즉, "2 Hours"에서 "Hours"를 제거하면 "2 "만 남음.
+                    //Integer.parseInt(...): 남은 문자열 '2'를 정수로 변환.
                     selectedMilliseconds = selectedHours * 60 * 60 * 1000;
                 }
 
                 Intent intent = new Intent(SelectHour.this, TimerActivity.class);
                 intent.putExtra("selected_milliseconds", selectedMilliseconds); // 변경된 부분
-
-                startActivityForResult(intent, 1);
+                
+                startActivityForResult(intent, 1); //넘기기
             }
         });
     }

@@ -77,7 +77,7 @@
             android:layout_marginStart="44dp"
             android:background="@android:color/transparent"
             android:contentDescription="음악1 재생 버튼"
-            android:onClick="playMusic1"
+            android:onClick="playMusic"
             android:scaleType="centerInside"
             android:src="@drawable/play_button"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -92,14 +92,14 @@
             android:layout_marginStart="52dp"
             android:background="@android:color/transparent"
             android:contentDescription="음악 1 일시 정지 버튼"
-            android:onClick="pauseMusic1"
+            android:onClick="pauseMusic"
             android:scaleType="centerInside"
             android:src="@drawable/stop_button"
-            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.236" />
+            app:layout_constraintVertical_bias="0.236"
+            android:visibility="gone"/>
 
         <ImageButton
             android:id="@+id/imagePlayButton2"
@@ -108,7 +108,7 @@
             android:layout_marginStart="268dp"
             android:background="@android:color/transparent"
             android:contentDescription="음악2 재생 버튼"
-            android:onClick="playMusic2"
+            android:onClick="playMusic"
             android:scaleType="centerInside"
             android:src="@drawable/play_button"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -123,14 +123,14 @@
             android:layout_marginStart="268dp"
             android:background="@android:color/transparent"
             android:contentDescription="음악 2 일시 정지 버튼"
-            android:onClick="pauseMusic2"
+            android:onClick="pauseMusic"
             android:scaleType="centerInside"
             android:src="@drawable/stop_button"
-            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.236" />
+            app:layout_constraintVertical_bias="0.236"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/textView"
@@ -236,17 +236,17 @@
             android:id="@+id/imageStopButton3"
             android:layout_width="82dp"
             android:layout_height="87dp"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="80dp"
             android:background="@android:color/transparent"
             android:contentDescription="음악 3 일시 정지 버튼"
             android:onClick="pauseMusic"
             android:scaleType="centerInside"
             android:src="@drawable/stop_button"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.56"
-            android:visibility="gone"/>
+            app:layout_constraintVertical_bias="0.551" />
 
         <TextView
             android:id="@+id/textView3"
@@ -316,17 +316,17 @@
             android:id="@+id/imageStopButton4"
             android:layout_width="82dp"
             android:layout_height="87dp"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="268dp"
             android:background="@android:color/transparent"
             android:contentDescription="음악 4 일시 정지 버튼"
             android:onClick="pauseMusic"
             android:scaleType="centerInside"
             android:src="@drawable/stop_button"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.56"
-            android:visibility="gone"/>
+            app:layout_constraintVertical_bias="0.568" />
 
         <TextView
             android:id="@+id/textView4"
@@ -393,17 +393,17 @@
             android:id="@+id/imageStopButton5"
             android:layout_width="82dp"
             android:layout_height="87dp"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="52dp"
             android:background="@android:color/transparent"
             android:contentDescription="음악 5 일시 정지 버튼"
             android:onClick="pauseMusic"
             android:scaleType="centerInside"
             android:src="@drawable/stop_button"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.56"
-            android:visibility="gone"/>
+            app:layout_constraintVertical_bias="0.865" />
 
         <TextView
             android:id="@+id/textView5"
@@ -473,17 +473,17 @@
             android:id="@+id/imageStopButton6"
             android:layout_width="82dp"
             android:layout_height="87dp"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="276dp"
             android:background="@android:color/transparent"
             android:contentDescription="음악 6 일시 정지 버튼"
             android:onClick="pauseMusic"
             android:scaleType="centerInside"
             android:src="@drawable/stop_button"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.56"
-            android:visibility="gone"/>
+            app:layout_constraintVertical_bias="0.85" />
 
         <TextView
             android:id="@+id/textView6"

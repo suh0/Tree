@@ -5,20 +5,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
-import com.example.selecttree.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
-    private ActivityMainBinding binding;
 
     Button show1h;
     Button show2h;
@@ -96,18 +86,20 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-//dkslcsl
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        show1h.findViewById(R.id.show1h);
-        show2h.findViewById(R.id.show2h);
-        show3h.findViewById(R.id.show3h);
-        treeImage.findViewById(R.id.treeImage);
-        treeInfo.findViewById(R.id.treeInfo);
-        prev.findViewById(R.id.prev);
-        next.findViewById(R.id.next);
-        confirm.findViewById(R.id.confirm);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        show1h = findViewById(R.id.show1h);
+        show2h = findViewById(R.id.show2h);
+        show3h = findViewById(R.id.show3h);
+        treeImage = (ImageView) findViewById(R.id.treeImage);
+        treeInfo = findViewById(R.id.treeInfo);
+        prev = findViewById(R.id.prev);
+        next = findViewById(R.id.next);
+        confirm = findViewById(R.id.confirm);
         updateTree();
 
         // 시간 선택
@@ -161,24 +153,6 @@ public class MainActivity extends AppCompatActivity {
                 updateTree();
             }
         });
-
-
-        super.onCreate(savedInstanceState);
-
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, navController);
-
-
     }
 
 }

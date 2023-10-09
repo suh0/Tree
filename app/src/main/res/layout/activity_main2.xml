@@ -48,90 +48,89 @@
 
         <ImageView
             android:id="@+id/imageView1"
-            android:layout_width="180dp"
-            android:layout_height="150dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_width="178dp"
+            android:layout_height="147dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="84dp"
             android:scaleType="fitXY"
             android:src="@drawable/coffee1"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.635"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/tree_button"
+            tools:ignore="MissingConstraints" />
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="194dp"
-            android:layout_height="151dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginBottom="76dp"
+            android:layout_width="181dp"
+            android:layout_height="140dp"
+            android:layout_marginStart="216dp"
+            android:layout_marginTop="45dp"
             android:scaleType="fitXY"
             android:src="@drawable/cloud2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/imageView1" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/balanceTextView"
+            tools:ignore="MissingConstraints" />
 
         <ImageButton
             android:id="@+id/imagePlayButton1"
             android:layout_width="82dp"
             android:layout_height="87dp"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="44dp"
             android:background="@android:color/transparent"
             android:contentDescription="음악1 재생 버튼"
-            android:onClick="playMusic"
+            android:onClick="playMusic1"
             android:scaleType="centerInside"
             android:src="@drawable/play_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.56" />
+            app:layout_constraintVertical_bias="0.224" />
 
         <ImageButton
             android:id="@+id/imageStopButton1"
             android:layout_width="82dp"
             android:layout_height="87dp"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="52dp"
             android:background="@android:color/transparent"
             android:contentDescription="음악 1 일시 정지 버튼"
-            android:onClick="pauseMusic"
+            android:onClick="pauseMusic1"
             android:scaleType="centerInside"
             android:src="@drawable/stop_button"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.56"
-            android:visibility="gone"/>
+            app:layout_constraintVertical_bias="0.236" />
 
         <ImageButton
             android:id="@+id/imagePlayButton2"
             android:layout_width="72dp"
             android:layout_height="76dp"
-            android:layout_marginStart="284dp"
+            android:layout_marginStart="268dp"
             android:background="@android:color/transparent"
             android:contentDescription="음악2 재생 버튼"
-            android:onClick="playMusic"
+            android:onClick="playMusic2"
             android:scaleType="centerInside"
             android:src="@drawable/play_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.577" />
+            app:layout_constraintVertical_bias="0.234" />
 
         <ImageButton
             android:id="@+id/imageStopButton2"
             android:layout_width="82dp"
             android:layout_height="87dp"
-            android:layout_marginStart="272dp"
+            android:layout_marginStart="268dp"
             android:background="@android:color/transparent"
             android:contentDescription="음악 2 일시 정지 버튼"
-            android:onClick="pauseMusic"
+            android:onClick="pauseMusic2"
             android:scaleType="centerInside"
             android:src="@drawable/stop_button"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.56"
-            android:visibility="gone"/>
+            app:layout_constraintVertical_bias="0.236" />
 
         <TextView
             android:id="@+id/textView"
@@ -148,18 +147,19 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="285dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginStart="284dp"
+            android:layout_marginTop="12dp"
             android:text="맑은 하늘"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
         <TextView
+            android:id="@+id/price1"
             android:layout_width="70dp"
             android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="5dp"
             android:text="$ 100 "
             android:textSize="20dp"
             android:textStyle="bold"
@@ -170,33 +170,355 @@
             android:id="@+id/button1"
             android:layout_width="84dp"
             android:layout_height="49dp"
+            android:layout_marginBottom="485dp"
             android:text="구매"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.38"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.229"
+            app:layout_constraintStart_toStartOf="@id/textView" />
 
         <TextView
+
             android:layout_width="70dp"
             android:layout_height="40dp"
-            android:layout_marginStart="240dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="1dp"
             android:text="$ 200 "
+
             android:textSize="20dp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintStart_toEndOf="@+id/button1"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            tools:ignore="MissingConstraints" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="84dp"
             android:layout_height="49dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="485dp"
+            android:text="구매"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="160dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="104dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/snowman3"
+            app:layout_constraintBottom_toTopOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.08"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            tools:ignore="MissingConstraint,MissingConstraints" />
+
+        <ImageButton
+            android:id="@+id/imagePlayButton3"
+            android:layout_width="82dp"
+            android:layout_height="87dp"
+            android:layout_marginStart="88dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="음악3 재생 버튼"
+            android:onClick="playMusic"
+            android:scaleType="centerInside"
+            android:src="@drawable/play_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.551" />
+
+        <ImageButton
+            android:id="@+id/imageStopButton3"
+            android:layout_width="82dp"
+            android:layout_height="87dp"
+            android:layout_marginStart="24dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="음악 3 일시 정지 버튼"
+            android:onClick="pauseMusic"
+            android:scaleType="centerInside"
+            android:src="@drawable/stop_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.56"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="8dp"
+            android:text="눈사람"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+        <TextView
+            android:id="@+id/price3"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="4dp"
+            android:text="$ 300 "
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="84dp"
+            android:layout_height="49dp"
+            android:layout_marginEnd="200dp"
+            android:layout_marginBottom="230dp"
             android:text="구매"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="@id/textView3" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="160dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="104dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/oranges4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.942"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            tools:ignore="MissingConstraint,MissingConstraints" />
+
+        <ImageButton
+            android:id="@+id/imagePlayButton4"
+            android:layout_width="82dp"
+            android:layout_height="87dp"
+            android:layout_marginStart="268dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="음악4 재생 버튼"
+            android:onClick="playMusic"
+            android:scaleType="centerInside"
+            android:src="@drawable/play_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.568" />
+
+        <ImageButton
+            android:id="@+id/imageStopButton4"
+            android:layout_width="82dp"
+            android:layout_height="87dp"
+            android:layout_marginStart="24dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="음악 4 일시 정지 버튼"
+            android:onClick="pauseMusic"
+            android:scaleType="centerInside"
+            android:src="@drawable/stop_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.56"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="276dp"
+            android:layout_marginTop="12dp"
+            android:text="달콤한 과일"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+        <TextView
+            android:id="@+id/price4"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="240dp"
+            android:layout_marginTop="4dp"
+            android:text="$ 400 "
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="84dp"
+            android:layout_height="49dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="230dp"
+            android:text="구매"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="163dp"
+            android:layout_height="152dp"
+            android:layout_marginTop="340dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/sunglasses5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.08"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            tools:ignore="MissingConstraint,MissingConstraints" />
+
+        <ImageButton
+            android:id="@+id/imagePlayButton5"
+            android:layout_width="82dp"
+            android:layout_height="87dp"
+            android:layout_marginStart="52dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="음악5 재생 버튼"
+            android:onClick="playMusic"
+            android:scaleType="centerInside"
+            android:src="@drawable/play_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.865" />
+
+        <ImageButton
+            android:id="@+id/imageStopButton5"
+            android:layout_width="82dp"
+            android:layout_height="87dp"
+            android:layout_marginStart="24dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="음악 5 일시 정지 버튼"
+            android:onClick="pauseMusic"
+            android:scaleType="centerInside"
+            android:src="@drawable/stop_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.56"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="8dp"
+            android:text="여름 휴가"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+        <TextView
+            android:id="@+id/price5"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="1dp"
+            android:text="$ 500 "
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="84dp"
+            android:layout_height="49dp"
+            android:layout_marginEnd="215dp"
+            android:layout_marginBottom="0dp"
+            android:text="구매"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@id/textView5" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="160dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="340dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/moon6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.936"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            tools:ignore="MissingConstraint,MissingConstraints" />
+
+        <ImageButton
+            android:id="@+id/imagePlayButton6"
+            android:layout_width="82dp"
+            android:layout_height="87dp"
+            android:layout_marginStart="276dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="음악6 재생 버튼"
+            android:onClick="playMusic"
+            android:scaleType="centerInside"
+            android:src="@drawable/play_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.851" />
+
+        <ImageButton
+            android:id="@+id/imageStopButton6"
+            android:layout_width="82dp"
+            android:layout_height="87dp"
+            android:layout_marginStart="24dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="음악 6 일시 정지 버튼"
+            android:onClick="pauseMusic"
+            android:scaleType="centerInside"
+            android:src="@drawable/stop_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.56"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="8dp"
+            android:text="할로윈"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+        <TextView
+            android:id="@+id/price6"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="236dp"
+            android:layout_marginTop="3dp"
+            android:text="$ 600 "
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="84dp"
+            android:layout_height="49dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="0dp"
+            android:text="구매"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

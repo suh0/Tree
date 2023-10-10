@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 if(currentTreeIndex <= 1)
                 {
                     if(currentHour == 1)
-                        currentTreeIndex = max_2h;
+                        currentTreeIndex = max_1h;
                     else if(currentHour == 2)
                         currentTreeIndex = max_2h;
                     else if(currentHour == 3)

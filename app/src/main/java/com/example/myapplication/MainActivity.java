@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Application;
 import android.content.Intent;
 import android.view.View;
 import android.app.AlertDialog;
@@ -14,7 +15,10 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int balance = 2000; // 초기 잔액
+    private int balance =2000; // 초기 잔액
+//    Intent intent = new Intent(this, MainActivity2.class);
+//    intent.putExtra("balance",initailBalance);
+//    startActivity(intent);
 
     private TextView balanceTextView; //현재 잔액을 나타냄
     private Button button1; //나무1 구매 버튼
@@ -26,12 +30,36 @@ public class MainActivity extends AppCompatActivity {
 
     private Button music_button;
 
+
+
+//    public class MyApplication extends Application {
+//        private int balance;
+//        private int initialBalance = 100;
+//
+//        public MyApplication() {
+//
+//        }
+//        @Override
+//        public void onCreate() {
+//            super.onCreate();
+//            setBalance(initialBalance);
+//        }
+//        public int getBalance() {
+//            return balance;
+//        }
+//
+//        public void setBalance(int balance) {
+//            this.balance = balance;
+//        }
+//    }
+//    MyApplication myApp = (MyApplication) getApplication();
+//    int balance = myApp.getBalance();
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) { //메인 엑티비티가 실행될 때 이 구문을 쫙 실행하라는 의미
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         music_button = findViewById(R.id.music_button);
         music_button.setOnClickListener(new View.OnClickListener() { //버튼을 실행할 때 onCLick을 실행하라는 의미
 
@@ -110,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(MainActivity.this, "구매 실패", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.show();
@@ -136,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(MainActivity.this, "구매 실패", Toast.LENGTH_SHORT).show();
                         // 구매를 취소하거나 다른 작업을 수행할 수 있습니다.
                     }
                 });
@@ -163,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(MainActivity.this, "구매 실패", Toast.LENGTH_SHORT).show();
                         // 구매를 취소하거나 다른 작업을 수행할 수 있습니다.
                     }
                 });
@@ -190,6 +221,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(MainActivity.this, "구매 실패", Toast.LENGTH_SHORT).show();
                         // 구매를 취소하거나 다른 작업을 수행할 수 있습니다.
                     }
                 });
@@ -217,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(MainActivity.this, "구매 실패", Toast.LENGTH_SHORT).show();
                         // 구매를 취소하거나 다른 작업을 수행할 수 있습니다.
                     }
                 });

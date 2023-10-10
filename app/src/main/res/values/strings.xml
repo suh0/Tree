@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">Tree</string>
+    <string name="app_name">SelectTree2</string>
+    <string name="one_hour">1시간</string>
+    <string name="two_hour">2시간</string>
+    <string name="three_hour">3시간</string>
+    <string name="tree_select_title">나무의 품종을 선택하세요.</string>
+    <string name="prev">이전</string>
+    <string name="next">다음</string>
+    <string name="confirm">결정</string>
+    <string name="placeholder">Placeholder</string>
 </resources>

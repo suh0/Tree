@@ -7,7 +7,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
-
 public class MainActivity extends AppCompatActivity {
 
     Button show1h;
@@ -92,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         show1h = findViewById(R.id.show1h);
         show2h = findViewById(R.id.show2h);
         show3h = findViewById(R.id.show3h);
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 if(currentTreeIndex <= 1)
                 {
                     if(currentHour == 1)
-                        currentHour = max_2h;
+                        currentTreeIndex = max_2h;
                     else if(currentHour == 2)
                         currentTreeIndex = max_2h;
                     else if(currentHour == 3)

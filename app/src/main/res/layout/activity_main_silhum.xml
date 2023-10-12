@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main_silhum">
+
+    <Button
+        android:id="@+id/add_tree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:text="add tree"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="380dp"
+        android:layout_height="370dp"
+        android:layout_marginTop="140dp"
+        android:background="@drawable/temp_board"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/room0"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="13dp"
+            android:src="@drawable/tree_29_shadow"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/room1"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/tree_35"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.393"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room0" />
+
+        <ImageView
+            android:id="@+id/room2"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/tree_26_shadow"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.625"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room0" />
+
+        <ImageView
+            android:id="@+id/room3"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/tree_34"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.265"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room1" />
+
+        <ImageView
+            android:id="@+id/room4"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="52dp"
+            android:src="@drawable/tree_35"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

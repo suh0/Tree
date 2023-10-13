@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class SelectHour extends AppCompatActivity {
 
     Button show1h;
     Button show2h;
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_select_hour);
 
         show1h = findViewById(R.id.show1h);
         show2h = findViewById(R.id.show2h);

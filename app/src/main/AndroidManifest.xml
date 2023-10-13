@@ -21,8 +21,10 @@
 
         <activity
             android:name=".SelectHour"
-            android:exported="true"
-            tools:ignore="DuplicateActivity">
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

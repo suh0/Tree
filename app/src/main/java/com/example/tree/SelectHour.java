@@ -121,12 +121,6 @@ public class SelectHour extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_hour);
 
-        long selectedMilliseconds = 5;
-        Intent intent = new Intent(SelectHour.this, TimerActivity.class);
-        intent.putExtra("selected_milliseconds", selectedMilliseconds); // 변경된 부분
-
-        startActivityForResult(intent, 1); //넘기기
-
         show5s = findViewById(R.id.show5s);
         show30m = findViewById(R.id.show30m);
         show1h = findViewById(R.id.show1h);
@@ -180,6 +174,31 @@ public class SelectHour extends AppCompatActivity {
                     currentTreeIndex++;
 
                 updateTree();
+            }
+        });
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                long selected_milliseconds = 0;
+                switch (currentHour_number){
+                    case 1:
+                        selected_milliseconds = 5000; //1000(1초) * 5
+                        break;
+                    case 2:
+                        selected_milliseconds = 1000 * 60 * 30; //30분 1000(1초) * 60(1분) * 30
+                        break;
+                    case 3:
+                        selected_milliseconds = 1000 * 60 * 60; //1시간
+                        break;
+                    case 4:
+                        selected_milliseconds = 1000 * 60 * 60 * 2; //2시간
+                        break;
+                }
+
+                Intent intent = new Intent(SelectHour.this, TimerActivity.class);
+                intent.putExtra("selected_milliseconds", selected_milliseconds); // 변경된 부분
+
+                startActivityForResult(intent, 1); //넘기기
             }
         });
     }

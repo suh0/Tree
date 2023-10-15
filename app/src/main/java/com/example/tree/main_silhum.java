@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.util.HashMap;
 import java.util.Random;
 
 public class main_silhum extends AppCompatActivity {
@@ -21,7 +22,7 @@ public class main_silhum extends AppCompatActivity {
 
         for(int i=0; i<5; i++){
             // xml 파일의 레이아웃과 room 배열의 원소들과 바인딩
-            room[i]=(ImageView) findViewById(getResources().getIdentifier("room"+ i, "id", "com.example.a1011_2236"));
+            room[i]=(ImageView) findViewById(getResources().getIdentifier("room"+ i, "id", "com.example.tree"));
             // 2023.10.12 xml 파일에 room1~5로 id를 정해서 getIdentifier("room"+ i+1, ~~~) 라고 작성했을 때, 제대로 바인딩 되지 않아(null값) 40라인에서 문제발생. >> 수정완료
             // 아직 아무 나무도 생성되지 않음 >> 이미지뷰가 모두 보이지 않도록 처리
         }
@@ -31,14 +32,39 @@ public class main_silhum extends AppCompatActivity {
         add_tree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int room_num;
+                int room_num, which_tree;
                 Random random= new Random();
-                room_num=random.nextInt(5); // 1~5 범위의 난수 생성
+                room_num=random.nextInt(5); // 0~4 범위의 난수 생성
+                which_tree=random.nextInt(5); // 어떤 품종 심을지 결정. 테스트용
 
-                // 중복된 자리 처리 필요
 
-                room[room_num].setImageResource(R.drawable.tree_29_shadow);
-                room[room_num].setVisibility(View.VISIBLE);
+                // 중복된 자리 처리
+                if(room[room_num].getVisibility()!=View.VISIBLE){
+
+                    // which_tree 값에 따라 심는 품종 달라짐
+                    switch(which_tree){
+                        case 0:
+                            room[room_num].setImageResource(R.drawable.tree_26_shadow);
+                            break;
+
+                        case 1:
+                            room[room_num].setImageResource(R.drawable.tree_28_shadow);
+                            break;
+
+                        case 2:
+                            room[room_num].setImageResource(R.drawable.tree_29_shadow);
+                            break;
+
+                        case 3:
+                            room[room_num].setImageResource(R.drawable.tree_32_shadow);
+                            break;
+
+                        case 4:
+                            room[room_num].setImageResource(R.drawable.tree_36);
+                            break;
+                    }
+                    room[room_num].setVisibility(View.VISIBLE);
+                }
 
             }
         });

@@ -80,6 +80,61 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/room0" />
 
+        <ImageView
+            android:id="@+id/room5"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="28dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.731"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room2" />
+
+        <ImageView
+            android:id="@+id/room6"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="20dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.159"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room3" />
+
+        <ImageView
+            android:id="@+id/room7"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="48dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.39"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room1" />
+
+        <ImageView
+            android:id="@+id/room8"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="48dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.625"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room2" />
+
+        <ImageView
+            android:id="@+id/room9"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="20dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.859"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room5" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,6 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.app.Application;
 import android.content.Intent;
 import android.view.View;
 import android.app.AlertDialog;
@@ -17,8 +16,10 @@ public class MainActivity extends AppCompatActivity {
 
     private int balance =2000; // 초기 잔액
 //    Intent intent = new Intent(this, MainActivity2.class);
-//    intent.putExtra("balance",initailBalance);
+//    intent.putExtra("balance",2000);
 //    startActivity(intent);
+
+
 
     private TextView balanceTextView; //현재 잔액을 나타냄
     private Button button1; //나무1 구매 버튼
@@ -31,30 +32,6 @@ public class MainActivity extends AppCompatActivity {
     private Button music_button;
 
 
-
-//    public class MyApplication extends Application {
-//        private int balance;
-//        private int initialBalance = 100;
-//
-//        public MyApplication() {
-//
-//        }
-//        @Override
-//        public void onCreate() {
-//            super.onCreate();
-//            setBalance(initialBalance);
-//        }
-//        public int getBalance() {
-//            return balance;
-//        }
-//
-//        public void setBalance(int balance) {
-//            this.balance = balance;
-//        }
-//    }
-//    MyApplication myApp = (MyApplication) getApplication();
-//    int balance = myApp.getBalance();
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) { //메인 엑티비티가 실행될 때 이 구문을 쫙 실행하라는 의미
@@ -65,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                 Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                 Intent intent = new Intent(MainActivity.this, MusicShopActivity.class);
                  startActivity(intent); //엑티비티 이동해주는 구문
 
             }

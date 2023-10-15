@@ -1,9 +1,6 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.WindowDecorActionBar;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -13,17 +10,12 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 //import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
-public class MainActivity2 extends AppCompatActivity {
+public class MusicShopActivity extends AppCompatActivity {
 
     private Button tree_button;
     private int balance1 = 2000;
@@ -68,7 +60,7 @@ public class MainActivity2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.musicshop_activity_main);
 
 //        MainActivity.MyApplication myApp = (MainActivity.MyApplication) getApplication();
 //        int balance = myApp.getBalance();
@@ -77,7 +69,7 @@ public class MainActivity2 extends AppCompatActivity {
         tree_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity2.this,MainActivity.class);
+                Intent intent = new Intent(MusicShopActivity.this,MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -114,6 +106,8 @@ public class MainActivity2 extends AppCompatActivity {
         updateBalanceText1();
 
 
+
+
         imagePlayButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -146,7 +140,7 @@ public class MainActivity2 extends AppCompatActivity {
                 showPurchaseConfirmationDialog();
             }
             private void showPurchaseConfirmationDialog() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MusicShopActivity.this);
                 builder.setTitle("구매 확인");
                 builder.setMessage("정말로 이 아이템을 구매하시겠습니까?");
                 builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
@@ -160,7 +154,7 @@ public class MainActivity2 extends AppCompatActivity {
                 builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(MainActivity2.this, "구매 실패", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MusicShopActivity.this, "구매 실패", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.show();
@@ -173,7 +167,7 @@ public class MainActivity2 extends AppCompatActivity {
                 showPurchaseConfirmationDialog();
             }
             private void showPurchaseConfirmationDialog() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MusicShopActivity.this);
                 builder.setTitle("구매 확인");
                 builder.setMessage("정말로 이 아이템을 구매하시겠습니까?");
                 builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
@@ -187,7 +181,7 @@ public class MainActivity2 extends AppCompatActivity {
                 builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(MainActivity2.this, "구매 실패", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MusicShopActivity.this, "구매 실패", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.show();
@@ -200,7 +194,7 @@ public class MainActivity2 extends AppCompatActivity {
                 showPurchaseConfirmationDialog();
             }
             private void showPurchaseConfirmationDialog() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MusicShopActivity.this);
                 builder.setTitle("구매 확인");
                 builder.setMessage("정말로 이 아이템을 구매하시겠습니까?");
                 builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
@@ -214,7 +208,7 @@ public class MainActivity2 extends AppCompatActivity {
                 builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(MainActivity2.this, "구매 실패", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MusicShopActivity.this, "구매 실패", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.show();
@@ -227,7 +221,7 @@ public class MainActivity2 extends AppCompatActivity {
                 showPurchaseConfirmationDialog();
             }
             private void showPurchaseConfirmationDialog() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MusicShopActivity.this);
                 builder.setTitle("구매 확인");
                 builder.setMessage("정말로 이 아이템을 구매하시겠습니까?");
                 builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
@@ -241,7 +235,7 @@ public class MainActivity2 extends AppCompatActivity {
                 builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(MainActivity2.this, "구매 실패", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MusicShopActivity.this, "구매 실패", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.show();
@@ -254,7 +248,7 @@ public class MainActivity2 extends AppCompatActivity {
                 showPurchaseConfirmationDialog();
             }
             private void showPurchaseConfirmationDialog() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MusicShopActivity.this);
                 builder.setTitle("구매 확인");
                 builder.setMessage("정말로 이 아이템을 구매하시겠습니까?");
                 builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
@@ -268,7 +262,7 @@ public class MainActivity2 extends AppCompatActivity {
                 builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(MainActivity2.this, "구매 실패", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MusicShopActivity.this, "구매 실패", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.show();
@@ -281,7 +275,7 @@ public class MainActivity2 extends AppCompatActivity {
                 showPurchaseConfirmationDialog();
             }
             private void showPurchaseConfirmationDialog() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MusicShopActivity.this);
                 builder.setTitle("구매 확인");
                 builder.setMessage("정말로 이 아이템을 구매하시겠습니까?");
                 builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
@@ -295,7 +289,7 @@ public class MainActivity2 extends AppCompatActivity {
                 builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(MainActivity2.this, "구매 실패", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MusicShopActivity.this, "구매 실패", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.show();

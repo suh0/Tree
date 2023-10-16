@@ -12,7 +12,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     private Button test;
-    ImageView room[]=new ImageView[10];
+    ImageView room[]=new ImageView[25];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

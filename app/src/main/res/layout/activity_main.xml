@@ -136,6 +136,171 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/room5" />
 
+        <ImageView
+            android:id="@+id/room10"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="44dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.015"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room5" />
+
+        <ImageView
+            android:id="@+id/room11"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="44dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.266"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room5" />
+
+        <ImageView
+            android:id="@+id/room12"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="44dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room5" />
+
+        <ImageView
+            android:id="@+id/room13"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="44dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.733"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room5" />
+
+        <ImageView
+            android:id="@+id/room14"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="44dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.949"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room5" />
+
+        <ImageView
+            android:id="@+id/room15"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="72dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.134"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room5" />
+
+        <ImageView
+            android:id="@+id/room16"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="72dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.391"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room5" />
+
+        <ImageView
+            android:id="@+id/room17"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="72dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.626"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room5" />
+
+        <ImageView
+            android:id="@+id/room18"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="72dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.858"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room5" />
+
+        <ImageView
+            android:id="@+id/room19"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="96dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.266"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room5" />
+
+        <ImageView
+            android:id="@+id/room20"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="92dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room5" />
+
+        <ImageView
+            android:id="@+id/room21"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="96dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.733"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room5" />
+
+        <ImageView
+            android:id="@+id/room22"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="120dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.391"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room5" />
+
+        <ImageView
+            android:id="@+id/room23"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="120dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.626"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room5" />
+
+        <ImageView
+            android:id="@+id/room24"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="144dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room5" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        for(int i=0; i<10; i++){
+        for(int i=0; i<25; i++){
             // xml 파일의 레이아웃과 room 배열의 원소들과 바인딩
             room[i]=findViewById(getResources().getIdentifier("room"+ i, "id", "com.example.tree"));
 

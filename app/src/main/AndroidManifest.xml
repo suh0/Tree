@@ -12,9 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Main_Timer"
         tools:targetApi="31">
+
+        <activity
+            android:name=".RecordActivity" />
+
+        <activity
+            android:name=".MainActivity" />
+
+        <activity
+            android:name=".SelectHour"
+            android:exported="false" />
         <activity
             android:name=".Main_TimerActivity"
-            android:exported="true">
+            android:exported="true"
+            tools:ignore="DuplicateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

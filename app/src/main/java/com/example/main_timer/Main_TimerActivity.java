@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -134,6 +135,8 @@ public class Main_TimerActivity extends AppCompatActivity implements View.OnClic
             return "02:00:00";
         } else if (selectedTime.equals("3시간")) {
             return "03:00:00";
+        } else if (selectedTime.equals("5초")) {
+            return "00:00:05";
         } else {
             return ""; // 기본값
         }
@@ -171,10 +174,14 @@ public class Main_TimerActivity extends AppCompatActivity implements View.OnClic
                 selectedMilliseconds = 2 * 60 * 60 * 1000; // 2시간
             } else if (selectedTime.equals("3시간")) {
                 selectedMilliseconds = 3 * 60 * 60 * 1000; // 3시간
+            } else if (selectedTime.equals("5초")) {
+                selectedMilliseconds = 5*1000;
+
             }
+            Log.d("Timer", "Selected Milliseconds: " + selectedMilliseconds); // 로그 추가
 
 
-        timeCountInMilliSeconds = selectedMilliseconds;
+            timeCountInMilliSeconds = selectedMilliseconds;
         countDownTimer = new CountDownTimer(timeCountInMilliSeconds, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -183,6 +190,9 @@ public class Main_TimerActivity extends AppCompatActivity implements View.OnClic
 
             @Override
             public void onFinish() {
+                textViewTime.setText("성공!");
+                saveRecord();
+                returnToMainScreen();
                 updateTimer(0);
                 timerStatus = TimerStatus.STOPPED;
             }

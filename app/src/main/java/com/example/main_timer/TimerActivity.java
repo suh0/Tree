@@ -12,13 +12,13 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -27,7 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class Main_TimerActivity extends AppCompatActivity implements View.OnClickListener {
+public class TimerActivity extends AppCompatActivity implements View.OnClickListener {
 
     private long timeCountInMilliSeconds = 60 * 60 *1000; //1시간에 해당하는 밀리초
     private ImageView imageViewStart;
@@ -42,12 +42,12 @@ public class Main_TimerActivity extends AppCompatActivity implements View.OnClic
     private Button exitButton;
 
     private ProgressBar progressBarCircle;
-    private TextView textViewTime;
+    private TextView timerTextView;
     private CountDownTimer countDownTimer;
     private RecordDatabaseHelper dbHelper;
     private long selectedMilliseconds = 0;
 
-    private NumberPicker hourPicker;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -55,7 +55,7 @@ public class Main_TimerActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_timer);
 
-        textViewTime = findViewById(R.id.textViewTime);
+        timerTextView = findViewById(R.id.timerTextView);
         imageViewStart = findViewById(R.id.imageViewStart);
         progressBarCircle = findViewById(R.id.progressBarCircle);
         exitButton = findViewById(R.id.exitButton);
@@ -64,29 +64,7 @@ public class Main_TimerActivity extends AppCompatActivity implements View.OnClic
         dbHelper = new RecordDatabaseHelper(this);
 
 
-        selectedMilliseconds = getIntent().getLongExtra("selected_milliseconds", 3600000);
-
-        countDownTimer = new CountDownTimer(selectedMilliseconds, 1000) {
-
-            @Override
-            public void onTick(long millisUntilFinished) { //onTick 메서드는 카운트다운 타이머가 각 틱(일정 시간 간격)마다 호출하는 콜백 메서드-타이머가 감소하면서 남은 시간을 화면에 표시하고 업데이트하는 역할
-
-                long seconds = millisUntilFinished / 1000; //seconds 변수는 남은 밀리초를 초로 변환한 값
-                String time = String.format("%02d:%02d:%02d", seconds / 3600, (seconds % 3600) / 60, seconds % 60);
-                textViewTime.setText(time); //timeTextView라는 TextView 위젯에 time 문자열을 설정- 남은 시간 표시
-                int progress = (int) ((selectedMilliseconds - millisUntilFinished) * 100 / selectedMilliseconds);
-                //circle_bar.setProgress(progress);
-            }
-
-            @Override
-            public void onFinish() { //onFinish 메서드는 카운트다운 타이머가 종료될 때 호출되는 콜백 메서드
-                textViewTime.setText("성공!");
-                //saveRecord(); // 타이머가 성공했을 때 실행되어, 기록을 저장하는 역할
-                //returnToMainScreen(); //이 메서드는 타이머가 종료된 후 메인 화면으로 돌아가는 역할
-
-
-            }
-        };
+       //selectedMilliseconds = getIntent().getLongExtra("selected_milliseconds", 3600000);
 
         Spinner spinner = findViewById(R.id.spinnerTime);
 
@@ -102,7 +80,7 @@ public class Main_TimerActivity extends AppCompatActivity implements View.OnClic
 
                 String selectedTime = parentView.getItemAtPosition(position).toString();
                 String formattedTime = formatTime(selectedTime);
-                textViewTime.setText(formattedTime);
+                timerTextView.setText(formattedTime);
 
             }
 
@@ -117,14 +95,6 @@ public class Main_TimerActivity extends AppCompatActivity implements View.OnClic
 
         // 리스너 초기화
         initListeners();
-
-        exitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                countDownTimer.cancel();
-                finishWithFailure();
-            }
-        });
 
     }
 
@@ -178,7 +148,7 @@ public class Main_TimerActivity extends AppCompatActivity implements View.OnClic
                 selectedMilliseconds = 5*1000;
 
             }
-            Log.d("Timer", "Selected Milliseconds: " + selectedMilliseconds); // 로그 추가
+            //Log.d("Timer", "Selected Milliseconds: " + selectedMilliseconds); // 로그 추가
 
 
             timeCountInMilliSeconds = selectedMilliseconds;
@@ -190,13 +160,31 @@ public class Main_TimerActivity extends AppCompatActivity implements View.OnClic
 
             @Override
             public void onFinish() {
-                textViewTime.setText("성공!");
+
+                timerStatus = TimerStatus.STOPPED;
+                timerTextView.setText("성공!");
+                Log.d("MyTimer", "onFinish called");
                 saveRecord();
                 returnToMainScreen();
-                updateTimer(0);
-                timerStatus = TimerStatus.STOPPED;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //timerTextView.setText("성공!");
+                        Intent intent = new Intent(TimerActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                }, 2000);
+                //updateTimer(0); 이거 쓰면 성공 안뜸
+
             }
         }.start();
+            exitButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    countDownTimer.cancel();
+                    finishWithFailure();
+                }
+            });
 
         timerStatus = TimerStatus.STARTED;
     }
@@ -216,7 +204,7 @@ public class Main_TimerActivity extends AppCompatActivity implements View.OnClic
         int minutes = (seconds % 3600) / 60;
         int secs = seconds % 60;
         String time = String.format("%02d:%02d:%02d", hours, minutes, secs);
-        textViewTime.setText(time);
+        timerTextView.setText(time);
         progressBarCircle.setProgress(seconds);
     }
 
@@ -247,7 +235,7 @@ public class Main_TimerActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void returnToMainScreen() {
-        Intent intent = new Intent(Main_TimerActivity.this, Main_TimerActivity.class);
+        Intent intent = new Intent(TimerActivity.this, TimerActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

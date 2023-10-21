@@ -151,7 +151,7 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
             //Log.d("Timer", "Selected Milliseconds: " + selectedMilliseconds); // 로그 추가
 
 
-            timeCountInMilliSeconds = selectedMilliseconds;
+        timeCountInMilliSeconds = selectedMilliseconds;
         countDownTimer = new CountDownTimer(timeCountInMilliSeconds, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -160,12 +160,13 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onFinish() {
+                String endTime = getCurrentDate();
 
                 timerStatus = TimerStatus.STOPPED;
                 timerTextView.setText("성공!");
                 Log.d("MyTimer", "onFinish called");
                 saveRecord();
-                returnToMainScreen();
+               // returnToMainScreen();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -220,6 +221,7 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
         values.put("duration", selectedMilliseconds);
         db.insert("records", null, values);
         db.close();
+        Log.d("SaveRecord", "Record saved: date=" + getCurrentDate() + ", duration=" + selectedMilliseconds);
     }
     private String getCurrentDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());

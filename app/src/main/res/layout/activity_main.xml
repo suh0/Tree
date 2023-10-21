@@ -37,4 +37,11 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/record_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="기록"
+        android:layout_centerInParent="true" />
+
 </RelativeLayout>

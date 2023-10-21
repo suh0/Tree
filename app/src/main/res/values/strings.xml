@@ -2,14 +2,14 @@
     <string-array name="time_options">
         <item>1시간</item>
         <item>2시간</item>
-        <item>3시간</item>
+        <item>30분</item>
         <item>5초</item>
         <!-- 필요한 만큼 옵션을 추가할 수 있습니다 -->
     </string-array>
     <string-array name="hours_array">
         <item>1시간</item>
         <item>2시간</item>
-        <item>3시간</item>
+        <item>30분</item>
         <item>5초</item>
     </string-array>
 

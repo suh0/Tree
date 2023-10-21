@@ -103,8 +103,8 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
             return "01:00:00";
         } else if (selectedTime.equals("2시간")) {
             return "02:00:00";
-        } else if (selectedTime.equals("3시간")) {
-            return "03:00:00";
+        } else if (selectedTime.equals("30분")) {
+            return "00:00:30";
         } else if (selectedTime.equals("5초")) {
             return "00:00:05";
         } else {
@@ -142,10 +142,10 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
                 selectedMilliseconds = 1 * 60 * 60 * 1000; // 1시간
             } else if (selectedTime.equals("2시간")) {
                 selectedMilliseconds = 2 * 60 * 60 * 1000; // 2시간
-            } else if (selectedTime.equals("3시간")) {
-                selectedMilliseconds = 3 * 60 * 60 * 1000; // 3시간
+            } else if (selectedTime.equals("30분")) {
+                selectedMilliseconds = 1000 * 60 * 30;  // 30분
             } else if (selectedTime.equals("5초")) {
-                selectedMilliseconds = 5*1000;
+                selectedMilliseconds = 5000;
 
             }
             //Log.d("Timer", "Selected Milliseconds: " + selectedMilliseconds); // 로그 추가

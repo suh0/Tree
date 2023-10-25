@@ -26,10 +26,11 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class TimerActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private long timeCountInMilliSeconds = 60 * 60 *1000; //1시간에 해당하는 밀리초
+    private long timeCountInMilliSeconds = 5000; //5000이면 5초부터 감소함
     private ImageView imageViewStart;
 
 
@@ -46,7 +47,7 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
     private CountDownTimer countDownTimer;
     private RecordDatabaseHelper dbHelper;
     private long selectedMilliseconds = 0;
-
+    private long startTime;
 
 
     @SuppressLint("MissingInflatedId")
@@ -133,40 +134,51 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
 
     private void startTimer() {
         if (timerStatus == TimerStatus.STOPPED) {
-            long selectedMilliseconds = timeCountInMilliSeconds; // 초기 값은 timeCountInMilliSeconds
+            long selectedMilliseconds = timeCountInMilliSeconds; // "selectedMilliseconds" 변수는 스피너에서 선택한 시간에 따라 동적으로 설정된 타이머의 총 시간을 나타내는 변수
+            startTime = System.currentTimeMillis();
 
             // 스피너에서 선택한 시간에 따라 타이머 시간 설정
             Spinner spinner = findViewById(R.id.spinnerTime);
             String selectedTime = spinner.getSelectedItem().toString();
             if (selectedTime.equals("1시간")) {
-                selectedMilliseconds = 1 * 60 * 60 * 1000; // 1시간
+                selectedMilliseconds = 1 * 60 * 60 * 1000;// 1시간
+                timeCountInMilliSeconds =  1 * 60 * 60 * 1000;
             } else if (selectedTime.equals("2시간")) {
-                selectedMilliseconds = 2 * 60 * 60 * 1000; // 2시간
+                selectedMilliseconds = 2 * 60 * 60 * 1000;
+                timeCountInMilliSeconds = 2 * 60 * 60 * 1000;// 2시간
             } else if (selectedTime.equals("30분")) {
-                selectedMilliseconds = 1000 * 60 * 30;  // 30분
+                selectedMilliseconds = 1000 * 60 * 30;
+                timeCountInMilliSeconds = 30 * 60 * 1000;// 30분
             } else if (selectedTime.equals("5초")) {
+                timeCountInMilliSeconds = 5000;
                 selectedMilliseconds = 5000;
-
             }
-            //Log.d("Timer", "Selected Milliseconds: " + selectedMilliseconds); // 로그 추가
+            setupProgressBar();
+            Log.d("Timer", "Selected Milliseconds: " + selectedMilliseconds); // 로그 추가
 
-
-        timeCountInMilliSeconds = selectedMilliseconds;
+            long duration = selectedMilliseconds;
+            timeCountInMilliSeconds = selectedMilliseconds;
         countDownTimer = new CountDownTimer(timeCountInMilliSeconds, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                updateTimer((int) (millisUntilFinished / 1000));
+                //updateTimer((int) (millisUntilFinished / 1000));
+                int seconds = (int) (millisUntilFinished / 1000);
+                updateTimer(seconds); // 타이머 업데이트
+                progressBarCircle.setProgress(seconds);
             }
+
 
             @Override
             public void onFinish() {
-                String endTime = getCurrentDate();
+
+                long endTime = System.currentTimeMillis(); // 타이머 종료 시간을 기록
+                long duration = endTime - startTime; // 시작과 종료 시간의 차이를 계산
 
                 timerStatus = TimerStatus.STOPPED;
                 timerTextView.setText("성공!");
                 Log.d("MyTimer", "onFinish called");
-                saveRecord();
-               // returnToMainScreen();
+                saveRecord(duration);
+               //returnToMainScreen();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -174,7 +186,7 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
                         Intent intent = new Intent(TimerActivity.this, MainActivity.class);
                         startActivity(intent);
                     }
-                }, 2000);
+                }, 1000);
                 //updateTimer(0); 이거 쓰면 성공 안뜸
 
             }
@@ -190,6 +202,16 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
         timerStatus = TimerStatus.STARTED;
     }
  }
+
+    private void setupProgressBar() {
+        progressBarCircle = findViewById(R.id.progressBarCircle);
+        //"timeCountInMilliSeconds"는 원형 프로그래스 바의 최대값을 설정하는 데 사용
+
+        int maxProgress=(int) (timeCountInMilliSeconds / 1000);
+
+        progressBarCircle.setMax(maxProgress);
+    }
+
 
 
     /**
@@ -214,17 +236,20 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
         countDownTimer.cancel(); // 액티비티 종료 시 타이머 초기화
         dbHelper.close();
     }
-    private void saveRecord() {
+    private void saveRecord(long duration) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("date", getCurrentDate());
-        values.put("duration", selectedMilliseconds);
+        values.put("duration", duration);
         db.insert("records", null, values);
         db.close();
-        Log.d("SaveRecord", "Record saved: date=" + getCurrentDate() + ", duration=" + selectedMilliseconds);
+        //Log.d("SaveRecord", "Record saved: date=" + getCurrentDate() + ", duration=" + selectedMilliseconds);
+
     }
+
     private String getCurrentDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        dateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Seoul")); //수정된 부분(시간이 안 맞아서)
         Date date = new Date();
         return dateFormat.format(date);
     }

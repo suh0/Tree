@@ -315,20 +315,20 @@
             android:id="@+id/friend_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="친구" />
+            android:text="@string/friend" />
 
         <Button
             android:id="@+id/plant_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="심기"
+            android:text="@string/plant"
             android:layout_marginStart="16dp" />
 
         <Button
             android:id="@+id/shop_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="상점"
+            android:text="@string/shop"
             android:layout_marginStart="16dp" />
 
     </LinearLayout>

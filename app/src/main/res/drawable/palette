@@ -1,0 +1,30 @@
+pocket tree 팔레트
+@@폰트 크기 피그마에서 설정한 값 그대로 가져옴 >> 안드로이드 스튜디오에서 달라질 수 있음@@
+
+폰트 : Lexend Deca
+	폰트 스타일 Bold, SemiBold, Light, Medium, Regular
+
+
+배경 : 80D6A7
+상단 타이틀 My Pocket : 글자 색 흰색 / 폰트 스타일 : Bold / 크기 : 24
+상단 타이틀 Shop, Plant your tree, Log, User : 글자 색 흰색/ 폰트 스타일 : SemiBold / 크기: 24
+
+
+보유 금액 표시구역 글자 색 : 7D7D7D / 폰트 스타일 : Regular / 크기 : 16
+
+
+상점 액티비티 Trees, BGMs : 글자 색 흰색 / 폰트 스타일 : Medium / 크기 : 22
+상점 액티비티 물품 가격, 이름 : 글자 색 검은색 / 폰트 스타일 : Light / 크기 : 16
+
+
+나무 선택 액티비티 Select Time, Select Tree : 글자 색 흰색 / 폰트 스타일 : Regular / 크기 : 20
+
+
+타이머 액티비티 격려문구 : 글자 색 E8FFF1 / 폰트 스타일 : Regular / 크기 : 32
+	      시간 : 글자 색 E8FFF1 / 폰트 스타일 : Regular / 크기 : 48
+	      진한 강조색 : 4A9A7D
+	      연두색 비슷한거 : DAFFC3
+
+
+유저/로그 액티비티 Account, Statistics: 글자 색 흰색 / 폰트 스타일 : Medium / 크기 : 20
+유저/로그 액티비티 내용 글자 색 : 777777 / 폰트 스타일 : Light / 크기 : 15

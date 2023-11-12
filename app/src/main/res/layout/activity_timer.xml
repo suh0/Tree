@@ -46,12 +46,13 @@
         android:id="@+id/exitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="36dp"
         android:background="@android:color/transparent"
         android:contentDescription="취소 버튼"
         android:src="@drawable/btn_cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 

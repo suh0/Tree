@@ -79,6 +79,8 @@ public class TimerActivity extends AppCompatActivity {
                 //timerTextView.setText(time);
 
 
+
+
                     @Override
                     public void onFinish() {
                         timerTextView.setText("성공!");

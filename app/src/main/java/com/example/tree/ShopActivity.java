@@ -1,4 +1,4 @@
-package com.example.a1517;
+package com.example.tree;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.example.tree.R;
 
 import java.util.ArrayList;
 

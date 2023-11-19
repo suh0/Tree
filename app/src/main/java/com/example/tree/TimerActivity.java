@@ -48,15 +48,15 @@ public class TimerActivity extends AppCompatActivity {
     private TextView timerTextView;
     private CountDownTimer countDownTimer;
 
-    private ImageButton exitButton;
+    private ImageView exitButton;
     private RecordDatabaseHelper dbHelper;
     private long selectedMilliseconds;
     private ProgressBar progressBarCircle;
 
     private ImageView timer_image1;
     private ImageView timer_image2;
-    private ImageButton backmusic_start;
-    private ImageButton backmusic_stop;
+    private ImageView backmusic_start, backmusic_stop;
+
 
     private static final String TAG_TEXT ="music";
     private boolean isMusicPlaying = false;

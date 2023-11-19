@@ -12,13 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tree"
         tools:targetApi="33">
-
         <activity
-            android:name=".RecordActivity" />
+            android:name=".FailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SuccessActivity"
+            android:exported="false" />
+        <activity android:name=".RecordActivity" />
         <activity
             android:name=".TimerActivity"
             android:exported="false" />
-
         <activity
             android:name=".SelectHour"
             android:exported="true" />
@@ -31,7 +34,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

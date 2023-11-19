@@ -27,12 +27,14 @@ public class FailActivity extends AppCompatActivity {
 
         Animation animScale= AnimationUtils.loadAnimation(this, R.anim.anim_bboyong);
         Animation animTilting=AnimationUtils.loadAnimation(this, R.anim.anim_tilting);
+        Animation animButtonScale=AnimationUtils.loadAnimation(this, R.anim.anim_btn_effect);
         txt_fail.startAnimation(animTilting);
         txt_tryAgain.startAnimation(animScale);
         
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btn_home.startAnimation(animButtonScale);
                 Intent toMain=new Intent(FailActivity.this, MainActivity.class);
                 startActivity(toMain);
             }

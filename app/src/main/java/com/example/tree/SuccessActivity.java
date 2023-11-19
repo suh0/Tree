@@ -34,6 +34,7 @@ public class SuccessActivity extends AppCompatActivity {
 
         Animation animScale= AnimationUtils.loadAnimation(this, R.anim.anim_bboyong);
         Animation animTilting=AnimationUtils.loadAnimation(this, R.anim.anim_tilting);
+        Animation animButtonScale=AnimationUtils.loadAnimation(this, R.anim.anim_btn_effect);
         //img_tree.setImageResource();     심은 나무에 따라 이미지 다르게 지정
         //txt_addMoney.setText("+ $ "+money);   나무에 따라 돈 얼마나 추가되는지 다르게 표시
         img_tree.startAnimation(animScale);
@@ -45,6 +46,7 @@ public class SuccessActivity extends AppCompatActivity {
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btn_home.startAnimation(animButtonScale);
                 Intent toMain=new Intent(SuccessActivity.this, MainActivity.class);
                 startActivity(toMain);
             }

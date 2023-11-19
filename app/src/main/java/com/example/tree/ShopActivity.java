@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -64,7 +65,8 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent toMain=new Intent(ShopActivity.this, MainActivity.class);
+                startActivity(toMain);
             }
         });
 

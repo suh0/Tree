@@ -18,8 +18,6 @@ public class RecordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
 
-
-
         dbHelper = new RecordDatabaseHelper(this);
         LinearLayout recordLayout = findViewById(R.id.recordLayout);
 

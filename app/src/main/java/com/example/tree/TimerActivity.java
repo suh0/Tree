@@ -284,9 +284,10 @@ public class TimerActivity extends AppCompatActivity {
             }
 
             private void finishWithFailure() {
-                Intent intent = new Intent();
-                intent.putExtra("result", "실패하였습니다!");
-                setResult(RESULT_OK, intent);
+                //Intent intent = new Intent();
+                //intent.putExtra("result", "실패하였습니다!");
+                //setResult(RESULT_OK, intent);
+                goToFailActivity();
                 finish();
             }
 

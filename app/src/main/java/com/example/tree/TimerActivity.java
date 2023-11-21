@@ -115,9 +115,10 @@ public class TimerActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                timerTextView.setText("성공!");
+                //timerTextView.setText("성공!");
                 saveRecord();
-                returnToMainScreen();
+                //returnToMainScreen();
+                goToSuccessActivity();
             }
         };
 
@@ -294,4 +295,19 @@ public class TimerActivity extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
+
+
+            private void goToSuccessActivity(){
+                Intent toSuccess=new Intent(TimerActivity.this, SuccessActivity.class);
+                startActivity(toSuccess);
+            }
+
+            private void goToFailActivity(){
+                Intent toFail=new Intent(TimerActivity.this, FailActivity.class);
+                startActivity(toFail);
+            }
         }
+
+
+
+

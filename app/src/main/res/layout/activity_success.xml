@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80D6A7"
+    tools:context=".SuccessActivity">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lottie_confetti"
+        app:lottie_rawRes="@raw/confetti_lottie"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_light"
+        android:layout_width="450dp"
+        android:layout_height="450dp"
+        android:layout_marginBottom="108dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/light_lottie" />
+
+    <ImageView
+        android:id="@+id/img_tree"
+        android:layout_width="143dp"
+        android:layout_height="209dp"
+        app:layout_constraintBottom_toBottomOf="@+id/lottie_light"
+        app:layout_constraintEnd_toEndOf="@+id/lottie_light"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="@+id/lottie_light"
+        app:layout_constraintTop_toTopOf="@+id/lottie_light"
+        app:layout_constraintVertical_bias="0.466"
+        app:srcCompat="@drawable/img_tree9" />
+
+    <TextView
+        android:id="@+id/txt_success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:fontFamily="@font/baloo_bhaijaan"
+        android:text="Successed!"
+        android:textColor="@color/white"
+        android:textSize="62sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_home"
+        android:layout_width="110dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="76dp"
+        android:background="@drawable/btn_home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_addMoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/baloo_bhaijaan"
+        android:text="+ $100"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_success" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

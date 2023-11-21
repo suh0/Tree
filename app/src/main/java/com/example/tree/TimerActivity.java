@@ -47,9 +47,10 @@ public class TimerActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                timerTextView.setText("성공!");
+                //timerTextView.setText("성공!");
                 saveRecord();
-                returnToMainScreen();
+                //returnToMainScreen();
+                goToSuccessActivity();
             }
         };
 
@@ -87,15 +88,27 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private void finishWithFailure() {
-        Intent intent = new Intent();
-        intent.putExtra("result", "실패하였습니다!");
-        setResult(RESULT_OK, intent);
+        //Intent intent = new Intent();
+        //intent.putExtra("result", "실패하였습니다!");
+        //setResult(RESULT_OK, intent);
+        goToFailActivity();
         finish();
+
     }
 
     private void returnToMainScreen() {
         Intent intent = new Intent(TimerActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+    }
+
+    private void goToSuccessActivity(){
+        Intent toSuccess=new Intent(TimerActivity.this, SuccessActivity.class);
+        startActivity(toSuccess);
+    }
+
+    private void goToFailActivity(){
+        Intent toFail=new Intent(TimerActivity.this, FailActivity.class);
+        startActivity(toFail);
     }
 }

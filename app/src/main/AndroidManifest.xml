@@ -27,7 +27,7 @@
         <activity
             android:name=".ShopActivity"
             android:exported="true" />
-        
+
         <activity
             android:name=".SelectHour"
             android:exported="true" />

@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tree"
         tools:targetApi="33">
+
         <activity
             android:name=".FailActivity"
             android:exported="false" />
@@ -22,6 +23,11 @@
         <activity
             android:name=".TimerActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".ShopActivity"
+            android:exported="true" />
+        
         <activity
             android:name=".SelectHour"
             android:exported="true" />

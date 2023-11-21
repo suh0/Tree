@@ -12,6 +12,8 @@ public class MainActivity extends AppCompatActivity {
     Button plant_btn;
     Button record_btn; // "기록" 버튼 추가
 
+    Button shop_btn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         plant_btn = findViewById(R.id.plant_btn);
         record_btn = findViewById(R.id.record_btn); // 버튼 참조
+        shop_btn = findViewById(R.id.shop_btn);
 
         plant_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, RecordActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        shop_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this , ShopActivity.class);
                 startActivity(intent);
             }
         });

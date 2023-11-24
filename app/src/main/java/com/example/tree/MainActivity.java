@@ -39,7 +39,14 @@ public class MainActivity extends AppCompatActivity {
 
     List<Map<String, Object>> dialogItemList;
     String[] musicFiles = {"music03.mp3", "music04.mp3", "music05.mp3"};
-    private MediaPlayer mediaPlayer;
+    private  static MediaPlayer mediaPlayer;
+
+        public static MediaPlayer getMediaPlayer() {
+            if (mediaPlayer == null) {
+                mediaPlayer = new MediaPlayer();
+            }
+            return mediaPlayer;
+        }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

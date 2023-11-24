@@ -58,8 +58,8 @@ public class TimerActivity extends AppCompatActivity {
     private ImageView backmusic_start, backmusic_stop;
 
     private boolean isMusicPlaying = false;
+    MediaPlayer mediaPlayer = MainActivity.getMediaPlayer();
 
-    private MediaPlayer mediaPlayer;
 
 
     @Override
@@ -147,11 +147,8 @@ public class TimerActivity extends AppCompatActivity {
 
 
     private void playMusic() {
-
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-            mediaPlayer.stop();
-            mediaPlayer.release(); // MediaPlayer 객체 해제
-            mediaPlayer = null; // MediaPlayer 객체 초기화
+            mediaPlayer.start();
         }
 
         backmusic_start.setVisibility(View.VISIBLE);

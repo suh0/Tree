@@ -94,8 +94,8 @@
 
     <ImageView
         android:id="@+id/backmusic_start"
-        android:layout_width="40dp"
-        android:layout_height="35dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginTop="32dp"
         android:contentDescription="음악 시작"
         android:onClick="showMusicDialog"
@@ -108,8 +108,8 @@
 
     <ImageView
         android:id="@+id/backmusic_stop"
-        android:layout_width="40dp"
-        android:layout_height="35dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginTop="32dp"
         android:contentDescription="음악 시작"
         android:src="@drawable/backmusic_stop"

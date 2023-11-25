@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG_TEXT ="music";
     private boolean isMusicPlaying = false;
+    private List<String> selectedMusicList = new ArrayList<>();
 
 
 
@@ -58,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
         shop_btn = findViewById(R.id.shop_btn);
         backmusic_start = findViewById(R.id.backmusic_start);
         backmusic_stop = findViewById(R.id.backmusic_stop);
+
+
+
 
         plant_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,16 +133,38 @@ public class MainActivity extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                int resId = 0;
+
                 String selectedMusic = musicFiles[position]; // 선택된 음악 파일 이름 가져오기
                 playMusic(selectedMusic); // 음악 재생 코드 추가
                 dialog.dismiss(); // 다이얼로그 닫기
                 backmusic_start.setVisibility(View.GONE);
                 backmusic_stop.setVisibility(View.VISIBLE);
+
+                // 선택한 음악 파일 이름에 따라 리소스 ID 설정
+                if (selectedMusic.equals("music03.mp3")) {
+                    resId = R.raw.music03;
+                } else if (selectedMusic.equals("music04.mp3")) {
+                    resId = R.raw.music04;
+                } else if (selectedMusic.equals("music05.mp3")) {
+                    resId = R.raw.music05;
+                }
+                // resId를 리스트에 추가
+                String resIdString = String.valueOf(resId);
+                selectedMusicList.add(resIdString);
+
+                Intent intent = new Intent(MainActivity.this, TimerActivity.class);
+                ArrayList<String> selectedMusicArrayList = new ArrayList<>(selectedMusicList);
+                intent.putStringArrayListExtra("selectedMusicList", selectedMusicArrayList);
+                startActivity(intent);
+
             }
         });
         dialog.setCancelable(false);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
+
     }
 
     private void stopMusic() {
@@ -190,4 +216,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 }

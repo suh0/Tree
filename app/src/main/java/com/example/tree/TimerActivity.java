@@ -75,6 +75,8 @@ public class TimerActivity extends AppCompatActivity {
         backmusic_start = findViewById(R.id.backmusic_start);
         backmusic_stop = findViewById(R.id.backmusic_stop);
 
+        ArrayList<String> selectedMusicList = getIntent().getStringArrayListExtra("selectedMusicList");
+
 
         dbHelper = new RecordDatabaseHelper(this);
 
@@ -147,13 +149,11 @@ public class TimerActivity extends AppCompatActivity {
 
 
     private void playMusic() {
-        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-            mediaPlayer.start();
-        }
-
+        mediaPlayer = MediaPlayer.create(TimerActivity.this,R.raw.music05);
+        mediaPlayer.start();
         backmusic_start.setVisibility(View.VISIBLE);
         backmusic_stop.setVisibility(View.GONE);
-        //isMusicPlaying = true;
+
     }
 
     private void stopMusic() {

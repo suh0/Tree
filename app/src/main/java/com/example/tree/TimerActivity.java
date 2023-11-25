@@ -58,8 +58,10 @@ public class TimerActivity extends AppCompatActivity {
     private ImageView backmusic_start, backmusic_stop;
 
     private boolean isMusicPlaying = false;
-    MediaPlayer mediaPlayer = MainActivity.getMediaPlayer();
-
+    //MediaPlayer mediaPlayer = MainActivity.getMediaPlayer();
+    private static final String TAG_TEXT = "music";
+    private List<String> selectedMusicList = new ArrayList<>();
+    private static MediaPlayer mediaPlayer;
 
 
     @Override
@@ -75,8 +77,8 @@ public class TimerActivity extends AppCompatActivity {
         backmusic_start = findViewById(R.id.backmusic_start);
         backmusic_stop = findViewById(R.id.backmusic_stop);
 
-        ArrayList<String> selectedMusicList = getIntent().getStringArrayListExtra("selectedMusicList");
 
+        selectedMusicList = getIntent().getStringArrayListExtra("selectedMusicList");
 
         dbHelper = new RecordDatabaseHelper(this);
 
@@ -142,18 +144,53 @@ public class TimerActivity extends AppCompatActivity {
         backmusic_stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                playMusic();
+                playMusic(selectedMusicList);
             }
         });
     }
 
 
-    private void playMusic() {
-        mediaPlayer = MediaPlayer.create(TimerActivity.this,R.raw.music05);
-        mediaPlayer.start();
-        backmusic_start.setVisibility(View.VISIBLE);
-        backmusic_stop.setVisibility(View.GONE);
+    private void playMusic(List<String> selectedMusicList) {
+        if (selectedMusicList != null && !selectedMusicList.isEmpty()) {
+            String firstMusic = selectedMusicList.get(0); // 리스트에서 첫 번째 음악 가져오기
+            int resId = 0; // 리소스 ID를 저장할 변수
 
+            // 선택한 음악에 따라 리소스 ID 설정
+            if (firstMusic.equals("music03.mp3")) {
+                resId = R.raw.music03;
+            } else if (firstMusic.equals("music04.mp3")) {
+                resId = R.raw.music04;
+            } else if (firstMusic.equals("music05.mp3")) {
+                resId = R.raw.music05;
+            }
+
+            if (mediaPlayer != null) {  // MediaPlayer 사용 전에 먼저 release() 호출
+                mediaPlayer.reset();
+            } else {
+                mediaPlayer = new MediaPlayer();
+            }
+
+            try {
+                AssetFileDescriptor afd = getResources().openRawResourceFd(resId);
+                if (afd != null) {
+                    mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+                    afd.close();
+
+                    mediaPlayer.prepareAsync();
+                    mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                        @Override
+                        public void onPrepared(MediaPlayer mp) {
+                            mediaPlayer.start();
+                        }
+                    });
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            backmusic_start.setVisibility(View.VISIBLE);
+            backmusic_stop.setVisibility(View.GONE);
+        }
     }
 
     private void stopMusic() {

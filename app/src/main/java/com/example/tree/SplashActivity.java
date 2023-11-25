@@ -32,7 +32,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run()
             {
                 //new Intent(현재 context, 이동할 activity)
-                Intent toLogin = new Intent(SplashActivity.this, LoginActivity.class);
+                Intent toLogin = new Intent(getApplicationContext(), LoginActivity.class);
 
                 startActivity(toLogin);	//intent 에 명시된 액티비티로 이동
                 finish();	//현재 액티비티 종료

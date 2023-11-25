@@ -37,6 +37,8 @@ public class RegisterActivity extends AppCompatActivity {
                 input_username=txt_input_username.getText().toString();
                 input_check_pwd=txt_input_check_pwd.getText().toString();
 
+                //overridePendingTransition(R.anim.anim_right_enter, R.anim.anim_none);
+
                 if((input_pwd.equals(input_check_pwd))&&!(input_username.isEmpty())&&!(input_pwd.isEmpty())){ // 공백 없고 비밀번호 확인 제대로 쳤을 때
                     btn_register.startAnimation(animButtonScale);
                     // 뭔가 동작

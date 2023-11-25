@@ -42,7 +42,7 @@
         android:id="@+id/txt_input_check_pwd"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="28dp"
         android:background="@drawable/txtinput_pattern"
         android:hint="check password"
         android:inputType="textPassword"
@@ -59,7 +59,7 @@
         android:id="@+id/txt_input_username"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/txtinput_pattern"
         android:hint="username"
         android:maxLength="16"
@@ -92,5 +92,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/btn_back" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/line_login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

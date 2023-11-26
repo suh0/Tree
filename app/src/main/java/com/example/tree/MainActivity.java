@@ -40,14 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
     List<Map<String, Object>> dialogItemList;
     String[] musicFiles = {"music03.mp3", "music04.mp3", "music05.mp3"};
-    private static MediaPlayer mediaPlayer;
+    static MediaPlayer mediaPlayer;
 
-    public static MediaPlayer getMediaPlayer() {
-        if (mediaPlayer == null) {
-            mediaPlayer = new MediaPlayer();
-        }
-        return mediaPlayer;
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +64,10 @@ public class MainActivity extends AppCompatActivity {
         plant_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //mediaPlayer.stop();
                 Intent intent = new Intent(MainActivity.this, SelectHour.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -85,8 +82,10 @@ public class MainActivity extends AppCompatActivity {
         shop_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+               // mediaPlayer.stop();
                 Intent intent = new Intent(MainActivity.this, ShopActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

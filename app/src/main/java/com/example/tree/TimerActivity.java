@@ -71,12 +71,6 @@ public class TimerActivity extends AppCompatActivity {
     String[] musicFiles = {"music03.mp3", "music04.mp3", "music05.mp3"};
     private  static MediaPlayer mediaPlayer;
 
-    public static MediaPlayer getMediaPlayer() {
-        if (mediaPlayer == null) {
-            mediaPlayer = new MediaPlayer();
-        }
-        return mediaPlayer;
-    }
 
 
 
@@ -95,15 +89,6 @@ public class TimerActivity extends AppCompatActivity {
         // selectedMusicList = getIntent().getStringArrayListExtra("selectedMusicList");
         Log.d("TimerActivity","안녕");
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.music12);
-        mediaPlayer.setLooping(true); // 반복 재생 설정
-        mediaPlayer.start();
-
-        boolean stop_music = getIntent().getBooleanExtra("stop_music", true);
-        if (stop_music) {
-           // CurrentStopMusic();
-            stopBackgroundMusic();
-        }
 
 
         dbHelper = new RecordDatabaseHelper(this);
@@ -170,42 +155,13 @@ public class TimerActivity extends AppCompatActivity {
         backmusic_stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stopButtonMusic();
+                stopMusic();
             }
         });
         dialogItemList = new ArrayList<>();
     }
 
-    private void stopBackgroundMusic() {
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
-            mediaPlayer.release();
-            mediaPlayer = null;
-        }
-    }
 
-    private void CurrentStopMusic() {
-        if (isMusicPlaying) {
-            if (mediaPlayer != null) {
-                try {
-                    if (mediaPlayer.isPlaying()) {
-                        mediaPlayer.stop();
-                    }
-                    mediaPlayer.reset();
-                    mediaPlayer.release();
-                    mediaPlayer = null;
-                    Log.d("TimerActivity", "음악이 중지되었습니다.");
-                } catch (IllegalStateException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                Log.d("TimerActivity", "mediaPlayer is null");
-            }
-            isMusicPlaying = false; // 음악이 중지되었음을 표시
-        } else {
-            Log.d("TimerActivity", "isMusicPlaying is false");
-        }
-    }
 
     private void showAlertDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(TimerActivity.this);
@@ -286,11 +242,12 @@ public class TimerActivity extends AppCompatActivity {
     }
 
 
-    private void stopButtonMusic() {
+    private void stopMusic() {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
             mediaPlayer.release(); // MediaPlayer 리소스 해제
             mediaPlayer = null; // MediaPlayer 초기화
+
         }
         backmusic_start.setVisibility(View.VISIBLE);
         backmusic_stop.setVisibility(View.GONE);

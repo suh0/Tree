@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -179,6 +180,7 @@ public class SelectHour extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("SelectHour", "Confirm button clicked");
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra("stop_music", true);
                 setResult(RESULT_OK, resultIntent);
@@ -201,7 +203,7 @@ public class SelectHour extends AppCompatActivity {
 
                 Intent intent = new Intent(SelectHour.this, TimerActivity.class);
                 intent.putExtra("selected_milliseconds", selected_milliseconds); // 변경된 부분
-
+                intent.putExtra("stop_music", true);
                 startActivityForResult(intent, 1); //넘기기
                 finish();
 

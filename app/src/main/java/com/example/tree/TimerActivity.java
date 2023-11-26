@@ -8,6 +8,7 @@ import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.net.Uri;
@@ -62,7 +63,7 @@ public class TimerActivity extends AppCompatActivity {
     //private List<String> selectedMusicList = new ArrayList<>();
 
     private static final String TAG_TEXT ="music";
-    private boolean isMusicPlaying = false;
+    private boolean isMusicPlaying = true;
 
 
 
@@ -92,7 +93,11 @@ public class TimerActivity extends AppCompatActivity {
         backmusic_start = findViewById(R.id.backmusic_start);
         backmusic_stop = findViewById(R.id.backmusic_stop);
         // selectedMusicList = getIntent().getStringArrayListExtra("selectedMusicList");
-        mediaPlayer.stop();
+        Log.d("TimerActivity","안녕");
+        boolean stop_music = getIntent().getBooleanExtra("stop_music", true);
+        if (stop_music) {
+            CurrentStopMusic();
+        }
 
 
         dbHelper = new RecordDatabaseHelper(this);
@@ -163,6 +168,26 @@ public class TimerActivity extends AppCompatActivity {
             }
         });
         dialogItemList = new ArrayList<>();
+    }
+
+    private void CurrentStopMusic() {
+        if (isMusicPlaying) {
+            if (mediaPlayer == null) {
+                if (mediaPlayer.isPlaying()) {
+                    mediaPlayer.stop();
+                    mediaPlayer.reset();
+                    mediaPlayer.release();
+                    mediaPlayer = null;
+                    Log.d("TimerActivity", "음악이 중지되었습니다.");
+                } else {
+                    Log.d("TimerActivity", "mediaPlayer is not playing");
+                }
+            } else {
+                Log.d("TimerActivity", "mediaPlayer is null");
+            }
+        } else {
+            Log.d("TimerActivity", "isMusicPlaying is false");
+        }
     }
 
     private void showAlertDialog() {

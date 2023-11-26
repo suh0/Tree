@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                 btn_register.startAnimation(animButtonScale);
                 Intent toRegister=new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(toRegister);
-                overridePendingTransition(R.anim.anim_left_exit, R.anim.anim_right_enter);
+                overridePendingTransition(R.anim.anim_right_enter, R.anim.anim_left_exit);
                 finish();
             }
         });

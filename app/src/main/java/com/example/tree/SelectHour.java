@@ -179,6 +179,10 @@ public class SelectHour extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("stop_music", true);
+                setResult(RESULT_OK, resultIntent);
+
                 long selected_milliseconds = 0;
                 switch (currentHour_number){
                     case 1:
@@ -199,9 +203,12 @@ public class SelectHour extends AppCompatActivity {
                 intent.putExtra("selected_milliseconds", selected_milliseconds); // 변경된 부분
 
                 startActivityForResult(intent, 1); //넘기기
+                finish();
+
             }
         });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

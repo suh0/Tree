@@ -59,7 +59,9 @@ public class MainActivity extends AppCompatActivity {
         backmusic_start = findViewById(R.id.backmusic_start);
         backmusic_stop = findViewById(R.id.backmusic_stop);
 
-
+        mediaPlayer = MediaPlayer.create(this, R.raw.music12);
+        mediaPlayer.setLooping(true); // 반복 재생 설정
+        mediaPlayer.start(); // 음악 재생
         plant_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

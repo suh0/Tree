@@ -92,7 +92,7 @@ public class TimerActivity extends AppCompatActivity {
         backmusic_start = findViewById(R.id.backmusic_start);
         backmusic_stop = findViewById(R.id.backmusic_stop);
         // selectedMusicList = getIntent().getStringArrayListExtra("selectedMusicList");
-
+        mediaPlayer.stop();
 
 
         dbHelper = new RecordDatabaseHelper(this);

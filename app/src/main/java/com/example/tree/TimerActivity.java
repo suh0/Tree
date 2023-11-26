@@ -94,9 +94,15 @@ public class TimerActivity extends AppCompatActivity {
         backmusic_stop = findViewById(R.id.backmusic_stop);
         // selectedMusicList = getIntent().getStringArrayListExtra("selectedMusicList");
         Log.d("TimerActivity","안녕");
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.music12);
+        mediaPlayer.setLooping(true); // 반복 재생 설정
+        mediaPlayer.start();
+
         boolean stop_music = getIntent().getBooleanExtra("stop_music", true);
         if (stop_music) {
-            CurrentStopMusic();
+           // CurrentStopMusic();
+            stopBackgroundMusic();
         }
 
 
@@ -164,27 +170,38 @@ public class TimerActivity extends AppCompatActivity {
         backmusic_stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stopMusic();
+                stopButtonMusic();
             }
         });
         dialogItemList = new ArrayList<>();
     }
 
+    private void stopBackgroundMusic() {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
+
     private void CurrentStopMusic() {
         if (isMusicPlaying) {
-            if (mediaPlayer == null) {
-                if (mediaPlayer.isPlaying()) {
-                    mediaPlayer.stop();
+            if (mediaPlayer != null) {
+                try {
+                    if (mediaPlayer.isPlaying()) {
+                        mediaPlayer.stop();
+                    }
                     mediaPlayer.reset();
                     mediaPlayer.release();
                     mediaPlayer = null;
                     Log.d("TimerActivity", "음악이 중지되었습니다.");
-                } else {
-                    Log.d("TimerActivity", "mediaPlayer is not playing");
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
                 }
             } else {
                 Log.d("TimerActivity", "mediaPlayer is null");
             }
+            isMusicPlaying = false; // 음악이 중지되었음을 표시
         } else {
             Log.d("TimerActivity", "isMusicPlaying is false");
         }
@@ -269,9 +286,11 @@ public class TimerActivity extends AppCompatActivity {
     }
 
 
-    private void stopMusic() {
+    private void stopButtonMusic() {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
+            mediaPlayer.release(); // MediaPlayer 리소스 해제
+            mediaPlayer = null; // MediaPlayer 초기화
         }
         backmusic_start.setVisibility(View.VISIBLE);
         backmusic_stop.setVisibility(View.GONE);

@@ -32,22 +32,21 @@ public class MainActivity extends AppCompatActivity {
     private ImageView backmusic_start, backmusic_stop;
 
 
-    private static final String TAG_TEXT ="music";
+    private static final String TAG_TEXT = "music";
     private boolean isMusicPlaying = false;
     private List<String> selectedMusicList = new ArrayList<>();
 
 
-
     List<Map<String, Object>> dialogItemList;
     String[] musicFiles = {"music03.mp3", "music04.mp3", "music05.mp3"};
-    private  static MediaPlayer mediaPlayer;
+    private static MediaPlayer mediaPlayer;
 
-        public static MediaPlayer getMediaPlayer() {
-            if (mediaPlayer == null) {
-                mediaPlayer = new MediaPlayer();
-            }
-            return mediaPlayer;
+    public static MediaPlayer getMediaPlayer() {
+        if (mediaPlayer == null) {
+            mediaPlayer = new MediaPlayer();
         }
+        return mediaPlayer;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +60,10 @@ public class MainActivity extends AppCompatActivity {
         backmusic_stop = findViewById(R.id.backmusic_stop);
 
 
-
-
         plant_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this , SelectHour.class);
+                Intent intent = new Intent(MainActivity.this, SelectHour.class);
                 startActivity(intent);
             }
         });
@@ -82,12 +79,12 @@ public class MainActivity extends AppCompatActivity {
         shop_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this , ShopActivity.class);
+                Intent intent = new Intent(MainActivity.this, ShopActivity.class);
                 startActivity(intent);
             }
         });
 
-        backmusic_start.setOnClickListener(new View.OnClickListener() {
+     /*   backmusic_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showAlertDialog();
@@ -105,9 +102,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-}
+}*/
 
-    private void showAlertDialog() {
+  /*  private void showAlertDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         LayoutInflater inflater = getLayoutInflater();
@@ -154,10 +151,10 @@ public class MainActivity extends AppCompatActivity {
                 String resIdString = String.valueOf(resId);
                 selectedMusicList.add(resIdString);
 
-                Intent intent = new Intent(MainActivity.this, TimerActivity.class);
-                ArrayList<String> selectedMusicArrayList = new ArrayList<>(selectedMusicList);
-                intent.putStringArrayListExtra("selectedMusicList", selectedMusicArrayList);
-                startActivity(intent);
+               // Intent intent = new Intent(MainActivity.this, TimerActivity.class);
+                //ArrayList<String> selectedMusicArrayList = new ArrayList<>(selectedMusicList);
+                //intent.putStringArrayListExtra("selectedMusicList", selectedMusicArrayList);
+                //startActivity(intent);
 
             }
         });
@@ -165,17 +162,17 @@ public class MainActivity extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
 
-    }
+    }*/
 
-    private void stopMusic() {
+   /* private void stopMusic() {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
         }
         backmusic_start.setVisibility(View.VISIBLE);
         backmusic_stop.setVisibility(View.GONE);
-    }
+    }*/
 
-    private void playMusic(String musicFileName) {
+   /* private void playMusic(String musicFileName) {
 
         if (mediaPlayer != null) {  // MediaPlayer 사용 전에 먼저 release() 호출
             mediaPlayer.reset();
@@ -215,7 +212,8 @@ public class MainActivity extends AppCompatActivity {
         isMusicPlaying = true;
 
 
+    }*/
+
+
     }
-
-
 }

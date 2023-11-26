@@ -69,7 +69,7 @@ public class TimerActivity extends AppCompatActivity {
 
     List<Map<String, Object>> dialogItemList;
     String[] musicFiles = {"music03.mp3", "music04.mp3", "music05.mp3"};
-    private  static MediaPlayer mediaPlayer;
+    public static MediaPlayer mediaPlayer;
 
 
 

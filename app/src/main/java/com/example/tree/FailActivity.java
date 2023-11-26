@@ -1,5 +1,7 @@
 package com.example.tree;
 
+import static com.example.tree.TimerActivity.mediaPlayer;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -34,9 +36,11 @@ public class FailActivity extends AppCompatActivity {
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mediaPlayer.stop();
                 btn_home.startAnimation(animButtonScale);
                 Intent toMain=new Intent(FailActivity.this, MainActivity.class);
                 startActivity(toMain);
+                finish();
             }
         });
 

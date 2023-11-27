@@ -9,4 +9,11 @@
     android:padding="16dp"
     tools:context=".RecordActivity">
 
+    <Button
+        android:id="@+id/deleteDataButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="데이터 삭제"
+        android:layout_marginTop="16dp"/>
+
 </LinearLayout>

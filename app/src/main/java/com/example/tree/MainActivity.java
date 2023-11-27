@@ -239,12 +239,14 @@ public class MainActivity extends AppCompatActivity {
         return sharedPreferences.getString("selectedMusic", "No Music"); // 기본값 설정
 
     }
+
     private void saveSelectedMusicName(String musicName) {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("selectedMusic", musicName);
         editor.apply();
     }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -253,5 +255,19 @@ public class MainActivity extends AppCompatActivity {
         saveSelectedMusicName("No music");
     }
 
+    @Override
+    public void onBackPressed() {
+        stopMusic();
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mediaPlayer = MediaPlayer.create(this, R.raw.music06);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
+
+    }
 }
 

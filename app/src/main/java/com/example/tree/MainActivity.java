@@ -60,10 +60,7 @@ public class MainActivity extends AppCompatActivity {
         backmusic_stop = findViewById(R.id.backmusic_stop);
 
         mediaPlayer = MediaPlayer.create(this, R.raw.music06);
-        Log.d("MediaPlayer", "MediaPlayer created");
         mediaPlayer.setLooping(true); // 반복 재생 설정
-
-        Log.d("MediaPlayer", "MediaPlayer started");
         mediaPlayer.start(); // 음악 재생
         plant_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
         view.setBackground(dialogBackground);
 
         builder.setView(view);
+
 
         final ListView listview = (ListView) view.findViewById(R.id.listview_alterdialog_list);
         final AlertDialog dialog = builder.create();

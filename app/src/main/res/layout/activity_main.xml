@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/green"
     android:padding="16dp"
     tools:context=".MainActivity">
 
@@ -44,14 +45,13 @@
         android:text="기록"
         android:layout_centerInParent="true" />
 
-
     <ImageView
         android:id="@+id/backmusic_start"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="69dp"
+        android:layout_height="63dp"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="333dp"
         android:contentDescription="음악 시작"
         android:onClick="showMusicDialog"
         android:src="@drawable/backmusic_start"
@@ -62,9 +62,10 @@
 
     <ImageView
         android:id="@+id/backmusic_stop"
-        android:layout_width="40dp"
-        android:layout_height="35dp"
+        android:layout_width="69dp"
+        android:layout_height="63dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="333dp"
         android:contentDescription="음악 시작"
         android:src="@drawable/backmusic_stop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,4 +74,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/txt_currentBgm"
+        android:layout_width="114dp"
+        android:layout_height="34dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="8dp"
+        android:drawableLeft="@drawable/icon_currentbgm"
+        android:fontFamily="@font/lexend_deca"
+        android:text=" : Title"
+        android:textColor="#E8FFF1"
+        android:textFontWeight="50"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 </RelativeLayout>

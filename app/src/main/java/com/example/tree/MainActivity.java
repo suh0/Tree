@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     String[] musicFiles = {"music03.mp3", "music04.mp3", "music05.mp3"};
     static MediaPlayer mediaPlayer;
 
+    TextView txt_currentBgm;
 
 
     @Override
@@ -55,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         backmusic_start = findViewById(R.id.backmusic_start);
         backmusic_stop = findViewById(R.id.backmusic_stop);
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.music08);
+        mediaPlayer = MediaPlayer.create(this, R.raw.music06);
         Log.d("MediaPlayer", "MediaPlayer created");
         mediaPlayer.setLooping(true); // 반복 재생 설정
 
@@ -106,10 +109,9 @@ public class MainActivity extends AppCompatActivity {
         dialogItemList = new ArrayList<>();
 
 
+    }
 
-}
-
-   private void showAlertDialog() {
+    private void showAlertDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         LayoutInflater inflater = getLayoutInflater();
@@ -155,8 +157,12 @@ public class MainActivity extends AppCompatActivity {
                 // resId를 리스트에 추가
                 String resIdString = String.valueOf(resId);
                 selectedMusicList.add(resIdString);
+                saveSelectedMusicName(selectedMusic);// 선택한 음악 저장
 
-               // Intent intent = new Intent(MainActivity.this, TimerActivity.class);
+                TextView txt_currentBgm = findViewById(R.id.txt_currentBgm); // 선택한 음악 이름으로 TextView 업데이트
+                txt_currentBgm.setText(": " + selectedMusic); // 선택한 음악 파일 이름으로 TextView 설정
+
+                // Intent intent = new Intent(MainActivity.this, TimerActivity.class);
                 //ArrayList<String> selectedMusicArrayList = new ArrayList<>(selectedMusicList);
                 //intent.putStringArrayListExtra("selectedMusicList", selectedMusicArrayList);
                 //startActivity(intent);
@@ -217,6 +223,34 @@ public class MainActivity extends AppCompatActivity {
         isMusicPlaying = true;
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        txt_currentBgm = findViewById(R.id.txt_currentBgm);
+        String selectedMusicName = getSelectedMusicName(); // 선택한 음악 이름 가져오기
+        txt_currentBgm.setText(": " + selectedMusicName); // 선택한 음악 파일 이름으로 TextView 설정
+    }
+
+    private String getSelectedMusicName() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        return sharedPreferences.getString("selectedMusic", "No Music"); // 기본값 설정
+
+    }
+    private void saveSelectedMusicName(String musicName) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("selectedMusic", musicName);
+        editor.apply();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // SharedPreferences 값 초기화
+        saveSelectedMusicName("No music");
     }
 
 }

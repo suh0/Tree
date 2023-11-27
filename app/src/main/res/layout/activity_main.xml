@@ -66,7 +66,7 @@
         android:layout_height="63dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="333dp"
-        android:contentDescription="음악 시작"
+        android:contentDescription="음악 멈춤"
         android:src="@drawable/backmusic_stop"
         app:layout_constraintEnd_toEndOf="parent"
         android:visibility="gone"
@@ -76,11 +76,11 @@
 
     <TextView
         android:id="@+id/txt_currentBgm"
-        android:layout_width="114dp"
-        android:layout_height="34dp"
+        android:layout_width="176dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="46dp"
-        android:layout_marginEnd="22dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="22dp"
         android:drawableLeft="@drawable/icon_currentbgm"
         android:fontFamily="@font/lexend_deca"

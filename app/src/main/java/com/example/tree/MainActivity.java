@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-     /*   backmusic_start.setOnClickListener(new View.OnClickListener() {
+        backmusic_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showAlertDialog();
@@ -107,9 +107,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-}*/
+}
 
-  /*  private void showAlertDialog() {
+   private void showAlertDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         LayoutInflater inflater = getLayoutInflater();
@@ -167,17 +167,17 @@ public class MainActivity extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
 
-    }*/
+    }
 
-   /* private void stopMusic() {
+    private void stopMusic() {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
         }
         backmusic_start.setVisibility(View.VISIBLE);
         backmusic_stop.setVisibility(View.GONE);
-    }*/
+    }
 
-   /* private void playMusic(String musicFileName) {
+    private void playMusic(String musicFileName) {
 
         if (mediaPlayer != null) {  // MediaPlayer 사용 전에 먼저 release() 호출
             mediaPlayer.reset();
@@ -217,8 +217,6 @@ public class MainActivity extends AppCompatActivity {
         isMusicPlaying = true;
 
 
-    }*/
-
-
     }
 }
+

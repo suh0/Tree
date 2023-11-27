@@ -202,7 +202,7 @@ public class SelectHour extends AppCompatActivity {
                         selected_milliseconds = 1000 * 60 * 60 * 2; //2시간
                         break;
                 }
-                mediaPlayer.stop();
+               // mediaPlayer.stop();
                 Intent intent = new Intent(SelectHour.this, TimerActivity.class);
                 intent.putExtra("selected_milliseconds", selected_milliseconds); // 변경된 부분
                 intent.putExtra("stop_music", true);

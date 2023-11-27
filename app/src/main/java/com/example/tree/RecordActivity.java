@@ -41,46 +41,24 @@ public class RecordActivity extends AppCompatActivity {
         }
 
         cursor.close();
-        dbHelper.close();
 
-        // 데이터 삭제 버튼 추가
-        Button deleteDataButton = new Button(this);
-        deleteDataButton.setText("데이터 삭제");
-        deleteDataButton.setOnClickListener(view -> deleteAllData());
-        recordLayout.addView(deleteDataButton);
+        // 데이터 삭제 버튼 생성
+        Button deleteButton = new Button(this);
+        deleteButton.setText("데이터 삭제");
+        deleteButton.setOnClickListener(v -> deleteAllData());
+        recordLayout.addView(deleteButton);
     }
+    // 데이터 삭제 메서드 구현
     private void deleteAllData() {
-        dbHelper = new RecordDatabaseHelper(this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.delete("records", null, null);
-        dbHelper.close();
-
-        // 데이터 삭제 후 화면 갱신
-        refreshRecordLayout();
+        db.close(); // 데이터베이스 연결 닫기
+        recreate(); // 현재 액티비티 다시 생성하여 변경 사항 반영
     }
 
-    private void refreshRecordLayout() {
-        LinearLayout recordLayout = findViewById(R.id.recordLayout);
-        recordLayout.removeAllViews(); // 기존 데이터 모두 제거
-
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM records", null);
-
-        int dateIndex = cursor.getColumnIndex("date");
-        int durationIndex = cursor.getColumnIndex("duration");
-
-        if (dateIndex >= 0 && durationIndex >= 0) {
-            while (cursor.moveToNext()) {
-                String date = cursor.getString(dateIndex);
-                long duration = cursor.getLong(durationIndex);
-
-                TextView recordTextView = new TextView(this);
-                recordTextView.setText("날짜: " + date + ", 시간: " + duration + " 밀리초");
-                recordLayout.addView(recordTextView);
-            }
-        }
-
-        cursor.close();
-        dbHelper.close();
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dbHelper.close(); // 액티비티가 종료될 때 dbHelper 닫기
     }
 }

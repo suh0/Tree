@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
@@ -116,6 +117,10 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.activity_dialog, null);
+
+        Drawable dialogBackground = getResources().getDrawable(R.drawable.area_dialog);//다이얼로그 배경을 다른 이미지로 변환
+        view.setBackground(dialogBackground);
+
         builder.setView(view);
 
         final ListView listview = (ListView) view.findViewById(R.id.listview_alterdialog_list);
@@ -256,13 +261,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed() { //앱 나가면 음악 멈추게 함
         stopMusic();
         super.onBackPressed();
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart() { //앱 나갔다 들어와도 배경음악 실행됨
         super.onStart();
         mediaPlayer = MediaPlayer.create(this, R.raw.music06);
         mediaPlayer.setLooping(true);

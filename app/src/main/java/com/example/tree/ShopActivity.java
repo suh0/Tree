@@ -60,7 +60,7 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
             treeAdapter.addItem(new ProductTree(R.drawable.tree_1, i * 100));
             if (i == 0) {
                 // 첫 번째 음악 추가
-                bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music02));
+                bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music02)); //music02하니까 실행 안됨
             } else if (i == 1) {
                 // 두 번째 음악 추가
                 bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music03));
@@ -221,8 +221,8 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
                 mediaPlayer.release();
                 mediaPlayer = null; // 이전 MediaPlayer 객체를 해제하고 null로 설정합니다.
             }
-
-            mediaPlayer = MediaPlayer.create(this, productBgm.getMusicResId());
+            int musicResId = productBgm.getMusicResId(); // ProductBgm에서 음악 리소스 ID 가져오기
+            mediaPlayer = MediaPlayer.create(this, musicResId);
             if (mediaPlayer != null) {
                 mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override

@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         backmusic_start = findViewById(R.id.backmusic_start);
         backmusic_stop = findViewById(R.id.backmusic_stop);
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.music12);
+        mediaPlayer = MediaPlayer.create(this, R.raw.music08);
         Log.d("MediaPlayer", "MediaPlayer created");
         mediaPlayer.setLooping(true); // 반복 재생 설정
 
@@ -218,19 +218,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    @Override  //앱을 뒤로가기 버튼 눌러서 종료할 때 음악 중지
-    protected void onPause() {
-        super.onPause();
-        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-            mediaPlayer.pause();
-        }
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (mediaPlayer != null && !mediaPlayer.isPlaying()) {
-            mediaPlayer.start();
-        }
-    }
+
 }
 

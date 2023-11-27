@@ -7,7 +7,7 @@ public class ProductBgm {
     Boolean isPurchased=false; // 보유 중인지 아닌지
     int musicResId;
 
-    public ProductBgm(){}
+
     public ProductBgm(String title, int price,int musicResId){
         this.title=title;
         this.price=price;

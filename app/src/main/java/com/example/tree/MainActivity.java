@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         shop_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // mediaPlayer.stop();
+                mediaPlayer.stop();
                 Intent intent = new Intent(MainActivity.this, ShopActivity.class);
                 startActivity(intent);
                 finish();

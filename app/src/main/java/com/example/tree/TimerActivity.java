@@ -25,21 +25,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.Rect;
-import android.graphics.drawable.ColorDrawable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -62,13 +47,12 @@ public class TimerActivity extends AppCompatActivity {
     //MediaPlayer mediaPlayer = MainActivity.getMediaPlayer();
     //private List<String> selectedMusicList = new ArrayList<>();
 
-    private static final String TAG_TEXT ="music";
     private boolean isMusicPlaying = true;
 
 
 
     List<Map<String, Object>> dialogItemList;
-    String[] musicFiles = {"music03.mp3", "music04.mp3", "music05.mp3"};
+
     //public static MediaPlayer mediaPlayer;
     private int pausedPosition = 0; // 멈춘 위치 저장하는 변수
 
@@ -178,8 +162,6 @@ public class TimerActivity extends AppCompatActivity {
 
     }
 
-    private void startNewMusic() {
-    }
 
 
     private void stopMusic() {

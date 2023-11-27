@@ -218,5 +218,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    @Override  //앱을 뒤로가기 버튼 눌러서 종료할 때 음악 중지
+    protected void onPause() {
+        super.onPause();
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
+        }
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mediaPlayer != null && !mediaPlayer.isPlaying()) {
+            mediaPlayer.start();
+        }
+    }
 }
 

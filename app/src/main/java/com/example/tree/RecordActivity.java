@@ -28,6 +28,8 @@ public class RecordActivity extends AppCompatActivity {
 
         int dateIndex = cursor.getColumnIndex("date");
         int durationIndex = cursor.getColumnIndex("duration");
+        int randomIndex = cursor.getColumnIndex("random"); // random 필드의 인덱스 가져오기
+
 
         if (dateIndex >= 0 && durationIndex >= 0) {
             while (cursor.moveToNext()) {

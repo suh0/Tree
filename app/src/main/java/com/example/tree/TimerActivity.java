@@ -77,6 +77,7 @@ public class TimerActivity extends AppCompatActivity {
         ContentValues values = new ContentValues();
         values.put("date", getCurrentDate());
         values.put("duration", selectedMilliseconds);
+        values.put("random", 1);
         db.insert("records", null, values);
         db.close();
     }

@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     Button record_btn; // "기록" 버튼 추가
 
     Button shop_btn;
-    private ImageView backmusic_start, backmusic_stop;
+   // private ImageView backmusic_start, backmusic_stop;
 
 
     private static final String TAG_TEXT = "music";
@@ -56,8 +56,9 @@ public class MainActivity extends AppCompatActivity {
         plant_btn = findViewById(R.id.plant_btn);
         record_btn = findViewById(R.id.record_btn); // 버튼 참조
         shop_btn = findViewById(R.id.shop_btn);
-        backmusic_start = findViewById(R.id.backmusic_start);
-        backmusic_stop = findViewById(R.id.backmusic_stop);
+        //backmusic_start = findViewById(R.id.backmusic_start);
+       // backmusic_stop = findViewById(R.id.backmusic_stop);
+        txt_currentBgm = findViewById(R.id.txt_currentBgm);
 
         mediaPlayer = MediaPlayer.create(this, R.raw.music06);
         mediaPlayer.setLooping(true); // 반복 재생 설정
@@ -90,19 +91,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        backmusic_start.setOnClickListener(new View.OnClickListener() {
+        txt_currentBgm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showAlertDialog();
             }
         });
 
-        backmusic_stop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stopMusic();
-            }
-        });
 
         dialogItemList = new ArrayList<>();
 
@@ -146,8 +141,8 @@ public class MainActivity extends AppCompatActivity {
                 String selectedMusic = musicFiles[position]; // 선택된 음악 파일 이름 가져오기
                 playMusic(selectedMusic); // 음악 재생 코드 추가
                 dialog.dismiss(); // 다이얼로그 닫기
-                backmusic_start.setVisibility(View.GONE);
-                backmusic_stop.setVisibility(View.VISIBLE);
+                //backmusic_start.setVisibility(View.GONE);
+                //backmusic_stop.setVisibility(View.VISIBLE);
 
                 // 선택한 음악 파일 이름에 따라 리소스 ID 설정
                 if (selectedMusic.equals("music03.mp3")) {
@@ -182,8 +177,8 @@ public class MainActivity extends AppCompatActivity {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
         }
-        backmusic_start.setVisibility(View.VISIBLE);
-        backmusic_stop.setVisibility(View.GONE);
+        //backmusic_start.setVisibility(View.VISIBLE);
+        //backmusic_stop.setVisibility(View.GONE);
     }
 
     private void playMusic(String musicFileName) {
@@ -221,8 +216,8 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        backmusic_start.setVisibility(View.GONE);
-        backmusic_stop.setVisibility(View.VISIBLE);
+        //backmusic_start.setVisibility(View.GONE);
+        //backmusic_stop.setVisibility(View.VISIBLE);
         isMusicPlaying = true;
 
 
@@ -232,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        txt_currentBgm = findViewById(R.id.txt_currentBgm);
+        //txt_currentBgm = findViewById(R.id.txt_currentBgm);
         String selectedMusicName = getSelectedMusicName(); // 선택한 음악 이름 가져오기
         txt_currentBgm.setText(": " + selectedMusicName); // 선택한 음악 파일 이름으로 TextView 설정
     }

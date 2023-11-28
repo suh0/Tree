@@ -45,34 +45,7 @@
         android:text="기록"
         android:layout_centerInParent="true" />
 
-    <ImageView
-        android:id="@+id/backmusic_start"
-        android:layout_width="69dp"
-        android:layout_height="63dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="333dp"
-        android:contentDescription="음악 시작"
-        android:onClick="showMusicDialog"
-        android:src="@drawable/backmusic_start"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.075"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/backmusic_stop"
-        android:layout_width="69dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="333dp"
-        android:contentDescription="음악 멈춤"
-        android:src="@drawable/backmusic_stop"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="gone"
-        app:layout_constraintHorizontal_bias="0.075"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txt_currentBgm"

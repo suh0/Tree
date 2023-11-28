@@ -11,7 +11,7 @@ public class RecordDatabaseHelper extends SQLiteOpenHelper {
 
     // 테이블 생성 쿼리
     private static final String TABLE_CREATE =
-            "CREATE TABLE records (_id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, duration INTEGER);";
+            "CREATE TABLE records (_id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, duration INTEGER, random INTEGER DEFAULT 0);";
 
     public RecordDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -19,6 +19,7 @@ public class RecordDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         db.execSQL(TABLE_CREATE);
     }
 

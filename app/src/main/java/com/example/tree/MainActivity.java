@@ -13,8 +13,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView btn_timer, btn_user, btn_shop;
-    Button record_btn;
+    ImageView btn_timer, btn_record, btn_shop;
 
     TextView txt_bgm, txt_money;
     @Override
@@ -24,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         ImageView room[] = new ImageView[25];
         btn_timer = findViewById(R.id.btn_timer);
-        record_btn = findViewById(R.id.record_btn); // 버튼 참조
+        btn_record = findViewById(R.id.btn_record); // 버튼 참조
         btn_shop = findViewById(R.id.btn_shop);
         txt_bgm=findViewById(R.id.txt_bgm);
         txt_money=findViewById(R.id.txt_money);
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        record_btn.setOnClickListener(new View.OnClickListener() {
+        btn_record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, RecordActivity.class);

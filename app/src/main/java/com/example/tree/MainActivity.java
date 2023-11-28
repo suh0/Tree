@@ -9,20 +9,31 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     ImageView btn_timer, btn_user, btn_shop;
     Button record_btn;
 
+    TextView txt_bgm, txt_money;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ImageView room[] = new ImageView[25];
         btn_timer = findViewById(R.id.btn_timer);
         record_btn = findViewById(R.id.record_btn); // 버튼 참조
         btn_shop = findViewById(R.id.btn_shop);
+        txt_bgm=findViewById(R.id.txt_bgm);
+        txt_money=findViewById(R.id.txt_money);
+
+        for(int i=0; i<25; i++){
+            // xml 파일의 레이아웃과 room 배열의 원소들과 바인딩
+            room[i]=findViewById(getResources().getIdentifier("room"+ i, "id", "com.example.tree"));
+
+        }
 
         Animation animButtonEffect=AnimationUtils.loadAnimation(this, R.anim.anim_btn_effect);
 

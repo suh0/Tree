@@ -103,12 +103,12 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private void goToSuccessActivity(){
-        Intent toSuccess=new Intent(TimerActivity.this, SuccessActivity.class);
+        Intent toSuccess = new Intent(TimerActivity.this, SuccessActivity.class);
         startActivity(toSuccess);
     }
 
     private void goToFailActivity(){
-        Intent toFail=new Intent(TimerActivity.this, FailActivity.class);
+        Intent toFail = new Intent(TimerActivity.this, FailActivity.class);
         startActivity(toFail);
     }
 }

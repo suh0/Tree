@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -16,8 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.example.tree.R;
 
 import java.util.ArrayList;
 
@@ -28,23 +27,29 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
     private ImageView btn_back;
     ArrayList<ProductBgm> itemList=new ArrayList<>();
     ArrayList<ProductTree> itemList2=new ArrayList<>();
+    public CoinDatabaseHelper coinHelper;
 
     private TextView txt_money;
     private TextView txt_currentBgm;
-
-    private int balance=1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
+        coinHelper = new CoinDatabaseHelper(this);
+        /*
+        if(coinHelper == null) {
+            Log.d("Error", "onCreate: dbHelper is a null object.");
+            return;
+        }
+        */
 
         recycle_tree=(RecyclerView) findViewById(R.id.recycle_tree);
         recycle_bgm=(RecyclerView) findViewById(R.id.recycle_bgm);
         txt_currentBgm=(TextView)findViewById(R.id.txt_currentBgm);
         btn_back=findViewById(R.id.btn_back);
         txt_money = findViewById(R.id.txt_money);
-        txt_money.setText(" "+balance);
+        txt_money.setText(" " + coinHelper.getCurrentBalance());
 
         // 리사이클러뷰 세팅
         LinearLayoutManager treeManager=new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
@@ -54,7 +59,7 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
         BgmAdapter bgmAdapter=new BgmAdapter(this, itemList, this, this::onPButtonClicked);
         TreeAdapter treeAdapter=new TreeAdapter(this, itemList2, this::onItemClicked);
 
-        for(int i=0; i<4; i++){ // 테스트용 더미데이터 (리사이클러뷰에 들어가는 데이터 값 생성 ; 가격 등등)
+        for(int i=0; i<4; i++) { // 테스트용 더미데이터 (리사이클러뷰에 들어가는 데이터 값 생성 ; 가격 등등)
             treeAdapter.addItem(new ProductTree(R.drawable.tree_1, i*100));
             bgmAdapter.addItem(new ProductBgm("Title "+i, i*100));
         }
@@ -73,8 +78,9 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
 
     }
 
-    public void updateBalanceText(int balance){
-        txt_money.setText(" "+balance);
+    public void updateBalanceText(){
+        txt_money.setText(" " + coinHelper.getCurrentBalance());
+        //Toast.makeText(ShopActivity.this, coinHelper.getCurrentBalance(), Toast.LENGTH_SHORT);
     }
 
     @Override
@@ -95,16 +101,15 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
         AlertDialog.Builder builder = new AlertDialog.Builder(ShopActivity.this);
         Animation noMoney=AnimationUtils.loadAnimation(this, R.anim.anim_no_money);
 
-
         builder.setTitle("Would you like to buy?");
         builder.setMessage(" Title: "+ productBgm.getTitle());
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() { // yes
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                if(balance>=productBgm.getPrice()){
+                if(coinHelper.getCurrentBalance()>=productBgm.getPrice()){
                     productBgm.setIsPurchased(Boolean.TRUE);
-                    balance=balance-productBgm.getPrice();
-                    updateBalanceText(balance);
+                    coinHelper.addBalance(-1 * productBgm.getPrice()); // 잔액 차감
+                    updateBalanceText();
                     txtPrice.setText("In Stock");
                     layout.setBackgroundResource(R.drawable.area_shop_bgm_selected);
                 }
@@ -132,7 +137,7 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                // 브금 바ㅜㄲ기
+                // 브금 바꾸기
                 txt_currentBgm.setText(" : "+productBgm.getTitle()); // 텍스트로 현재 설정된 브금 표시.
 
             }
@@ -171,10 +176,10 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                if(balance>=productTree.getPrice()){
+                if(coinHelper.getCurrentBalance()>=productTree.getPrice()){
                     productTree.setIsPurchased(Boolean.TRUE);
-                    balance=balance-productTree.getPrice();
-                    updateBalanceText(balance);
+                    coinHelper.addBalance(-1 * productTree.getPrice());
+                    updateBalanceText();
                     txtPrice.setText("In Stock");
                     layout.setBackgroundResource(R.drawable.area_shop_tree_selected);
                 }

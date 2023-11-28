@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 Intent toMain=new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(toMain);
+                overridePendingTransition(R.anim.anim_bottom_enter, R.anim.anim_top_exit);
                 
             }
         });

@@ -67,6 +67,11 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         countDownTimer.cancel(); // 액티비티 종료 시 타이머 초기화

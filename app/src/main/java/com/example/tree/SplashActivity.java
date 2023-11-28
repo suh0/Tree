@@ -39,4 +39,9 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, 1000 * sec); // sec초 정도 딜레이를 준 후 시작
     }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
 }

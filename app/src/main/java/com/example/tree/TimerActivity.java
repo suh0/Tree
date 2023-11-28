@@ -78,6 +78,7 @@ public class TimerActivity extends AppCompatActivity {
         values.put("date", getCurrentDate());
         values.put("duration", selectedMilliseconds);
         values.put("random", 1); // 랜덤 값을 생성하여 'random' 열에 넣습니다.
+
         db.insert("records", null, values);
         db.close();
     }

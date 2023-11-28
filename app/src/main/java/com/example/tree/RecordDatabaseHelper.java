@@ -13,14 +13,13 @@ public class RecordDatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_CREATE =
             "CREATE TABLE records (_id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, duration INTEGER, random INTEGER DEFAULT 0);";
 
-
-
     public RecordDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         db.execSQL(TABLE_CREATE);
     }
 

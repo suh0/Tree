@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             room[i]=findViewById(getResources().getIdentifier("room"+ i, "id", "com.example.tree"));
 
         }
-
+        // setImageResource() , setVisibility()
         Animation animButtonEffect=AnimationUtils.loadAnimation(this, R.anim.anim_btn_effect);
 
         btn_timer.setOnClickListener(new View.OnClickListener() {

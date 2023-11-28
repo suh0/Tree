@@ -1,5 +1,4 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -20,9 +19,10 @@
         android:fontFamily="@font/lexend_deca"
         android:text="My Pocket"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textFontWeight="800"
+        android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.984"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -69,7 +69,7 @@
         android:layout_width="370dp"
         android:layout_height="370dp"
         android:layout_centerInParent="true"
-        android:layout_marginTop="208dp"
+        android:layout_marginTop="184dp"
         android:background="@drawable/img_board"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
@@ -78,277 +78,303 @@
 
         <ImageView
             android:id="@+id/room0"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="13dp"
-            android:src="@drawable/img_tree1"
-            android:visibility="visible"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.108" />
 
         <ImageView
             android:id="@+id/room1"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="24dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.393"
+            app:layout_constraintHorizontal_bias="0.387"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room0" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.16" />
 
         <ImageView
             android:id="@+id/room2"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="24dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.625"
+            app:layout_constraintHorizontal_bias="0.622"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room0" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.16" />
 
         <ImageView
             android:id="@+id/room3"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="28dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.265"
+            app:layout_constraintHorizontal_bias="0.276"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room1" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.23" />
 
         <ImageView
             android:id="@+id/room4"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="52dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room0" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.23" />
 
         <ImageView
             android:id="@+id/room5"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="28dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.731"
+            app:layout_constraintHorizontal_bias="0.73"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room2" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.23" />
 
         <ImageView
             android:id="@+id/room6"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.159"
+            app:layout_constraintHorizontal_bias="0.168"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room3" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.28" />
 
         <ImageView
             android:id="@+id/room7"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="48dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.39"
+            app:layout_constraintHorizontal_bias="0.387"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room1" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.28" />
 
         <ImageView
             android:id="@+id/room8"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="48dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.625"
+            app:layout_constraintHorizontal_bias="0.622"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room2" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.28" />
 
         <ImageView
             android:id="@+id/room9"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.859"
+            app:layout_constraintHorizontal_bias="0.828"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room5" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.28" />
 
         <ImageView
             android:id="@+id/room10"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="44dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.015"
+            app:layout_constraintHorizontal_bias="0.05"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room5" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.34" />
 
         <ImageView
             android:id="@+id/room11"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="44dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.266"
+            app:layout_constraintHorizontal_bias="0.276"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room5" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.34" />
 
         <ImageView
             android:id="@+id/room12"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="44dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room5" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.34" />
 
         <ImageView
             android:id="@+id/room13"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="44dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.733"
+            app:layout_constraintHorizontal_bias="0.73"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room5" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.34" />
 
         <ImageView
             android:id="@+id/room14"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="44dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.949"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room5" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.34" />
 
         <ImageView
             android:id="@+id/room15"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="72dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.134"
+            app:layout_constraintHorizontal_bias="0.168"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room5" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.416" />
 
         <ImageView
             android:id="@+id/room16"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="72dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.391"
+            app:layout_constraintHorizontal_bias="0.387"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room5" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.416" />
 
         <ImageView
             android:id="@+id/room17"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="72dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.626"
+            app:layout_constraintHorizontal_bias="0.622"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room5" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.416" />
 
         <ImageView
             android:id="@+id/room18"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="72dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.858"
+            app:layout_constraintHorizontal_bias="0.85"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room5" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.416" />
 
         <ImageView
             android:id="@+id/room19"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="96dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.266"
+            app:layout_constraintHorizontal_bias="0.276"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room5" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.483" />
 
         <ImageView
             android:id="@+id/room20"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="92dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room5" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.473" />
 
         <ImageView
             android:id="@+id/room21"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="96dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.733"
+            app:layout_constraintHorizontal_bias="0.73"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room5" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.473" />
 
         <ImageView
             android:id="@+id/room22"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="120dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.391"
+            app:layout_constraintHorizontal_bias="0.387"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room5" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.546" />
 
         <ImageView
             android:id="@+id/room23"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="120dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.626"
+            app:layout_constraintHorizontal_bias="0.622"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room5" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.536" />
 
         <ImageView
             android:id="@+id/room24"
-            android:layout_width="60dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="144dp"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/room5" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -357,7 +383,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -394,11 +420,11 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="28dp"
         android:text="기록"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
@@ -416,14 +442,15 @@
         android:id="@+id/txt_money"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:fontFamily="@font/lexend_deca"
         android:text="1000"
         android:textColor="#7D7D7D"
         android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.622"
+        app:layout_constraintHorizontal_bias="0.641"
         app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.48" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

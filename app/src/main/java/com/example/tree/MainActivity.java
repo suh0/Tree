@@ -5,33 +5,47 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button plant_btn;
-    Button record_btn; // "기록" 버튼 추가
+    ImageView btn_timer, btn_record, btn_shop;
 
-    Button shop_btn;
-
+    TextView txt_bgm, txt_money;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        plant_btn = findViewById(R.id.plant_btn);
-        record_btn = findViewById(R.id.record_btn); // 버튼 참조
-        shop_btn = findViewById(R.id.shop_btn);
+        ImageView room[] = new ImageView[25];
+        btn_timer = findViewById(R.id.btn_timer);
+        btn_record = findViewById(R.id.btn_record); // 버튼 참조
+        btn_shop = findViewById(R.id.btn_shop);
+        txt_bgm=findViewById(R.id.txt_bgm);
+        txt_money=findViewById(R.id.txt_money);
 
-        plant_btn.setOnClickListener(new View.OnClickListener() {
+        for(int i=0; i<25; i++){
+            // xml 파일의 레이아웃과 room 배열의 원소들과 바인딩
+            room[i]=findViewById(getResources().getIdentifier("room"+ i, "id", "com.example.tree"));
+
+        }
+        // setImageResource() , setVisibility()
+        Animation animButtonEffect=AnimationUtils.loadAnimation(this, R.anim.anim_btn_effect);
+
+        btn_timer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btn_timer.startAnimation(animButtonEffect);
                 Intent intent = new Intent(MainActivity.this , SelectHour.class);
                 startActivity(intent);
             }
         });
 
-        record_btn.setOnClickListener(new View.OnClickListener() {
+        btn_record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, RecordActivity.class);
@@ -39,12 +53,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        shop_btn.setOnClickListener(new View.OnClickListener() {
+        btn_shop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btn_shop.startAnimation(animButtonEffect);
                 Intent intent = new Intent(MainActivity.this , ShopActivity.class);
                 startActivity(intent);
             }
         });
+
     }
 }

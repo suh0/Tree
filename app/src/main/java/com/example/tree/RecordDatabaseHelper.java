@@ -18,6 +18,7 @@ public class RecordDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         db.execSQL(TABLE_CREATE);
     }
 

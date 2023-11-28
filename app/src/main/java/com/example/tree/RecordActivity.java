@@ -28,16 +28,19 @@ public class RecordActivity extends AppCompatActivity {
 
         int dateIndex = cursor.getColumnIndex("date");
         int durationIndex = cursor.getColumnIndex("duration");
-        int randomIndex = cursor.getColumnIndex("random"); // random 필드의 인덱스 가져오기
+        //int randomIndex = cursor.getColumnIndex("random"); // random 필드의 인덱스 가져오기
 
 
-        if (dateIndex >= 0 && durationIndex >= 0) {
+        if (dateIndex >= 0 && durationIndex >= 0 /*&& randomIndex >= 0*/) {
             while (cursor.moveToNext()) {
                 String date = cursor.getString(dateIndex);
                 long duration = cursor.getLong(durationIndex);
+/*
+                int random = cursor.getInt(randomIndex);
+*/
 
                 TextView recordTextView = new TextView(this);
-                recordTextView.setText("날짜: " + date + ", 시간: " + duration + " 밀리초");
+                recordTextView.setText("날짜: " + date + ", 시간: " + duration + " 밀리초, 랜덤 값: " /*+ random*/);
                 recordLayout.addView(recordTextView);
             }
         }

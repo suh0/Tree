@@ -20,13 +20,11 @@
         android:fontFamily="@font/lexend_deca"
         android:text="My Pocket"
         android:textColor="@color/white"
-        android:textFontWeight="2000"
-        android:textSize="28sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintHorizontal_bias="0.984"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <ImageView
         android:id="@+id/btn_setting"
@@ -71,7 +69,7 @@
         android:layout_width="370dp"
         android:layout_height="370dp"
         android:layout_centerInParent="true"
-        android:layout_marginTop="192dp"
+        android:layout_marginTop="208dp"
         android:background="@drawable/img_board"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"

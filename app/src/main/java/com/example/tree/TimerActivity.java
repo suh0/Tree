@@ -80,7 +80,7 @@ public class TimerActivity extends AppCompatActivity {
         values.put("duration", selectedMilliseconds);
 
         int randomValue = 0;
-        int maxRandomCount = 3;
+        int maxRandomCount = 25;
         boolean isDuplicate = false;
 
         //random값 만들기
@@ -104,7 +104,7 @@ public class TimerActivity extends AppCompatActivity {
     }
     private int generateRandomValue() {
         // 1부터 25 사이의 랜덤 값을 생성하여 반환합니다.
-        return (int) (Math.random() * 3) + 1; //1~3
+        return (int) (Math.random() * 25) + 1;
     }
 
     private boolean isRandomValueExistsInDB(SQLiteDatabase db, int randomValue) {

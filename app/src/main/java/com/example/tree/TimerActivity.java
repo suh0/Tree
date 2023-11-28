@@ -51,6 +51,9 @@ public class TimerActivity extends AppCompatActivity {
                 saveRecord();
                 //returnToMainScreen();
                 goToSuccessActivity();
+                CoinDatabaseHelper coinHelper = new CoinDatabaseHelper(TimerActivity.this);
+                coinHelper.addBalance(100);
+
             }
         };
 

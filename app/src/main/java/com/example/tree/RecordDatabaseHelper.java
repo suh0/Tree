@@ -36,19 +36,23 @@ public class RecordDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    private void addInitialProducts(SQLiteDatabase db) {
-        addProduct(db, "tree1_30m", 0);
-        addProduct(db, "tree2_30m", 0);
-        addProduct(db, "tree3_30m", 0);
-        addProduct(db, "tree1_1h", 0);
-        addProduct(db, "tree2_1h", 0);
-        addProduct(db, "tree3_1h", 0);
-        addProduct(db, "tree1_2h", 0);
-        addProduct(db, "tree2_2h", 0);
-        addProduct(db, "tree3_2h", 0);
+    private void addInitialProducts(SQLiteDatabase db) {    //1이 구매. 기본품종은 1로 해놈
+        addProduct(db, "tree1_30m", 1);
+        addProduct(db, "tree2_30m", 1);
+        addProduct(db, "tree3_30m", 1);
+        addProduct(db, "tree1_1h", 1);
+        addProduct(db, "tree2_1h", 1);
+        addProduct(db, "tree3_1h", 1);
+        addProduct(db, "tree1_2h", 1);
+        addProduct(db, "tree2_2h", 1);
+        addProduct(db, "tree3_2h", 1);
         addProduct(db, "tree4_30m", 0);
         addProduct(db, "tree4_1h", 0);
         addProduct(db, "tree4_2h", 0);
+
+        addProduct(db, "music1", 0);
+        addProduct(db, "music2", 0);
+        addProduct(db, "music3", 0);
     }
 
     private void addProduct(SQLiteDatabase db, String productName, int purchased) {

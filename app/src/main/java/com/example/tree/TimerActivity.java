@@ -3,7 +3,6 @@ package com.example.tree;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -28,7 +27,7 @@ public class TimerActivity extends AppCompatActivity {
     private ImageView timer_image1;
     private ImageView timer_image2;
 
-    private MediaPlayer mediaPlayer;
+   // private MediaPlayer mediaPlayer;
 
 
     @Override
@@ -90,12 +89,9 @@ public class TimerActivity extends AppCompatActivity {
 
 
 
-        exitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                countDownTimer.cancel();
-                finishWithFailure();
-            }
+        exitButton.setOnClickListener(v -> {
+            countDownTimer.cancel();
+            finishWithFailure();
         });
     }
 
@@ -121,10 +117,6 @@ public class TimerActivity extends AppCompatActivity {
 
             @Override
             protected void onDestroy() {
-                if (mediaPlayer != null) {
-                    mediaPlayer.reset();
-                    mediaPlayer.release();
-                }
                 super.onDestroy();
                 countDownTimer.cancel(); // 액티비티 종료 시 타이머 초기화//
                 dbHelper.close();

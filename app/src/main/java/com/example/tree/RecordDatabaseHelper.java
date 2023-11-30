@@ -18,7 +18,7 @@ public class RecordDatabaseHelper extends SQLiteOpenHelper {
             "CREATE TABLE records (_id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, duration INTEGER, random INTEGER DEFAULT 0);";
 
     private static final String TABLE_PRODUCTS_CREATE =
-            "CREATE TABLE products (_id INTEGER PRIMARY KEY AUTOINCREMENT, product_name TEXT, purchased INTEGER DEFAULT 0);";
+            "CREATE TABLE products (_id INTEGER PRIMARY KEY AUTOINCREMENT, product_name TEXT, purchased INTEGER DEFAULT 0, price REAL DEFAULT 0.0);";
 
     public RecordDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -41,28 +41,29 @@ public class RecordDatabaseHelper extends SQLiteOpenHelper {
     }
 
     private void addInitialProducts(SQLiteDatabase db) {    //1이 구매. 기본품종은 1로 해놈
-        addProduct(db, "tree1_30m", 1);
-        addProduct(db, "tree2_30m", 1);
-        addProduct(db, "tree3_30m", 1);
-        addProduct(db, "tree1_1h", 1);
-        addProduct(db, "tree2_1h", 1);
-        addProduct(db, "tree3_1h", 1);
-        addProduct(db, "tree1_2h", 1);
-        addProduct(db, "tree2_2h", 1);
-        addProduct(db, "tree3_2h", 1);
-        addProduct(db, "tree4_30m", 0);
-        addProduct(db, "tree4_1h", 0);
-        addProduct(db, "tree4_2h", 0);
+        addProduct(db, "tree1_30m", 1, 0);
+        addProduct(db, "tree2_30m", 1, 0);
+        addProduct(db, "tree3_30m", 1, 0);
+        addProduct(db, "tree1_1h", 1, 0);
+        addProduct(db, "tree2_1h", 1, 0);
+        addProduct(db, "tree3_1h", 1, 0);
+        addProduct(db, "tree1_2h", 1, 0);
+        addProduct(db, "tree2_2h", 1, 0);
+        addProduct(db, "tree3_2h", 1, 0);
+        addProduct(db, "tree4_30m", 0, 300);
+        addProduct(db, "tree4_1h", 0, 500);
+        addProduct(db, "tree4_2h", 0, 700);
 
-        addProduct(db, "music1", 0);
-        addProduct(db, "music2", 0);
-        addProduct(db, "music3", 0);
+        addProduct(db, "music1", 0, 500);
+        addProduct(db, "music2", 0, 500);
+        addProduct(db, "music3", 0, 500);
     }
 
-    private void addProduct(SQLiteDatabase db, String productName, int purchased) {
+    private void addProduct(SQLiteDatabase db, String productName, int purchased, double price) {
         ContentValues values = new ContentValues();
         values.put("product_name", productName);
         values.put("purchased", purchased);
+        values.put("price", price);
         db.insert("products", null, values);
     }
 }

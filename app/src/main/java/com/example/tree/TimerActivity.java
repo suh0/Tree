@@ -55,7 +55,7 @@ public class TimerActivity extends AppCompatActivity {
 
     private ImageView timer_image1;
     private ImageView timer_image2;
-    private ImageView backmusic_start, backmusic_stop;
+
 
 
     private static final String TAG_TEXT ="music";
@@ -78,8 +78,7 @@ public class TimerActivity extends AppCompatActivity {
         progressBarCircle = findViewById(R.id.progressBarCircle);
         timer_image1 = findViewById(R.id.timer_image1);
         timer_image2 = findViewById(R.id.timer_image2);
-        backmusic_start = findViewById(R.id.backmusic_start);
-        backmusic_stop = findViewById(R.id.backmusic_stop);
+
 
 
         dbHelper = new RecordDatabaseHelper(this);
@@ -125,13 +124,7 @@ public class TimerActivity extends AppCompatActivity {
 
 
 
-        backmusic_start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showAlertDialog();
-            }
-        });
-        dialogItemList = new ArrayList<>();
+
 
 
         exitButton.setOnClickListener(new View.OnClickListener() {
@@ -141,102 +134,9 @@ public class TimerActivity extends AppCompatActivity {
                 finishWithFailure();
             }
         });
-        backmusic_stop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stopMusic();
-            }
-        });
     }
 
-    private void showAlertDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(TimerActivity.this);
-        LayoutInflater inflater = getLayoutInflater();
-        View view = inflater.inflate(R.layout.activity_dialog, null);
-        builder.setView(view);
 
-        final ListView listview = (ListView) view.findViewById(R.id.listview_alterdialog_list);
-        final AlertDialog dialog = builder.create();
-
-        // dialogItemList 초기화 및 데이터 추가
-        dialogItemList = new ArrayList<>();
-        for (String music : musicFiles) {
-            Map<String, Object> item = new HashMap<>();
-            item.put(TAG_TEXT, music);
-            dialogItemList.add(item);
-        }
-
-        SimpleAdapter simpleAdapter = new SimpleAdapter(TimerActivity.this, dialogItemList,
-                R.layout.dialog_row,
-                new String[]{TAG_TEXT},
-                new int[]{R.id.alertDialogItemTextView});
-        listview.setAdapter(simpleAdapter);
-
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selectedMusic = musicFiles[position]; // 선택된 음악 파일 이름 가져오기
-                playMusic(selectedMusic); // 음악 재생 코드 추가
-                dialog.dismiss(); // 다이얼로그 닫기
-                backmusic_start.setVisibility(View.GONE);
-                backmusic_stop.setVisibility(View.VISIBLE);
-            }
-        });
-        dialog.setCancelable(false);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.show();
-    }
-
-    private void playMusic(String musicFileName) {
-        if (mediaPlayer != null) {  // MediaPlayer 사용 전에 먼저 release() 호출
-            mediaPlayer.reset();
-        } else {
-            mediaPlayer = new MediaPlayer();
-        }
-        int resId = 0; // 여기에 리소스 ID를 직접 지정
-
-        // 음악 파일 이름에 따라 리소스 ID 설정
-        if (musicFileName.equals("music03.mp3")) {
-            resId = R.raw.music03;
-        } else if (musicFileName.equals("music04.mp3")) {
-            resId = R.raw.music04;
-        } else if (musicFileName.equals("music05.mp3")) {
-            resId = R.raw.music05;
-        }
-       // MediaPlayer mediaPlayer = new MediaPlayer();
-        //mediaPlayer.setAudioAttributes(new AudioAttributes.Builder()
-          //      .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-            //    .build());
-
-        try {
-            AssetFileDescriptor afd = getResources().openRawResourceFd(resId);
-            if (afd != null) {
-                mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-                afd.close();
-
-                mediaPlayer.prepareAsync();
-                mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                    @Override
-                    public void onPrepared(MediaPlayer mp) {
-                        mediaPlayer.start();
-                    }
-                });
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        backmusic_start.setVisibility(View.GONE);
-        backmusic_stop.setVisibility(View.VISIBLE);
-        isMusicPlaying = true;
-    }
-
-    private void stopMusic() {
-        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-            mediaPlayer.stop();
-        }
-        backmusic_start.setVisibility(View.VISIBLE);
-        backmusic_stop.setVisibility(View.GONE);
-    }
 
     private void setupProgressBar() {  //이거는 꽉 채운 상태부터 감소하는 것
                 progressBarCircle = findViewById(R.id.progressBarCircle);

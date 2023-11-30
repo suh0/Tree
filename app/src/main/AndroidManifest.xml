@@ -3,31 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
+        android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tree"
-        tools:targetApi="34">
-
+        tools:targetApi="33">
         <activity
-            android:name=".RecordActivity" />
-        <activity
-            android:name=".TimerActivity"
+            android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".ShopActivity"
-            android:exported="true" />
-
-
+            android:name=".LoginActivity"
+            android:exported="false" />
         <activity
-            android:name=".SelectHour"
-            android:exported="true" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +27,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".FailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SuccessActivity"
+            android:exported="false" />
+        <activity android:name=".RecordActivity" />
+        <activity
+            android:name=".TimerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ShopActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SelectHour"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

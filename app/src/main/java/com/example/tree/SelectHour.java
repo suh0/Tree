@@ -36,6 +36,9 @@ public class SelectHour extends AppCompatActivity {
     int currentTreeIndex = 1;
     final int max_tree_index = 3;
 
+    // dbHelper
+    RecordDatabaseHelper dbHelper;
+
     // 화면 업데이트
     void updateTree()
     {
@@ -121,6 +124,8 @@ public class SelectHour extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_hour);
 
+        dbHelper = new RecordDatabaseHelper(this);
+
         show5s = findViewById(R.id.show5s);
         show30m = findViewById(R.id.show30m);
         show1h = findViewById(R.id.show1h);
@@ -176,6 +181,7 @@ public class SelectHour extends AppCompatActivity {
                 updateTree();
             }
         });
+
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

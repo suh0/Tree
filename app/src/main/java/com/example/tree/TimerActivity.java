@@ -2,53 +2,25 @@ package com.example.tree;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
 import android.database.sqlite.SQLiteDatabase;
-import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
-import android.widget.Button;
-import android.net.Uri;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-
 import android.widget.TextView;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.Rect;
-import android.graphics.drawable.ColorDrawable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 public class TimerActivity extends AppCompatActivity {
 
     private TextView timerTextView;
     private CountDownTimer countDownTimer;
 
-    private ImageView exitButton;
+
     private RecordDatabaseHelper dbHelper;
     private long selectedMilliseconds;
     private ProgressBar progressBarCircle;
@@ -56,15 +28,6 @@ public class TimerActivity extends AppCompatActivity {
     private ImageView timer_image1;
     private ImageView timer_image2;
 
-
-
-    private static final String TAG_TEXT ="music";
-    private boolean isMusicPlaying = false;
-
-
-
-    List<Map<String, Object>> dialogItemList;
-    String[] musicFiles = {"music03.mp3", "music04.mp3", "music05.mp3"};
     private MediaPlayer mediaPlayer;
 
 
@@ -74,7 +37,7 @@ public class TimerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timer);
 
         timerTextView = findViewById(R.id.timerTextView);
-        exitButton = findViewById(R.id.exitButton);
+        ImageView exitButton = findViewById(R.id.exitButton);
         progressBarCircle = findViewById(R.id.progressBarCircle);
         timer_image1 = findViewById(R.id.timer_image1);
         timer_image2 = findViewById(R.id.timer_image2);
@@ -151,7 +114,7 @@ public class TimerActivity extends AppCompatActivity {
                 int hours = seconds / 3600;
                 int minutes = (seconds % 3600) / 60;
                 int secs = seconds % 60;
-                String time = String.format("%02d:%02d:%02d", hours, minutes, secs);
+                String time = String.format(Locale.US, "%02d:%02d:%02d", hours, minutes, secs);
                 timerTextView.setText(time);
                 progressBarCircle.setProgress(seconds);
             }
@@ -163,7 +126,7 @@ public class TimerActivity extends AppCompatActivity {
                     mediaPlayer.release();
                 }
                 super.onDestroy();
-                countDownTimer.cancel(); // 액티비티 종료 시 타이머 초기화
+                countDownTimer.cancel(); // 액티비티 종료 시 타이머 초기화//
                 dbHelper.close();
             }
 

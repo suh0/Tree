@@ -1,24 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/green"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".TimerActivity">
+
+
+    <ProgressBar
+        android:id="@+id/progressBarCircle"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="297dp"
+        android:layout_height="320dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/drawable_circle_inner"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="100"
+        android:progressDrawable="@drawable/drawable_circle_outer"
+        android:rotation="-90"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/timerTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/lexend_deca"
+        android:gravity="center"
+        android:text="00:00:00"
+        android:textColor="#E8FFF1"
         android:textSize="48sp"
-        android:text="00:00:00" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarCircle"
+        tools:ignore="MissingConstraints" />
 
-    <Button
+    <ImageView
         android:id="@+id/exitButton"
+        android:layout_width="110dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/btn_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timerTextView" />
+
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="종료" />
+        android:layout_marginTop="88dp"
+        android:fontFamily="@font/lexend_deca"
+        android:text="&quot;Do Your Best!&quot;"
+        android:textColor="#E8FFF1"
+        android:textSize="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/timer_image1"
+        android:layout_width="151dp"
+        android:layout_height="169dp"
+        android:src="@drawable/tree_2"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBarCircle"
+        app:layout_constraintEnd_toEndOf="@+id/progressBarCircle"
+        app:layout_constraintStart_toStartOf="@+id/progressBarCircle"
+        app:layout_constraintTop_toTopOf="@+id/progressBarCircle"
+        app:layout_constraintVertical_bias="0.496" />
+
+    <ImageView
+        android:id="@+id/timer_image2"
+        android:layout_width="188dp"
+        android:layout_height="188dp"
+        android:layout_marginTop="240dp"
+        android:src="@drawable/tree_26_shadow"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

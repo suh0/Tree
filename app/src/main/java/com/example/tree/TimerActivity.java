@@ -23,10 +23,20 @@ public class TimerActivity extends AppCompatActivity {
 
     private RecordDatabaseHelper dbHelper;
     private long selectedMilliseconds;
+    private int receivedHourNumber;
+    private int receivedTreeIndex;
+
     private ProgressBar progressBarCircle;
 
     private ImageView timer_image1;
     private ImageView timer_image2;
+
+    int[][] treeImages = {
+            {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9},
+            {R.drawable.img_tree1, R.drawable.img_tree2, R.drawable.img_tree3},
+            {R.drawable.img_tree4, R.drawable.img_tree5, R.drawable.img_tree6},
+            {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9}
+    };
 
 
     @Override
@@ -40,12 +50,13 @@ public class TimerActivity extends AppCompatActivity {
         timer_image1 = findViewById(R.id.timer_image1);
         timer_image2 = findViewById(R.id.timer_image2);
 
-
-
         dbHelper = new RecordDatabaseHelper(this);
 
         selectedMilliseconds = getIntent().getLongExtra("selected_milliseconds", 1000);
+        receivedHourNumber = getIntent().getIntExtra("currentHourNumber", 1); // 1은 기본값
+        receivedTreeIndex = getIntent().getIntExtra("currentTreeIndex", 1); // 1은 기본값
 
+        timer_image2.setImageResource(treeImages[receivedHourNumber - 1][receivedTreeIndex - 1]);
 
         countDownTimer = new CountDownTimer(selectedMilliseconds, 1000) {
             @Override
@@ -112,6 +123,8 @@ public class TimerActivity extends AppCompatActivity {
         ContentValues values = new ContentValues();
         values.put("date", getCurrentDate());
         values.put("duration", selectedMilliseconds);
+        values.put("hourNum", receivedHourNumber);
+        values.put("treeIndex", receivedTreeIndex);
 
         int randomValue = 0;
         int maxRandomCount = 25;
@@ -195,6 +208,8 @@ public class TimerActivity extends AppCompatActivity {
 
     private void goToSuccessActivity(){
         Intent toSuccess = new Intent(TimerActivity.this, SuccessActivity.class);
+        toSuccess.putExtra("currentHourNumber", receivedHourNumber);
+        toSuccess.putExtra("currentTreeIndex", receivedTreeIndex);
         startActivity(toSuccess);
     }
 

@@ -40,82 +40,23 @@ public class SelectHour extends AppCompatActivity {
     RecordDatabaseHelper dbHelper;
 
     // 화면 업데이트
-    void updateTree()
-    {
-        switch(currentHour_number)
-        {
-            case 1:
-                if(currentTreeIndex == 1)
-                {
-                    treeImage.setImageResource(R.drawable.tree_1_1);
-                    treeInfo.setText("나무 1-1");
-                }
-                else if(currentTreeIndex == 2)
-                {
-                    treeImage.setImageResource(R.drawable.tree_1_2);
-                    treeInfo.setText("나무 1-2");
-                }
-                else if(currentTreeIndex == 3)
-                {
-                    treeImage.setImageResource(R.drawable.tree_1_2);
-                    treeInfo.setText("나무 1-3");
-                }
-                break;
+    int[][] treeImages = {
+            {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9},
+            {R.drawable.img_tree1, R.drawable.img_tree2, R.drawable.img_tree3},
+            {R.drawable.img_tree4, R.drawable.img_tree5, R.drawable.img_tree6},
+            {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9}
+    };
 
-            case 2:
-                if(currentTreeIndex == 1)
-                {
-                    treeImage.setImageResource(R.drawable.tree_1_1);
-                    treeInfo.setText("나무 2-1");
-                }
-                else if(currentTreeIndex == 2)
-                {
-                    treeImage.setImageResource(R.drawable.tree_1_2);
-                    treeInfo.setText("나무 2-2");
-                }
-                else if(currentTreeIndex == 3)
-                {
-                    treeImage.setImageResource(R.drawable.tree_1_2);
-                    treeInfo.setText("나무 2-3");
-                }
-                break;
+    String[][] treeTexts = {
+            {"나무 1-1", "나무 1-2", "나무 1-3"},
+            {"나무 2-1", "나무 2-2", "나무 2-3"},
+            {"나무 3-1", "나무 3-2", "나무 3-3"},
+            {"나무 4-1", "나무 4-2", "나무 4-3"}
+    };
 
-            case 3:
-                if(currentTreeIndex == 1)
-                {
-                    treeImage.setImageResource(R.drawable.tree_1_1);
-                    treeInfo.setText("나무 3-1");
-                }
-                else if(currentTreeIndex == 2)
-                {
-                    treeImage.setImageResource(R.drawable.tree_1_2);
-                    treeInfo.setText("나무 3-2");
-                }
-                else if(currentTreeIndex == 3)
-                {
-                    treeImage.setImageResource(R.drawable.tree_1_2);
-                    treeInfo.setText("나무 3-3");
-                }
-                break;
-
-            case 4:
-                if(currentTreeIndex == 1)
-                {
-                    treeImage.setImageResource(R.drawable.tree_1_1);
-                    treeInfo.setText("나무 4-1");
-                }
-                else if(currentTreeIndex == 2)
-                {
-                    treeImage.setImageResource(R.drawable.tree_1_2);
-                    treeInfo.setText("나무 4-2");
-                }
-                else if(currentTreeIndex == 3)
-                {
-                    treeImage.setImageResource(R.drawable.tree_1_2);
-                    treeInfo.setText("나무 4-3");
-                }
-                break;
-        }
+    void updateTree() {
+        treeImage.setImageResource(treeImages[currentHour_number - 1][currentTreeIndex - 1]);
+        treeInfo.setText(treeTexts[currentHour_number - 1][currentTreeIndex - 1]);
     }
 
     @Override
@@ -203,6 +144,8 @@ public class SelectHour extends AppCompatActivity {
 
                 Intent intent = new Intent(SelectHour.this, TimerActivity.class);
                 intent.putExtra("selected_milliseconds", selected_milliseconds); // 변경된 부분
+                intent.putExtra("currentHourNumber", currentHour_number);
+                intent.putExtra("currentTreeIndex", currentTreeIndex);
 
                 startActivityForResult(intent, 1); //넘기기
             }

@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         txtDate = findViewById(R.id.txt_date); // XML에서 추가한 TextView와 연결
 
         // 현재 날짜를 가져와서 TextView에 설정
-        SimpleDateFormat sdf = new SimpleDateFormat("M월 d일", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-d", Locale.getDefault());
         String currentDate = sdf.format(new Date());
 
         txtDate.setText(currentDate); // TextView에 현재 날짜 설정
@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         int randomIndex = cursor.getColumnIndex("random");
         int hourNumIndex = cursor.getColumnIndex("hourNum");
         int treeIndexIndex = cursor.getColumnIndex("treeIndex");
+        int dateIndex = cursor.getColumnIndex("date");
+
 
         ImageView room[] = new ImageView[25];
         btn_timer = findViewById(R.id.btn_timer);
@@ -67,11 +69,14 @@ public class MainActivity extends AppCompatActivity {
             int random = cursor.getInt(randomIndex);
             int hourNum = cursor.getInt(hourNumIndex);
             int treeIndex = cursor.getInt(treeIndexIndex);
+            String date = cursor.getString(dateIndex);
 
-            if (random != 0) {
+            if (random != 0 && date.equals(currentDate)) {
                 room[random-1].setImageResource(treeImages[hourNum - 1][treeIndex - 1]);
                 room[random-1].setVisibility(View.VISIBLE);
             }
+            else
+                room[random-1].setVisibility(View.VISIBLE);
         } cursor.close();
         // setImageResource() , setVisibility()
         Animation animButtonEffect=AnimationUtils.loadAnimation(this, R.anim.anim_btn_effect);

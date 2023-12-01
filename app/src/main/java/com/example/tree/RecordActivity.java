@@ -13,6 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 public class RecordActivity extends AppCompatActivity {
 
     private RecordDatabaseHelper dbHelper;
+    int[][] treeImages = {
+            {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9},
+            {R.drawable.img_tree1, R.drawable.img_tree2, R.drawable.img_tree3},
+            {R.drawable.img_tree4, R.drawable.img_tree5, R.drawable.img_tree6},
+            {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9}
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,7 +51,6 @@ public class RecordActivity extends AppCompatActivity {
             recordTextView.setText("날짜: " + date + ", 시간: " + duration + " 밀리초, 랜덤: "
                     + random + ", hourNum: " + hourNum + ", treeIndex: " + treeIndex);
             recordLayout.addView(recordTextView);
-
         }
 
         cursor.close();

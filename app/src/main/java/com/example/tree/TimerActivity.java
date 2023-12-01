@@ -155,11 +155,15 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private boolean isRandomValueExistsInDB(SQLiteDatabase db, int randomValue) {
-        // DB에서 동일한 랜덤 값이 있는지 확인하는 메서드
-        // 만약 있으면 true, 없으면 false 반환
-        // 여기서는 "records" 테이블에서 "random" 열을 조사합니다.
-        String query = "SELECT * FROM records WHERE random = ?";
-        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(randomValue)});
+        // 메서드 내용: DB에서 랜덤 값과 오늘의 날짜와 일치하는 값을 확인합니다.
+        // 랜덤 값과 날짜 모두 일치하는 경우 true를 반환하고, 그렇지 않으면 false를 반환합니다.
+        String query = "SELECT * FROM records WHERE random = ? AND date = ?";
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-M-d", Locale.getDefault());
+        String todayDate = dateFormat.format(new Date()); // 오늘 날짜를 가져옵니다.
+        Cursor cursor = db.rawQuery(query, new String[]{
+                String.valueOf(randomValue),
+                todayDate
+        });
         boolean exists = cursor.moveToFirst();
         cursor.close();
         return exists;
@@ -185,7 +189,7 @@ public class TimerActivity extends AppCompatActivity {
                 progressBarCircle.setProgress(seconds);
             }
             private String getCurrentDate() {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-M-d", Locale.getDefault());
                 Date date = new Date();
                 return dateFormat.format(date);
             }

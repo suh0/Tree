@@ -72,7 +72,6 @@
         android:id="@+id/timer_image1"
         android:layout_width="151dp"
         android:layout_height="169dp"
-        android:src="@drawable/tree_2"
         app:layout_constraintBottom_toBottomOf="@+id/progressBarCircle"
         app:layout_constraintEnd_toEndOf="@+id/progressBarCircle"
         app:layout_constraintStart_toStartOf="@+id/progressBarCircle"

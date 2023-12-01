@@ -28,6 +28,13 @@ public class TimerActivity extends AppCompatActivity {
     private ImageView timer_image1;
     private ImageView timer_image2;
 
+    int[][] treeImages = {
+            {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9},
+            {R.drawable.img_tree1, R.drawable.img_tree2, R.drawable.img_tree3},
+            {R.drawable.img_tree4, R.drawable.img_tree5, R.drawable.img_tree6},
+            {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9}
+    };
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,7 +52,10 @@ public class TimerActivity extends AppCompatActivity {
         dbHelper = new RecordDatabaseHelper(this);
 
         selectedMilliseconds = getIntent().getLongExtra("selected_milliseconds", 1000);
+        int receivedHourNumber = getIntent().getIntExtra("currentHourNumber", 1); // 1은 기본값
+        int receivedTreeIndex = getIntent().getIntExtra("currentTreeIndex", 1); // 1은 기본값
 
+        timer_image1.setImageResource(treeImages[receivedHourNumber - 1][receivedTreeIndex - 1]);
 
         countDownTimer = new CountDownTimer(selectedMilliseconds, 1000) {
             @Override

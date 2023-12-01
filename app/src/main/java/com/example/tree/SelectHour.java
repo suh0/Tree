@@ -144,6 +144,8 @@ public class SelectHour extends AppCompatActivity {
 
                 Intent intent = new Intent(SelectHour.this, TimerActivity.class);
                 intent.putExtra("selected_milliseconds", selected_milliseconds); // 변경된 부분
+                intent.putExtra("currentHourNumber", currentHour_number);
+                intent.putExtra("currentTreeIndex", currentTreeIndex);
 
                 startActivityForResult(intent, 1); //넘기기
             }

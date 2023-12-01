@@ -38,9 +38,12 @@ public class FailActivity extends AppCompatActivity {
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mediaPlayer.stop();
+               // mediaPlayer.stop();
+
+                //mediaPlayer.stop(); // 음악 정지
                 btn_home.startAnimation(animButtonScale);
                 Intent toMain=new Intent(FailActivity.this, MainActivity.class);
+                toMain.putExtra("volume_music06", 0.0f);
                 startActivity(toMain);
                 finish();
             }

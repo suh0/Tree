@@ -16,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -56,18 +55,40 @@ public class MainActivity extends AppCompatActivity {
         plant_btn = findViewById(R.id.plant_btn);
         record_btn = findViewById(R.id.record_btn); // 버튼 참조
         shop_btn = findViewById(R.id.shop_btn);
-        //backmusic_start = findViewById(R.id.backmusic_start);
-       // backmusic_stop = findViewById(R.id.backmusic_stop);
         txt_currentBgm = findViewById(R.id.txt_currentBgm);
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.music06);
-        mediaPlayer.setLooping(true); // 반복 재생 설정
-        mediaPlayer.start(); // 음악 재생
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("volume_music06")) {
+            float volumeMusic06 = intent.getFloatExtra("volume_music06", 1.0f); // 기본 볼륨은 1.0f
+
+            // music06의 볼륨 설정
+            mediaPlayer = MediaPlayer.create(this, R.raw.music06);
+            mediaPlayer.setVolume(volumeMusic06, volumeMusic06); // music06의 볼륨 설정
+            mediaPlayer.setLooping(true); // 반복 재생 설정
+            mediaPlayer.start(); // 음악 재생
+        } else {
+            // 기본 설정: 볼륨 1.0f로 music06 재생
+            mediaPlayer = MediaPlayer.create(this, R.raw.music06);
+            mediaPlayer.setLooping(true); // 반복 재생 설정
+            mediaPlayer.start(); // 음악 재생
+        }
+
+
+
+
+
+
+
+
+
+
+
         plant_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //mediaPlayer.stop();
                 Intent intent = new Intent(MainActivity.this, SelectHour.class);
+                intent.putExtra("volume_music06", 0.0f); // music06의 볼륨을 0으로 설정
                 startActivity(intent);
                 finish();
             }
@@ -141,8 +162,7 @@ public class MainActivity extends AppCompatActivity {
                 String selectedMusic = musicFiles[position]; // 선택된 음악 파일 이름 가져오기
                 playMusic(selectedMusic); // 음악 재생 코드 추가
                 dialog.dismiss(); // 다이얼로그 닫기
-                //backmusic_start.setVisibility(View.GONE);
-                //backmusic_stop.setVisibility(View.VISIBLE);
+
 
                 // 선택한 음악 파일 이름에 따라 리소스 ID 설정
                 if (selectedMusic.equals("music03.mp3")) {
@@ -177,8 +197,7 @@ public class MainActivity extends AppCompatActivity {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
         }
-        //backmusic_start.setVisibility(View.VISIBLE);
-        //backmusic_stop.setVisibility(View.GONE);
+
     }
 
     private void playMusic(String musicFileName) {
@@ -216,8 +235,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //backmusic_start.setVisibility(View.GONE);
-        //backmusic_stop.setVisibility(View.VISIBLE);
+
         isMusicPlaying = true;
 
 
@@ -259,13 +277,6 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    @Override
-    protected void onStart() { //앱 나갔다 들어와도 배경음악 실행됨
-        super.onStart();
-        mediaPlayer = MediaPlayer.create(this, R.raw.music06);
-        mediaPlayer.setLooping(true);
-        mediaPlayer.start();
 
-    }
 }
 

@@ -2,7 +2,7 @@ package com.example.tree;
 
 //import static com.example.tree.TimerActivity.mediaPlayer;
 
-import static com.example.tree.MainActivity.mediaPlayer;
+//import static com.example.tree.MainActivity.mediaPlayer;
 
 import androidx.appcompat.app.AppCompatActivity;
 

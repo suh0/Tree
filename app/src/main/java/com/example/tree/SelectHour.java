@@ -40,7 +40,7 @@ public class SelectHour extends AppCompatActivity {
     final int max_tree_index = 3;
 
     // 볼륨 값 가져오기
-    //Intent intent = getIntent();
+    Intent intent = getIntent();
     //float volumeMusic06 = intent.getFloatExtra("volume_music06", 0.0f); // music06의 기본 볼륨은 1.0f (최대 볼륨)
 
     // 화면 업데이트

@@ -20,7 +20,14 @@ public class SuccessActivity extends AppCompatActivity {
     ImageView img_tree;
     Button btn_home;
     TextView txt_addMoney;
-
+    int[][] treeImages = {
+            {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9},
+            {R.drawable.img_tree1, R.drawable.img_tree2, R.drawable.img_tree3},
+            {R.drawable.img_tree4, R.drawable.img_tree5, R.drawable.img_tree6},
+            {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9}
+    };
+    private int receivedHourNumber;
+    private int receivedTreeIndex;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +42,13 @@ public class SuccessActivity extends AppCompatActivity {
         Animation animScale= AnimationUtils.loadAnimation(this, R.anim.anim_bboyong);
         Animation animTilting=AnimationUtils.loadAnimation(this, R.anim.anim_tilting);
         Animation animButtonScale=AnimationUtils.loadAnimation(this, R.anim.anim_btn_effect);
-        //img_tree.setImageResource();     심은 나무에 따라 이미지 다르게 지정
+
+        receivedHourNumber = getIntent().getIntExtra("currentHourNumber", 1); // 1은 기본값
+        receivedTreeIndex = getIntent().getIntExtra("currentTreeIndex", 1); // 1은 기본값
+        img_tree.setImageResource(treeImages[receivedHourNumber - 1][receivedTreeIndex - 1]);     //심은 나무에 따라 이미지 다르게 지정
+
         //txt_addMoney.setText("+ $ "+money);   나무에 따라 돈 얼마나 추가되는지 다르게 표시
+        
         img_tree.startAnimation(animScale);
         txt_success.startAnimation(animTilting);
 

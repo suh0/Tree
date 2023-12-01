@@ -125,7 +125,7 @@ public class TimerActivity extends AppCompatActivity {
         values.put("duration", selectedMilliseconds);
         values.put("hourNum", receivedHourNumber);
         values.put("treeIndex", receivedTreeIndex);
-        
+
         int randomValue = 0;
         int maxRandomCount = 25;
         boolean isDuplicate = false;
@@ -208,6 +208,8 @@ public class TimerActivity extends AppCompatActivity {
 
     private void goToSuccessActivity(){
         Intent toSuccess = new Intent(TimerActivity.this, SuccessActivity.class);
+        toSuccess.putExtra("currentHourNumber", receivedHourNumber);
+        toSuccess.putExtra("currentTreeIndex", receivedTreeIndex);
         startActivity(toSuccess);
     }
 

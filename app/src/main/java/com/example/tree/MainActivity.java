@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     List<Map<String, Object>> dialogItemList;
     String[] musicFiles = {"music03.mp3", "music04.mp3", "music05.mp3"};
-    static MediaPlayer mediaPlayer;
+    private MediaPlayer mediaPlayer;
 
     TextView txt_currentBgm;
 
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
             // music06의 볼륨 설정
             mediaPlayer = MediaPlayer.create(this, R.raw.music06);
-            mediaPlayer.setVolume(volumeMusic06, volumeMusic06); // music06의 볼륨 설정
+            mediaPlayer.setVolume(volumeMusic06, volumeMusic06); // music06의 볼륨 설정(0으로)
             mediaPlayer.setLooping(true); // 반복 재생 설정
             mediaPlayer.start(); // 음악 재생
         } else {
@@ -74,21 +74,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
-
-
-
-
-
-
-
-
         plant_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //mediaPlayer.stop();
                 Intent intent = new Intent(MainActivity.this, SelectHour.class);
-                intent.putExtra("volume_music06", 0.0f); // music06의 볼륨을 0으로 설정
+                //intent.putExtra("volume_music06", 0.0f); // music06의 볼륨을 0으로 설정
                 startActivity(intent);
                 finish();
             }
@@ -201,12 +192,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void playMusic(String musicFileName) {
-
-        if (mediaPlayer != null) {  // MediaPlayer 사용 전에 먼저 release() 호출
-            mediaPlayer.reset();
-        } else {
-            mediaPlayer = new MediaPlayer();
-        }
         int resId = 0; // 여기에 리소스 ID를 직접 지정
 
         // 음악 파일 이름에 따라 리소스 ID 설정
@@ -219,20 +204,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         try {
-            AssetFileDescriptor afd = getResources().openRawResourceFd(resId);
-            if (afd != null) {
-                mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-                afd.close();
-
-                mediaPlayer.prepareAsync();
-                mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                    @Override
-                    public void onPrepared(MediaPlayer mp) {
-                        mediaPlayer.start();
-                    }
-                });
+            if (mediaPlayer != null) {  // 기존 MediaPlayer가 있다면 정지하고 새로운 음악 재생
+                mediaPlayer.stop();
+                mediaPlayer.release();
+                mediaPlayer = null;
             }
-        } catch (IOException e) {
+
+            mediaPlayer = MediaPlayer.create(this, resId);
+            mediaPlayer.setLooping(true); // 반복 재생 설정
+            mediaPlayer.start(); // 음악 재생
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

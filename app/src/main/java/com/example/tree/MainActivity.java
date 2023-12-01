@@ -13,6 +13,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
 
     private RecordDatabaseHelper dbHelper;
@@ -24,12 +28,22 @@ public class MainActivity extends AppCompatActivity {
     };
 
     ImageView btn_timer, btn_record, btn_shop;
-
     TextView txt_bgm, txt_money;
+    TextView txtDate; // 날짜를 표시할 TextView 선언
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        txtDate = findViewById(R.id.txt_date); // XML에서 추가한 TextView와 연결
+
+        // 현재 날짜를 가져와서 TextView에 설정
+        SimpleDateFormat sdf = new SimpleDateFormat("M월 d일", Locale.getDefault());
+        String currentDate = sdf.format(new Date());
+
+        txtDate.setText(currentDate); // TextView에 현재 날짜 설정
 
         dbHelper = new RecordDatabaseHelper(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();

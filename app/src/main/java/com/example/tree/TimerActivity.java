@@ -23,6 +23,9 @@ public class TimerActivity extends AppCompatActivity {
 
     private RecordDatabaseHelper dbHelper;
     private long selectedMilliseconds;
+    private int receivedHourNumber;
+    private int receivedTreeIndex;
+
     private ProgressBar progressBarCircle;
 
     private ImageView timer_image1;
@@ -47,13 +50,11 @@ public class TimerActivity extends AppCompatActivity {
         timer_image1 = findViewById(R.id.timer_image1);
         timer_image2 = findViewById(R.id.timer_image2);
 
-
-
         dbHelper = new RecordDatabaseHelper(this);
 
         selectedMilliseconds = getIntent().getLongExtra("selected_milliseconds", 1000);
-        int receivedHourNumber = getIntent().getIntExtra("currentHourNumber", 1); // 1은 기본값
-        int receivedTreeIndex = getIntent().getIntExtra("currentTreeIndex", 1); // 1은 기본값
+        receivedHourNumber = getIntent().getIntExtra("currentHourNumber", 1); // 1은 기본값
+        receivedTreeIndex = getIntent().getIntExtra("currentTreeIndex", 1); // 1은 기본값
 
         timer_image1.setImageResource(treeImages[receivedHourNumber - 1][receivedTreeIndex - 1]);
 
@@ -122,7 +123,9 @@ public class TimerActivity extends AppCompatActivity {
         ContentValues values = new ContentValues();
         values.put("date", getCurrentDate());
         values.put("duration", selectedMilliseconds);
-
+        values.put("hourNum", receivedHourNumber);
+        values.put("treeIndex", receivedTreeIndex);
+        
         int randomValue = 0;
         int maxRandomCount = 25;
         boolean isDuplicate = false;

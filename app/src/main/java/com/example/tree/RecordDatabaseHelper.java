@@ -15,7 +15,7 @@ public class RecordDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TABLE_CREATE =
 
-            "CREATE TABLE records (_id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, duration INTEGER, random INTEGER DEFAULT 0);";
+            "CREATE TABLE records (_id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, duration INTEGER, random INTEGER DEFAULT 0, hourNum INTEGER, treeIndex INTEGER);";
 
     private static final String TABLE_PRODUCTS_CREATE =
             "CREATE TABLE products (_id INTEGER PRIMARY KEY AUTOINCREMENT, product_name TEXT, purchased INTEGER DEFAULT 0, price REAL DEFAULT 0.0);";

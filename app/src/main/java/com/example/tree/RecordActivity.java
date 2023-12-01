@@ -29,14 +29,21 @@ public class RecordActivity extends AppCompatActivity {
         int dateIndex = cursor.getColumnIndex("date");
         int durationIndex = cursor.getColumnIndex("duration");
         int randomIndex = cursor.getColumnIndex("random");
+        int hourNumIndex = cursor.getColumnIndex("hourNum");
+        int treeIndexIndex = cursor.getColumnIndex("treeIndex");
+
+
 
         while (cursor.moveToNext()) {
             String date = cursor.getString(dateIndex);
             long duration = cursor.getLong(durationIndex);
             int random = cursor.getInt(randomIndex);
+            int hourNum = cursor.getInt(hourNumIndex);
+            int treeIndex = cursor.getInt(treeIndexIndex);
 
             TextView recordTextView = new TextView(this);
-            recordTextView.setText("날짜: " + date + ", 시간: " + duration + " 밀리초, 랜덤: " + random);
+            recordTextView.setText("날짜: " + date + ", 시간: " + duration + " 밀리초, 랜덤: "
+                    + random + ", hourNum: " + hourNum + ", treeIndex: " + treeIndex);
             recordLayout.addView(recordTextView);
 
         }

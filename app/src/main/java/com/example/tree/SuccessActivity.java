@@ -48,7 +48,7 @@ public class SuccessActivity extends AppCompatActivity {
         img_tree.setImageResource(treeImages[receivedHourNumber - 1][receivedTreeIndex - 1]);     //심은 나무에 따라 이미지 다르게 지정
 
         //txt_addMoney.setText("+ $ "+money);   나무에 따라 돈 얼마나 추가되는지 다르게 표시
-        
+
         img_tree.startAnimation(animScale);
         txt_success.startAnimation(animTilting);
 

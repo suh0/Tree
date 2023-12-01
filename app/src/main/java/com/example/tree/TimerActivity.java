@@ -56,7 +56,7 @@ public class TimerActivity extends AppCompatActivity {
         receivedHourNumber = getIntent().getIntExtra("currentHourNumber", 1); // 1은 기본값
         receivedTreeIndex = getIntent().getIntExtra("currentTreeIndex", 1); // 1은 기본값
 
-        timer_image1.setImageResource(treeImages[receivedHourNumber - 1][receivedTreeIndex - 1]);
+        timer_image2.setImageResource(treeImages[receivedHourNumber - 1][receivedTreeIndex - 1]);
 
         countDownTimer = new CountDownTimer(selectedMilliseconds, 1000) {
             @Override

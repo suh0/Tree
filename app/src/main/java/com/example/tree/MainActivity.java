@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         btn_record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btn_record.startAnimation(animButtonEffect);
                 Intent intent = new Intent(MainActivity.this, RecordActivity.class);
                 startActivity(intent);
             }

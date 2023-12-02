@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -58,6 +60,8 @@ public class TimerActivity extends AppCompatActivity {
 
         timer_image2.setImageResource(treeImages[receivedHourNumber - 1][receivedTreeIndex - 1]);
 
+        Animation animButtonEffect= AnimationUtils.loadAnimation(this, R.anim.anim_btn_effect);
+
         countDownTimer = new CountDownTimer(selectedMilliseconds, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -100,6 +104,7 @@ public class TimerActivity extends AppCompatActivity {
 
 
         exitButton.setOnClickListener(v -> {
+            exitButton.startAnimation(animButtonEffect);
             countDownTimer.cancel();
             finishWithFailure();
         });

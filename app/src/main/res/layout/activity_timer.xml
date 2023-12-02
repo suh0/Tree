@@ -98,8 +98,8 @@
 
     <ImageView
         android:id="@+id/timer_image1"
-        android:layout_width="140dp"
-        android:layout_height="160dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:src="@drawable/img_sprout"
         app:layout_constraintBottom_toBottomOf="@+id/progressBarCircle"
         app:layout_constraintEnd_toEndOf="@+id/progressBarCircle"

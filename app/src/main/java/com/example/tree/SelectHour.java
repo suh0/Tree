@@ -32,6 +32,7 @@ public class SelectHour extends AppCompatActivity {
     Button prev;
     Button next;
     Button confirm;
+    ImageView btn_back;
 
     //index는 1부터
     int currentHour_number = 1;
@@ -78,9 +79,21 @@ public class SelectHour extends AppCompatActivity {
         prev = findViewById(R.id.prev);
         next = findViewById(R.id.next);
         confirm = findViewById(R.id.confirm);
+        btn_back=findViewById(R.id.btn_back);
         updateTree();
 
         Animation animButtonEffect= AnimationUtils.loadAnimation(this, R.anim.anim_btn_effect);
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent toMain=new Intent(SelectHour.this, MainActivity.class);
+                startActivity(toMain);
+                overridePendingTransition(R.anim.anim_left_enter, R.anim.anim_right_exit);
+
+            }
+        });
 
         // 시간 선택
         show5s.setOnClickListener(new View.OnClickListener() {

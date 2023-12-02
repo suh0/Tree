@@ -94,11 +94,12 @@
 
     </LinearLayout>
 
+
     <TextView
         android:id="@+id/txt_select_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/lexend_deca"
         android:text="Select Time"
         android:textColor="@color/white"
@@ -108,12 +109,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/line_top" />
 
-
     <TextView
         android:id="@+id/txt_select_tree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/lexend_deca"
         android:text="Select Tree"
         android:textColor="@color/white"
@@ -173,6 +173,9 @@
         android:id="@+id/treeInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:fontFamily="@font/lexend_deca"
+        android:textSize="17sp"
         app:layout_constraintBottom_toTopOf="@+id/confirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -188,7 +191,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.947" />
+        app:layout_constraintVertical_bias="0.942" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

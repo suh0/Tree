@@ -72,6 +72,7 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
             public void onClick(View v) {
                 Intent toMain=new Intent(ShopActivity.this, MainActivity.class);
                 startActivity(toMain);
+                overridePendingTransition(R.anim.anim_left_enter, R.anim.anim_right_exit);
             }
         });
 

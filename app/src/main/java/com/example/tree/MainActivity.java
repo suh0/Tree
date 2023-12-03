@@ -87,14 +87,17 @@ public class MainActivity extends AppCompatActivity {
                 btn_timer.startAnimation(animButtonEffect);
                 Intent intent = new Intent(MainActivity.this , SelectHour.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.anim_right_enter, R.anim.anim_left_exit);
             }
         });
 
         btn_record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btn_record.startAnimation(animButtonEffect);
                 Intent intent = new Intent(MainActivity.this, RecordActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.anim_right_enter, R.anim.anim_left_exit);
             }
         });
 
@@ -104,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 btn_shop.startAnimation(animButtonEffect);
                 Intent intent = new Intent(MainActivity.this , ShopActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.anim_right_enter, R.anim.anim_left_exit);
             }
         });
 

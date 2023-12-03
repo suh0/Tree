@@ -7,6 +7,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -22,14 +24,15 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SelectHour extends AppCompatActivity {
 
     Button show5s;
-    Button show30m;
-    Button show1h;
-    Button show2h;
+    ImageView show30m;
+    ImageView show1h;
+    ImageView show2h;
     ImageView treeImage;
     TextView treeInfo;
-    Button prev;
-    Button next;
-    Button confirm;
+    ImageView prev;
+    ImageView next;
+    ImageView confirm;
+    ImageView btn_back;
 
     //index는 1부터
     int currentHour_number = 1;
@@ -49,9 +52,9 @@ public class SelectHour extends AppCompatActivity {
 
     String[][] treeTexts = {
             {"나무 1-1", "나무 1-2", "나무 1-3"},
-            {"나무 2-1", "나무 2-2", "나무 2-3"},
-            {"나무 3-1", "나무 3-2", "나무 3-3"},
-            {"나무 4-1", "나무 4-2", "나무 4-3"}
+            {"+ $100", "+ $100", "+ $100"},
+            {"+ $150", "+ $150", "+ $150"},
+            {"+ $200", "+ $200", "+ $200"}
     };
 
     void updateTree() {
@@ -76,7 +79,21 @@ public class SelectHour extends AppCompatActivity {
         prev = findViewById(R.id.prev);
         next = findViewById(R.id.next);
         confirm = findViewById(R.id.confirm);
+        btn_back=findViewById(R.id.btn_back);
         updateTree();
+
+        Animation animButtonEffect= AnimationUtils.loadAnimation(this, R.anim.anim_btn_effect);
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent toMain=new Intent(SelectHour.this, MainActivity.class);
+                startActivity(toMain);
+                overridePendingTransition(R.anim.anim_left_enter, R.anim.anim_right_exit);
+
+            }
+        });
 
         // 시간 선택
         show5s.setOnClickListener(new View.OnClickListener() {
@@ -85,15 +102,21 @@ public class SelectHour extends AppCompatActivity {
         });
         show30m.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { currentHour_number = 2; updateTree(); }
+            public void onClick(View view) {
+                show30m.startAnimation(animButtonEffect);
+                currentHour_number = 2; updateTree(); }
         });
         show1h.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { currentHour_number = 3; updateTree(); }
+            public void onClick(View view) {
+                show1h.startAnimation(animButtonEffect);
+                currentHour_number = 3; updateTree(); }
         });
         show2h.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { currentHour_number = 4; updateTree(); }
+            public void onClick(View view) {
+                show2h.startAnimation(animButtonEffect);
+                currentHour_number = 4; updateTree(); }
         });
 
         // '이전' 버튼
@@ -101,6 +124,7 @@ public class SelectHour extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
+                prev.startAnimation(animButtonEffect);
                 if(currentTreeIndex <= 1)
                     currentTreeIndex = max_tree_index;
                 else
@@ -114,6 +138,7 @@ public class SelectHour extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
+                next.startAnimation(animButtonEffect);
                 if(currentTreeIndex >= max_tree_index)
                     currentTreeIndex = 1;
                 else
@@ -126,6 +151,7 @@ public class SelectHour extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                confirm.startAnimation(animButtonEffect);
                 long selected_milliseconds = 0;
                 switch (currentHour_number){
                     case 1:

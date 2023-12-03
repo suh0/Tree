@@ -4,6 +4,8 @@ package com.example.tree;
 
 //import static com.example.tree.MainActivity.mediaPlayer;
 
+import static com.example.tree.MainActivity.mediaPlayer;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -40,7 +42,7 @@ public class FailActivity extends AppCompatActivity {
             public void onClick(View view) {
                // mediaPlayer.stop();
 
-                //mediaPlayer.stop(); // 음악 정지
+                mediaPlayer.stop(); // 음악 정지
                 btn_home.startAnimation(animButtonScale);
                 Intent toMain=new Intent(FailActivity.this, MainActivity.class);
                 toMain.putExtra("volume_music06", 0.0f);

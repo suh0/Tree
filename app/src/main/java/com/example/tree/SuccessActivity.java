@@ -1,6 +1,6 @@
 package com.example.tree;
 
-import static com.example.tree.MainActivity.mediaPlayer;
+import static com.example.tree.MainActivity.mediaPlayer06;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -48,10 +48,12 @@ public class SuccessActivity extends AppCompatActivity {
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.stop();
+                mediaPlayer06.stop();
                 btn_home.startAnimation(animButtonScale);
                 Intent toMain=new Intent(SuccessActivity.this, MainActivity.class);
+                toMain.putExtra("volume_music06", 0.0f);
                 startActivity(toMain);
+                finish();
             }
         });
 

@@ -43,9 +43,12 @@ public class MainActivity extends AppCompatActivity {
     List<Map<String, Object>> dialogItemList;
     String[] musicFiles = {"music03.mp3", "music04.mp3", "music05.mp3"};
     static MediaPlayer mediaPlayer;
+    static MediaPlayer mediaPlayer06;
 
     TextView txt_currentBgm;
-
+    private static final String MUSIC_VOLUME_KEY = "musicVolume";
+    private static final String SELECTED_MUSIC_KEY = "selectedMusic";
+    private boolean isMusic06Playing = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,21 +60,25 @@ public class MainActivity extends AppCompatActivity {
         shop_btn = findViewById(R.id.shop_btn);
         txt_currentBgm = findViewById(R.id.txt_currentBgm);
 
+
+
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("volume_music06")) {
             float volumeMusic06 = intent.getFloatExtra("volume_music06", 1.0f); // 기본 볼륨은 1.0f
 
             // music06의 볼륨 설정
-            mediaPlayer = MediaPlayer.create(this, R.raw.music06);
-            mediaPlayer.setVolume(volumeMusic06, volumeMusic06); // music06의 볼륨 설정(0으로)
-            mediaPlayer.setLooping(true); // 반복 재생 설정
-            mediaPlayer.start(); // 음악 재생
+            mediaPlayer06 = MediaPlayer.create(this, R.raw.music06);
+            mediaPlayer06.setVolume(volumeMusic06, volumeMusic06); // music06의 볼륨 설정(0으로)
+            mediaPlayer06.setLooping(true); // 반복 재생 설정
+            mediaPlayer06.start(); // 음악 재생
         } else {
             // 기본 설정: 볼륨 1.0f로 music06 재생
-            mediaPlayer = MediaPlayer.create(this, R.raw.music06);
-            mediaPlayer.setLooping(true); // 반복 재생 설정
-            mediaPlayer.start(); // 음악 재생
+            mediaPlayer06 = MediaPlayer.create(this, R.raw.music06);
+            mediaPlayer06.setLooping(true); // 반복 재생 설정
+            mediaPlayer06.start(); // 음악 재생
         }
+
+
 
 
         plant_btn.setOnClickListener(new View.OnClickListener() {
@@ -117,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showAlertDialog() {
+        mediaPlayer06.stop();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         LayoutInflater inflater = getLayoutInflater();
@@ -176,6 +184,8 @@ public class MainActivity extends AppCompatActivity {
                 //intent.putStringArrayListExtra("selectedMusicList", selectedMusicArrayList);
                 //startActivity(intent);
 
+
+
             }
         });
         dialog.setCancelable(false);
@@ -184,6 +194,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
     private void stopMusic() {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
@@ -191,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void playMusic(String musicFileName) {
+    private void playMusic(String musicFileName ) {
         int resId = 0; // 여기에 리소스 ID를 직접 지정
 
         // 음악 파일 이름에 따라 리소스 ID 설정
@@ -206,18 +218,26 @@ public class MainActivity extends AppCompatActivity {
         try {
             if (mediaPlayer != null) {  // 기존 MediaPlayer가 있다면 정지하고 새로운 음악 재생
                 mediaPlayer.stop();
+                mediaPlayer.reset();
                 mediaPlayer.release();
                 mediaPlayer = null;
+                Log.d("playMusic","true");
             }
 
             mediaPlayer = MediaPlayer.create(this, resId);
             mediaPlayer.setLooping(true); // 반복 재생 설정
+
+
+
             mediaPlayer.start(); // 음악 재생
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         isMusicPlaying = true;
+
+
+
 
 
     }
@@ -248,15 +268,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
+
         // SharedPreferences 값 초기화
         saveSelectedMusicName("No music");
     }
+
+
 
     @Override
     public void onBackPressed() { //앱 나가면 음악 멈추게 함
         stopMusic();
         super.onBackPressed();
     }
+
 
 
 }

@@ -20,6 +20,8 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     private RecordDatabaseHelper dbHelper;
+    public CoinDatabaseHelper coinHelper;
+
     int[][] treeImages = {
             {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9},
             {R.drawable.img_tree1, R.drawable.img_tree2, R.drawable.img_tree3},
@@ -29,21 +31,17 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView btn_timer, btn_record, btn_shop;
     TextView txt_bgm, txt_money;
-    TextView txtDate; // 날짜를 표시할 TextView 선언
-
+    TextView txtDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        txtDate = findViewById(R.id.txt_date); // XML에서 추가한 TextView와 연결
-
-        // 현재 날짜를 가져와서 TextView에 설정
+        txtDate = findViewById(R.id.txt_date);
         SimpleDateFormat sdf = new SimpleDateFormat("M월 d일", Locale.getDefault());
         String currentDate = sdf.format(new Date());
-
-        txtDate.setText(currentDate); // TextView에 현재 날짜 설정
+        txtDate.setText(currentDate);
 
         dbHelper = new RecordDatabaseHelper(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -52,15 +50,17 @@ public class MainActivity extends AppCompatActivity {
         int hourNumIndex = cursor.getColumnIndex("hourNum");
         int treeIndexIndex = cursor.getColumnIndex("treeIndex");
 
+        coinHelper = new CoinDatabaseHelper(this);
+
         ImageView room[] = new ImageView[25];
         btn_timer = findViewById(R.id.btn_timer);
-        btn_record = findViewById(R.id.btn_record); // 버튼 참조
+        btn_record = findViewById(R.id.btn_record);
         btn_shop = findViewById(R.id.btn_shop);
         txt_bgm=findViewById(R.id.txt_bgm);
         txt_money=findViewById(R.id.txt_money);
+        updateMoney(); // 돈 업데이트
 
         for(int i=0; i<25; i++){
-            // xml 파일의 레이아웃과 room 배열의 원소들과 바인딩
             room[i]=findViewById(getResources().getIdentifier("room"+ i, "id", "com.example.tree"));
         }
         while (cursor.moveToNext()) {
@@ -72,8 +72,9 @@ public class MainActivity extends AppCompatActivity {
                 room[random-1].setImageResource(treeImages[hourNum - 1][treeIndex - 1]);
                 room[random-1].setVisibility(View.VISIBLE);
             }
-        } cursor.close();
-        // setImageResource() , setVisibility()
+        }
+        cursor.close();
+
         Animation animButtonEffect=AnimationUtils.loadAnimation(this, R.anim.anim_btn_effect);
 
         btn_timer.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +103,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateMoney(); // 액티비티가 다시 시작될 때 돈 업데이트
+    }
+
+    private void updateMoney() {
+        txt_money.setText(" " + coinHelper.getCurrentBalance());
     }
 
     @Override

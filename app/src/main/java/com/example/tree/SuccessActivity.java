@@ -1,8 +1,8 @@
 package com.example.tree;
 
-import static com.example.tree.MainActivity.mediaPlayer06;
-
 import androidx.appcompat.app.AppCompatActivity;
+import static com.example.tree.MainActivity.mediaPlayer;
+import static com.example.tree.MainActivity.mediaPlayer06;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.tree.MainActivity;
 
 public class SuccessActivity extends AppCompatActivity {
 
@@ -42,13 +43,13 @@ public class SuccessActivity extends AppCompatActivity {
         img_tree.startAnimation(animScale);
         txt_success.startAnimation(animTilting);
 
-        
+
 
 
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer06.stop();
+                mediaPlayer06.stop(); // 음악 정지
                 btn_home.startAnimation(animButtonScale);
                 Intent toMain=new Intent(SuccessActivity.this, MainActivity.class);
                 toMain.putExtra("volume_music06", 0.0f);
@@ -57,5 +58,10 @@ public class SuccessActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
     }
 }

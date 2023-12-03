@@ -24,14 +24,14 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SelectHour extends AppCompatActivity {
 
     Button show5s;
-    Button show30m;
-    Button show1h;
-    Button show2h;
+    ImageView show30m;
+    ImageView show1h;
+    ImageView show2h;
     ImageView treeImage;
     TextView treeInfo;
-    Button prev;
-    Button next;
-    Button confirm;
+    ImageView prev;
+    ImageView next;
+    ImageView confirm;
     ImageView btn_back;
 
     //index는 1부터

@@ -34,6 +34,7 @@ public class SelectHour extends AppCompatActivity {
     ImageView confirm;
     ImageView btn_back;
 
+
     //index는 1부터
     int currentHour_number = 1;
     int currentTreeIndex = 1;
@@ -44,21 +45,24 @@ public class SelectHour extends AppCompatActivity {
 
     // 화면 업데이트
     int[][] treeImages = {
-            {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9},
+            {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9}, //5초 test
             {R.drawable.img_tree1, R.drawable.img_tree2, R.drawable.img_tree3},
             {R.drawable.img_tree4, R.drawable.img_tree5, R.drawable.img_tree6},
             {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9}
     };
 
     String[][] treeTexts = {
-            {"나무 1-1", "나무 1-2", "나무 1-3"},
-            {"+ $100", "+ $100", "+ $100"},
-            {"+ $150", "+ $150", "+ $150"},
-            {"+ $200", "+ $200", "+ $200"}
+            {"나무 1-1", "나무 1-2", "나무 1-3"}, //5초
+            {"+ $100", "+ $100", "+ $100"}, //30분
+            {"+ $150", "+ $150", "+ $150"}, //1시간
+            {"+ $200", "+ $200", "+ $200"} //2시간
     };
+
 
     void updateTree() {
         treeImage.setImageResource(treeImages[currentHour_number - 1][currentTreeIndex - 1]);
+
+        //treeImage.setAlpha(0.5f); // 예시: 0.5는 이미지뷰의 투명도를 50%로 설정합니다.
         treeInfo.setText(treeTexts[currentHour_number - 1][currentTreeIndex - 1]);
     }
 

@@ -1,5 +1,6 @@
 package com.example.tree;
 
+
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
 public class TimerActivity extends AppCompatActivity {
 
     private TextView timerTextView;
@@ -60,7 +62,11 @@ public class TimerActivity extends AppCompatActivity {
 
         timer_image2.setImageResource(treeImages[receivedHourNumber - 1][receivedTreeIndex - 1]);
 
+
         Animation animButtonEffect= AnimationUtils.loadAnimation(this, R.anim.anim_btn_effect);
+        Animation animSprout= AnimationUtils.loadAnimation(this, R.anim.anim_sprout);
+        timer_image1.startAnimation(animSprout);
+
 
         countDownTimer = new CountDownTimer(selectedMilliseconds, 1000) {
             @Override
@@ -78,6 +84,7 @@ public class TimerActivity extends AppCompatActivity {
 
                 if (remainingSeconds <= totalSeconds / 2) {
                     // 타이머 시간이 절반이 지나면 timer_image1을 INVISIBLE로 설정
+                    timer_image1.clearAnimation(); // 무한 반복 애니메이션 중지
                     timer_image1.setVisibility(View.INVISIBLE);
 
                     // timer_image2를 VISIBLE로 설정

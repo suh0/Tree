@@ -18,7 +18,7 @@ public class SuccessActivity extends AppCompatActivity {
     LottieAnimationView light_lottie;
     TextView txt_success;
     ImageView img_tree;
-    Button btn_home;
+    ImageView btn_home;
     TextView txt_addMoney;
     int[][] treeImages = {
             {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9},

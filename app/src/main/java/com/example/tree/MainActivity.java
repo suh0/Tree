@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.AssetFileDescriptor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -19,8 +18,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,9 +43,7 @@ public class MainActivity extends AppCompatActivity {
     static MediaPlayer mediaPlayer06;
 
     TextView txt_currentBgm;
-    private static final String MUSIC_VOLUME_KEY = "musicVolume";
-    private static final String SELECTED_MUSIC_KEY = "selectedMusic";
-    private boolean isMusic06Playing = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         record_btn = findViewById(R.id.record_btn); // 버튼 참조
         shop_btn = findViewById(R.id.shop_btn);
         txt_currentBgm = findViewById(R.id.txt_currentBgm);
+
 
 
 
@@ -103,7 +99,9 @@ public class MainActivity extends AppCompatActivity {
         shop_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mediaPlayer.stop();
+                if (mediaPlayer06 != null) {
+                    mediaPlayer06.stop();
+                }
                 Intent intent = new Intent(MainActivity.this, ShopActivity.class);
                 startActivity(intent);
                 finish();

@@ -28,6 +28,8 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
     ArrayList<ProductBgm> itemList=new ArrayList<>();
     ArrayList<ProductTree> itemList2=new ArrayList<>();
     public CoinDatabaseHelper coinHelper;
+    public TreeItemDatabaseHelper treeHelper;
+    public MusicItemDatabaseHelper musicHelper;
 
     private TextView txt_money;
     private TextView txt_currentBgm;
@@ -37,12 +39,8 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
         coinHelper = new CoinDatabaseHelper(this);
-        /*
-        if(coinHelper == null) {
-            Log.d("Error", "onCreate: dbHelper is a null object.");
-            return;
-        }
-        */
+        treeHelper = new TreeItemDatabaseHelper(this);
+        musicHelper = new MusicItemDatabaseHelper(this);
 
         recycle_tree=(RecyclerView) findViewById(R.id.recycle_tree);
         recycle_bgm=(RecyclerView) findViewById(R.id.recycle_bgm);
@@ -60,9 +58,27 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
         TreeAdapter treeAdapter=new TreeAdapter(this, itemList2, this::onItemClicked);
 
         for(int i=0; i<4; i++) { // 테스트용 더미데이터 (리사이클러뷰에 들어가는 데이터 값 생성 ; 가격 등등)
-            treeAdapter.addItem(new ProductTree(R.drawable.tree_1, i*100));
             bgmAdapter.addItem(new ProductBgm("Title "+i, i*100));
         }
+
+        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree1_30m", 0));
+        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree1_1h", 100));
+        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree1_2h", 200));
+        // 5 sec trees
+        // test purpose
+
+        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree1_30m", 0));
+        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree1_1h", 100));
+        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree1_2h", 200));
+        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree2_30m", 0));
+        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree2_1h", 100));
+        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree2_2m", 200));
+        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree3_30m", 0));
+        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree3_1h", 100));
+        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree3_2h", 200));
+        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree4_30m", 0));
+        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree4_1h", 100));
+        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree1_2h", 200));
 
         recycle_tree.setAdapter(treeAdapter);
         recycle_bgm.setAdapter(bgmAdapter);
@@ -74,8 +90,6 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
                 startActivity(toMain);
             }
         });
-
-
     }
 
     public void updateBalanceText(){
@@ -87,7 +101,7 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
     public void onItemClicked(ProductBgm productBgm, LinearLayout layout, TextView txtPrice) { // 브금 아이템 클릭 시
         Animation btnScale=AnimationUtils.loadAnimation(this, R.anim.anim_btn_scale);
 
-        if(productBgm.getIsPurchased()==false){ // 보유 중이지 않은 아이템인 경우
+        if(musicHelper.getPurchase(productBgm.getTitle()) == 0){ // 보유 중이지 않은 아이템인 경우
             layout.startAnimation(btnScale);
             showPurchaseConfirmationDialog(productBgm, txtPrice, layout);
         }
@@ -107,7 +121,7 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if(coinHelper.getCurrentBalance()>=productBgm.getPrice()){
-                    productBgm.setIsPurchased(Boolean.TRUE);
+                    musicHelper.applyPurchase(productBgm.title);
                     coinHelper.addBalance(-1 * productBgm.getPrice()); // 잔액 차감
                     updateBalanceText();
                     txtPrice.setText("In Stock");
@@ -158,7 +172,7 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
     public void onItemClicked(ProductTree productTree, LinearLayout layout, TextView txtPrice) { // 나무 아이템 클릭 시
         Animation btnScale=AnimationUtils.loadAnimation(this, R.anim.anim_btn_scale);
 
-        if(productTree.getIsPurchased()==false){
+        if(treeHelper.getPurchase(productTree.getName()) == 0) {
             layout.startAnimation(btnScale);
             showPurchaseConfirmationDialog2(productTree, txtPrice, layout);
         }
@@ -177,7 +191,7 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if(coinHelper.getCurrentBalance()>=productTree.getPrice()){
-                    productTree.setIsPurchased(Boolean.TRUE);
+                    treeHelper.applyPurchase(productTree.getName());
                     coinHelper.addBalance(-1 * productTree.getPrice());
                     updateBalanceText();
                     txtPrice.setText("In Stock");

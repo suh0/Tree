@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class CoinDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "records_coin.db";
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 9;
     // private static final int DEFAULT_BALANCE = 1000;
 
     private static final String TABLE_CREATE =

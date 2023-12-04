@@ -54,7 +54,7 @@ public class TimerActivity extends AppCompatActivity {
 
     List<Map<String, Object>> dialogItemList;
 
-    //public static MediaPlayer mediaPlayer;
+
     private int pausedPosition = 0; // 멈춘 위치 저장하는 변수
 
 
@@ -72,7 +72,7 @@ public class TimerActivity extends AppCompatActivity {
         backmusic_start = findViewById(R.id.backmusic_start);
         backmusic_stop = findViewById(R.id.backmusic_stop);
         // selectedMusicList = getIntent().getStringArrayListExtra("selectedMusicList");
-        Log.d("TimerActivity","안녕");
+
 
 
 

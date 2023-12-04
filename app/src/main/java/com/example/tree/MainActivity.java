@@ -102,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
                 if (mediaPlayer06 != null) {
                     mediaPlayer06.stop();
                 }
+                if (mediaPlayer != null) {
+                    mediaPlayer.stop();
+                }
                 Intent intent = new Intent(MainActivity.this, ShopActivity.class);
                 startActivity(intent);
                 finish();

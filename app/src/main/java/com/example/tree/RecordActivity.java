@@ -49,6 +49,12 @@ public class RecordActivity extends AppCompatActivity {
             }
         }
 
+        int totalRecordCount = getTotalRecordCount(db);
+
+        TextView totalRecordCountTextView = new TextView(this);
+        totalRecordCountTextView.setText("총 데이터 수: " + totalRecordCount);
+        recordLayout.addView(totalRecordCountTextView);
+
         cursor.close();
 
         TextView summaryTextView = new TextView(this);
@@ -79,6 +85,17 @@ public class RecordActivity extends AppCompatActivity {
 
         cursor.close();
         return totalDuration;
+    }
+    private int getTotalRecordCount(SQLiteDatabase db) {
+        int totalRecordCount = 0;
+
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM records", null);
+        if (cursor.moveToFirst()) {
+            totalRecordCount = cursor.getInt(0);
+        }
+
+        cursor.close();
+        return totalRecordCount;
     }
 
     private void deleteAllData() {

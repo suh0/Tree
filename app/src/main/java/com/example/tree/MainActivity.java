@@ -246,10 +246,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        //txt_currentBgm = findViewById(R.id.txt_currentBgm);
         String selectedMusicName = getSelectedMusicName(); // 선택한 음악 이름 가져오기
         txt_currentBgm.setText(": " + selectedMusicName); // 선택한 음악 파일 이름으로 TextView 설정
+
+        if (selectedMusicName.equals("music06.mp3")) {
+            if (mediaPlayer06 != null) {
+                Log.d("MainActivity", "Starting mediaPlayer06");
+                mediaPlayer06.start();
+            }
+        } else {
+            // 다른 음악 처리
+        }
     }
 
     private String getSelectedMusicName() {
@@ -278,8 +285,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() { //앱 나가면 음악 멈추게 함
-        stopMusic();
+
         super.onBackPressed();
+        if (mediaPlayer06 != null) {
+            mediaPlayer06.stop();
+        }
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+        }
     }
 
 

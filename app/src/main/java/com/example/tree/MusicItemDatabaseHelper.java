@@ -2,8 +2,12 @@ package com.example.tree;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import java.util.ArrayList;
 
 public class MusicItemDatabaseHelper extends SQLiteOpenHelper {
 
@@ -11,9 +15,9 @@ public class MusicItemDatabaseHelper extends SQLiteOpenHelper {
             "CREATE TABLE items (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "item_name TEXT, " +
                     "purchased INTEGER DEFAULT 0, " +
-                    "price REAL DEFAULT 0.0);";
+                    "price INTEGER DEFAULT 0.0);";
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
 
     public MusicItemDatabaseHelper(Context context) {
         super(context, TABLE_ITEMS, null, DATABASE_VERSION);
@@ -38,18 +42,18 @@ public class MusicItemDatabaseHelper extends SQLiteOpenHelper {
         addProduct(sqLiteDatabase, "music3", 0, 500);
     }
 
-    private void addProduct(SQLiteDatabase sqLiteDatabase, String productName, int purchased, double price) {
+    private void addProduct(SQLiteDatabase sqLiteDatabase, String item_name, int purchased, int price) {
         ContentValues values = new ContentValues();
-        values.put("item_name", productName);
+        values.put("item_name", item_name);
         values.put("purchased", purchased);
         values.put("price", price);
-        sqLiteDatabase.insert("products", null, values);
+        sqLiteDatabase.insert("items", null, values);
     }
 
     public int applyPurchase(String productName) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(productName, 1);
+        values.put("purchased", 1);
 
         String whereClause = "item_name=?";
         String[] whereArgs = new String[]{productName};
@@ -70,5 +74,39 @@ public class MusicItemDatabaseHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         return isPurchased;
+    }
+
+    public long getDatabaseSize() {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        return DatabaseUtils.queryNumEntries(sqLiteDatabase, "items");
+    }
+
+
+    public ArrayList<ProductBgm> getAllMusic() {
+        ArrayList<ProductBgm> tempList = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String[] columns = {"item_name", "purchased", "price"};
+        Cursor cursor = sqLiteDatabase.query("items", columns, null, null, null, null, null);
+        if(cursor.moveToFirst()) {
+            int nameIndex = cursor.getColumnIndex("item_name");
+            int purchasedIndex = cursor.getColumnIndex("purchased");
+            int priceIndex = cursor.getColumnIndex("price");
+            do {
+                ProductBgm temp = new ProductBgm();
+                temp.setName(cursor.getString(nameIndex));
+                if(cursor.getInt(cursor.getInt(purchasedIndex)) == 1)
+                    temp.setIsPurchased(true);
+                else
+                    temp.setIsPurchased(false);
+                temp.setPrice(cursor.getInt(priceIndex));
+
+                tempList.add(temp);
+            } while (cursor.moveToNext());
+        }
+        else
+            Log.d("MusicItemDataBaseHelper", "getAllTrees: cursor not found");
+        cursor.close();
+
+        return tempList;
     }
 }

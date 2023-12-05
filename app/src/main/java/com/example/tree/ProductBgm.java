@@ -2,13 +2,13 @@ package com.example.tree;
 
 public class ProductBgm {
 
-    String title;
+    String name;
     int price;
     Boolean isPurchased=false; // 보유 중인지 아닌지
 
     public ProductBgm(){}
-    public ProductBgm(String title, int price){
-        this.title=title;
+    public ProductBgm(String name, int price){
+        this.name =name;
         this.price=price;
         isPurchased=false;
     }
@@ -19,11 +19,11 @@ public class ProductBgm {
     public void setPrice(int price){
         this.price=price;
     }
-    public String getTitle(){
-        return title;
+    public String getName(){
+        return name;
     }
-    public void setTitle(String title){
-        this.title=title;
+    public void setName(String name){
+        this.name = name;
     }
     public Boolean getIsPurchased(){return isPurchased;}
     public void setIsPurchased(Boolean value){this.isPurchased=value;}

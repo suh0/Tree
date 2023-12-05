@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -25,6 +25,8 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
     private RecyclerView recycle_tree;
     private RecyclerView recycle_bgm;
     private ImageView btn_back;
+    private TreeAdapter treeAdapter;
+    private BgmAdapter bgmAdapter;
     ArrayList<ProductBgm> itemList=new ArrayList<>();
     ArrayList<ProductTree> itemList2=new ArrayList<>();
     public CoinDatabaseHelper coinHelper;
@@ -42,66 +44,96 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
         treeHelper = new TreeItemDatabaseHelper(this);
         musicHelper = new MusicItemDatabaseHelper(this);
 
-        recycle_tree=(RecyclerView) findViewById(R.id.recycle_tree);
-        recycle_bgm=(RecyclerView) findViewById(R.id.recycle_bgm);
-        txt_currentBgm=(TextView)findViewById(R.id.txt_currentBgm);
-        btn_back=findViewById(R.id.btn_back);
+        recycle_tree = (RecyclerView) findViewById(R.id.recycle_tree);
+        recycle_bgm = (RecyclerView) findViewById(R.id.recycle_bgm);
+        txt_currentBgm = (TextView) findViewById(R.id.txt_currentBgm);
+        btn_back = findViewById(R.id.btn_back);
         txt_money = findViewById(R.id.txt_money);
         txt_money.setText(" " + coinHelper.getCurrentBalance());
 
         // 리사이클러뷰 세팅
-        LinearLayoutManager treeManager=new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
+        LinearLayoutManager treeManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
         recycle_tree.setLayoutManager(treeManager);
-        LinearLayoutManager bgmManager=new LinearLayoutManager(this, RecyclerView.VERTICAL,false);
+        LinearLayoutManager bgmManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         recycle_bgm.setLayoutManager(bgmManager);
-        BgmAdapter bgmAdapter=new BgmAdapter(this, itemList, this, this::onPButtonClicked);
-        TreeAdapter treeAdapter=new TreeAdapter(this, itemList2, this::onItemClicked);
-
-        for(int i=0; i<4; i++) { // 테스트용 더미데이터 (리사이클러뷰에 들어가는 데이터 값 생성 ; 가격 등등)
-            bgmAdapter.addItem(new ProductBgm("Title "+i, i*100));
-        }
-
-        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree1_30m", 0));
-        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree1_1h", 100));
-        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree1_2h", 200));
-        // 5 sec trees
-        // test purpose
-
-        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree1_30m", 0));
-        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree1_1h", 100));
-        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree1_2h", 200));
-        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree2_30m", 0));
-        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree2_1h", 100));
-        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree2_2m", 200));
-        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree3_30m", 0));
-        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree3_1h", 100));
-        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree3_2h", 200));
-        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree4_30m", 0));
-        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree4_1h", 100));
-        treeAdapter.addItem(new ProductTree(R.drawable.tree_1, "tree1_2h", 200));
+        bgmAdapter = new BgmAdapter(this, itemList, this, this::onPButtonClicked);
+        treeAdapter = new TreeAdapter(this, itemList2, this::onItemClicked);
 
         recycle_tree.setAdapter(treeAdapter);
         recycle_bgm.setAdapter(bgmAdapter);
-
+        //initializeRecyclerView();
+        //updateRecyclerView();
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent toMain=new Intent(ShopActivity.this, MainActivity.class);
+                Intent toMain = new Intent(ShopActivity.this, MainActivity.class);
                 startActivity(toMain);
             }
         });
     }
 
-    public void updateBalanceText(){
+    protected void onStart() {
+        super.onStart();
+        initializeRecyclerView();
+        updateRecyclerView();
         txt_money.setText(" " + coinHelper.getCurrentBalance());
-        //Toast.makeText(ShopActivity.this, coinHelper.getCurrentBalance(), Toast.LENGTH_SHORT);
+    }
+
+    protected void onResume() {
+        super.onResume();
+        initializeRecyclerView();
+        updateRecyclerView();
+        txt_money.setText(" " + coinHelper.getCurrentBalance());
+    }
+
+
+    public void updateBalanceText() {
+        txt_money.setText(" " + coinHelper.getCurrentBalance());
+    }
+
+    private void initializeRecyclerView() {
+        treeAdapter.clearAllItems();
+        bgmAdapter.clearAllItems();
+
+        ArrayList<ProductTree> treeList = treeHelper.getAllTrees();
+        ArrayList<ProductBgm> musicList = musicHelper.getAllMusic();
+
+        for(ProductTree tree : treeList) {
+            tree.setResId(R.drawable.tree_1);
+            treeAdapter.addItem(tree);
+        }
+        for(ProductBgm music : musicList) {
+            bgmAdapter.addItem(music);
+        }
+    }
+
+    private void updateRecyclerView() {
+        // Tree
+        ArrayList<ProductTree> treeList = treeHelper.getAllTrees();
+        ArrayList<ProductBgm> musicList = musicHelper.getAllMusic();
+        int index = 0;
+
+        for(ProductTree tree : treeList) {
+            if(tree.getIsPurchased()) {
+                treeAdapter.setPurchased(recycle_tree, index);
+                index++;
+            }
+        }
+        // Bgm
+        index = 0;
+        for(ProductBgm music : musicList) {
+            if(music.getIsPurchased()) {
+                bgmAdapter.setPurchased(recycle_bgm, index);
+                index++;
+            }
+        }
     }
 
     @Override
     public void onItemClicked(ProductBgm productBgm, LinearLayout layout, TextView txtPrice) { // 브금 아이템 클릭 시
         Animation btnScale=AnimationUtils.loadAnimation(this, R.anim.anim_btn_scale);
 
-        if(musicHelper.getPurchase(productBgm.getTitle()) == 0){ // 보유 중이지 않은 아이템인 경우
+        if(musicHelper.getPurchase(productBgm.getName()) == 0){ // 보유 중이지 않은 아이템인 경우
             layout.startAnimation(btnScale);
             showPurchaseConfirmationDialog(productBgm, txtPrice, layout);
         }
@@ -116,16 +148,17 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
         Animation noMoney=AnimationUtils.loadAnimation(this, R.anim.anim_no_money);
 
         builder.setTitle("Would you like to buy?");
-        builder.setMessage(" Title: "+ productBgm.getTitle());
+        builder.setMessage(" Title: "+ productBgm.getName());
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() { // yes
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                if(coinHelper.getCurrentBalance()>=productBgm.getPrice()){
-                    musicHelper.applyPurchase(productBgm.title);
+                if(coinHelper.getCurrentBalance() >= productBgm.getPrice()){
+                    musicHelper.applyPurchase(productBgm.getName());
                     coinHelper.addBalance(-1 * productBgm.getPrice()); // 잔액 차감
                     updateBalanceText();
-                    txtPrice.setText("In Stock");
-                    layout.setBackgroundResource(R.drawable.area_shop_bgm_selected);
+                    updateRecyclerView();
+                    /*txtPrice.setText("In Stock");
+                    layout.setBackgroundResource(R.drawable.area_shop_bgm_selected);*/
                 }
                 else{
                     Toast.makeText(ShopActivity.this, "Insufficient Balance", Toast.LENGTH_SHORT).show();
@@ -147,12 +180,12 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
     public void showChangeBgmDialog(ProductBgm productBgm){ // 이미 보유 중인 브금 아이템 클릭 시, 현재 브금 변경 가능
         AlertDialog.Builder builder = new AlertDialog.Builder(ShopActivity.this);
         builder.setTitle("Would you like to set the BGM?");
-        builder.setMessage(" Title: "+ productBgm.getTitle());
+        builder.setMessage(" Title: "+ productBgm.getName());
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 // 브금 바꾸기
-                txt_currentBgm.setText(" : "+productBgm.getTitle()); // 텍스트로 현재 설정된 브금 표시.
+                txt_currentBgm.setText(" : "+productBgm.getName()); // 텍스트로 현재 설정된 브금 표시.
 
             }
         });
@@ -194,8 +227,9 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
                     treeHelper.applyPurchase(productTree.getName());
                     coinHelper.addBalance(-1 * productTree.getPrice());
                     updateBalanceText();
-                    txtPrice.setText("In Stock");
-                    layout.setBackgroundResource(R.drawable.area_shop_tree_selected);
+                    updateRecyclerView();
+                    /*txtPrice.setText("In Stock");
+                    layout.setBackgroundResource(R.drawable.area_shop_tree_selected); */
                 }
                 else{
                     Toast.makeText(ShopActivity.this, "Insufficient Balance", Toast.LENGTH_SHORT).show();

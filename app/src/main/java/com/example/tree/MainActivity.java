@@ -20,6 +20,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     private RecordDatabaseHelper dbHelper;
+    private CoinDatabaseHelper coinHelper;
     int[][] treeImages = {
             {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9},
             {R.drawable.img_tree1, R.drawable.img_tree2, R.drawable.img_tree3},
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         txtDate.setText(currentDate); // TextView에 현재 날짜 설정
 
         dbHelper = new RecordDatabaseHelper(this);
+        coinHelper = new CoinDatabaseHelper(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM records", null);
         int randomIndex = cursor.getColumnIndex("random");
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         btn_shop = findViewById(R.id.btn_shop);
         txt_bgm=findViewById(R.id.txt_bgm);
         txt_money=findViewById(R.id.txt_money);
+        txt_money.setText(" " + coinHelper.getCurrentBalance());
 
         for(int i=0; i<25; i++){
             // xml 파일의 레이아웃과 room 배열의 원소들과 바인딩
@@ -107,6 +110,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        txt_money.setText(" " + coinHelper.getCurrentBalance());
     }
 
     @Override

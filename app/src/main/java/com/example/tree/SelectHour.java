@@ -35,7 +35,7 @@ public class SelectHour extends AppCompatActivity {
     int currentHour_number = 1;
     int currentTreeIndex = 1;
     final int max_tree_index = 4;
-    boolean readyToGo = false;
+    boolean readyToGo = true;
 
     // dbHelper
     RecordDatabaseHelper dbHelper;

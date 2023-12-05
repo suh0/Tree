@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     Button record_btn; // "기록" 버튼 추가
 
     Button shop_btn;
-   // private ImageView backmusic_start, backmusic_stop;
 
 
     private static final String TAG_TEXT = "music";
@@ -56,23 +55,34 @@ public class MainActivity extends AppCompatActivity {
         txt_currentBgm = findViewById(R.id.txt_currentBgm);
 
 
-
-
         Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("volume_music06")) {
-            float volumeMusic06 = intent.getFloatExtra("volume_music06", 1.0f); // 기본 볼륨은 1.0f
+        if (intent != null && intent.hasExtra("paused_position")) {
+            int pausedPosition = intent.getIntExtra("paused_position", 0); // 멈춘 위치 가져오기
 
-            // music06의 볼륨 설정
+            if (mediaPlayer06 != null) {
+                mediaPlayer06.release(); // 이전 mediaPlayer06 해제
+            }
+
             mediaPlayer06 = MediaPlayer.create(this, R.raw.music06);
-            mediaPlayer06.setVolume(volumeMusic06, volumeMusic06); // music06의 볼륨 설정(0으로)
             mediaPlayer06.setLooping(true); // 반복 재생 설정
+            mediaPlayer06.seekTo(pausedPosition); // 멈춘 지점으로 이동
+
+            // 만약 mediaPlayer가 재생 중이라면 mediaPlayer06의 볼륨을 0으로 설정
+            if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+                mediaPlayer06.setVolume(0.0f, 0.0f);
+            }
+
             mediaPlayer06.start(); // 음악 재생
         } else {
             // 기본 설정: 볼륨 1.0f로 music06 재생
             mediaPlayer06 = MediaPlayer.create(this, R.raw.music06);
-            mediaPlayer06.setLooping(true); // 반복 재생 설정
+            // mediaPlayer06.setLooping(true); // 반복 재생 설정
             mediaPlayer06.start(); // 음악 재생
         }
+
+
+
+
 
 
 
@@ -249,13 +259,8 @@ public class MainActivity extends AppCompatActivity {
         String selectedMusicName = getSelectedMusicName(); // 선택한 음악 이름 가져오기
         txt_currentBgm.setText(": " + selectedMusicName); // 선택한 음악 파일 이름으로 TextView 설정
 
-        if (selectedMusicName.equals("music06.mp3")) {
-            if (mediaPlayer06 != null) {
-                Log.d("MainActivity", "Starting mediaPlayer06");
-                mediaPlayer06.start();
-            }
-        } else {
-            // 다른 음악 처리
+        if (mediaPlayer06 != null && !mediaPlayer06.isPlaying()) {
+            mediaPlayer06.start();
         }
     }
 
@@ -294,8 +299,6 @@ public class MainActivity extends AppCompatActivity {
             mediaPlayer.stop();
         }
     }
-
-
 
 }
 

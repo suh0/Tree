@@ -20,6 +20,7 @@ public class FailActivity extends AppCompatActivity {
 
     TextView txt_fail, txt_tryAgain;
     Button btn_home;
+    private int pausedPosition = 0; // 멈춘 위치 저장하는 변수 추가
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +42,21 @@ public class FailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                // mediaPlayer.stop();
-
-                mediaPlayer06.stop(); // 음악 정지
                 btn_home.startAnimation(animButtonScale);
+                if (mediaPlayer06 != null && mediaPlayer06.isPlaying()) {
+                    pausedPosition = mediaPlayer06.getCurrentPosition(); // 현재 재생 위치 저장
+                    mediaPlayer06.pause();
+                }
+                //mediaPlayer06.stop(); // 음악 정지
+
                 Intent toMain=new Intent(FailActivity.this, MainActivity.class);
-                toMain.putExtra("volume_music06", 0.0f);
+                //toMain.putExtra("volume_music06", 0.0f);
+                toMain.putExtra("paused_position", pausedPosition); // 멈춘 위치를 Intent에 추가
                 startActivity(toMain);
                 finish();
             }
         });
-
     }
+
+
 }

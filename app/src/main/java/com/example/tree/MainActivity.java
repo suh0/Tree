@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         btn_timer = findViewById(R.id.btn_timer);
         btn_record = findViewById(R.id.btn_record);
         btn_shop = findViewById(R.id.btn_shop);
+        btn_stat=findViewById(R.id.btn_stat);
         txt_bgm=findViewById(R.id.txt_bgm);
         txt_money=findViewById(R.id.txt_money);
         updateMoney(); // 돈 업데이트

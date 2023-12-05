@@ -21,8 +21,8 @@ public class LogActivity extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toMain=new Intent(LogActivity.this, MainActivity.class);
-                startActivity(toMain);
+                Intent toStat=new Intent(LogActivity.this, StatActivity.class);
+                startActivity(toStat);
                 overridePendingTransition(R.anim.anim_left_enter, R.anim.anim_right_exit);
             }
         });

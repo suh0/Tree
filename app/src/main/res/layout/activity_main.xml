@@ -412,7 +412,7 @@
             android:id="@+id/btn_record"
             android:layout_width="85dp"
             android:layout_height="45dp"
-            android:background="@drawable/btn_user" />
+            android:background="@drawable/btn_stat" />
 
         <ImageView
             android:id="@+id/btn_timer"

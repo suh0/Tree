@@ -10,68 +10,75 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Calendar;
+import java.util.Locale;
+
 public class RecordActivity extends AppCompatActivity {
 
     private RecordDatabaseHelper dbHelper;
-    int[][] treeImages = {
-            {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9},
-            {R.drawable.img_tree1, R.drawable.img_tree2, R.drawable.img_tree3},
-            {R.drawable.img_tree4, R.drawable.img_tree5, R.drawable.img_tree6},
-            {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9}
-    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
 
-
         dbHelper = new RecordDatabaseHelper(this);
         LinearLayout recordLayout = findViewById(R.id.recordLayout);
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM records", null);
 
-        int dateIndex = cursor.getColumnIndex("date");
+        // 해당 월 가져오기 (현재 날짜를 기준으로)
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1; // 월은 0부터 시작하므로 1을 더해줍니다.
+        String targetMonth = String.format(Locale.getDefault(), "%04d-%02d", year, month);
+
+        Cursor cursor = db.rawQuery("SELECT * FROM records WHERE date LIKE ?", new String[]{targetMonth + "%"});
+
         int durationIndex = cursor.getColumnIndex("duration");
-        int randomIndex = cursor.getColumnIndex("random");
         int hourNumIndex = cursor.getColumnIndex("hourNum");
-        int treeIndexIndex = cursor.getColumnIndex("treeIndex");
 
-
+        int[] durationsCount = new int[4];
 
         while (cursor.moveToNext()) {
-            String date = cursor.getString(dateIndex);
             long duration = cursor.getLong(durationIndex);
-            int random = cursor.getInt(randomIndex);
             int hourNum = cursor.getInt(hourNumIndex);
-            int treeIndex = cursor.getInt(treeIndexIndex);
 
-            TextView recordTextView = new TextView(this);
-            recordTextView.setText("날짜: " + date + ", 시간: " + duration + " 밀리초, 랜덤: "
-                    + random + ", hourNum: " + hourNum + ", treeIndex: " + treeIndex);
-            recordLayout.addView(recordTextView);
+            if (duration == 5000) {
+                durationsCount[0]++;
+            } else if (duration == 1800000) {
+                durationsCount[1]++;
+            } else if (duration == 3600000) {
+                durationsCount[2]++;
+            } else if (duration == 7200000) {
+                durationsCount[3]++;
+            }
         }
 
         cursor.close();
 
-        // 데이터 삭제 버튼 생성
+        TextView summaryTextView = new TextView(this);
+        summaryTextView.setText(targetMonth + ", 5초: " + durationsCount[0] + "번, 30분: "
+                + durationsCount[1] + "번, 1시간: " + durationsCount[2] + "번, 2시간: "
+                + durationsCount[3] + "번");
+        recordLayout.addView(summaryTextView);
+
         Button deleteButton = new Button(this);
         deleteButton.setText("데이터 삭제");
         deleteButton.setOnClickListener(v -> deleteAllData());
         recordLayout.addView(deleteButton);
     }
-    // 데이터 삭제 메서드 구현
+
     private void deleteAllData() {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.delete("records", null, null);
-        db.close(); // 데이터베이스 연결 닫기
-        recreate(); // 현재 액티비티 다시 생성하여 변경 사항 반영
+        db.close();
+        recreate();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        dbHelper.close(); // 액티비티가 종료될 때 dbHelper 닫기
+        dbHelper.close();
     }
 }

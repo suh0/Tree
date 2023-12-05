@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     ImageView btn_timer, btn_record, btn_shop;
-    ImageView img_frac1, img_frac2, img_frac3, img_frac4;
+    ImageView img_frac1, img_frac2, img_frac3, img_frac4, img_cloud1;
     TextView txt_bgm, txt_money;
     TextView txtDate;
     ConstraintLayout img_board;
@@ -68,17 +68,21 @@ public class MainActivity extends AppCompatActivity {
         txt_bgm=findViewById(R.id.txt_bgm);
         txt_money=findViewById(R.id.txt_money);
         img_board=findViewById(R.id.img_board);
+        img_cloud1=findViewById(R.id.img_cloud1);
         updateMoney(); // 돈 업데이트
 
         Animation animFrac1=AnimationUtils.loadAnimation(this, R.anim.anim_frac);
         Animation animFrac2=AnimationUtils.loadAnimation(this, R.anim.anim_frac2);
         Animation animFrac3=AnimationUtils.loadAnimation(this, R.anim.anim_frac3);
         Animation animBoard=AnimationUtils.loadAnimation(this, R.anim.anim_board);
+        Animation animCloudBottom=AnimationUtils.loadAnimation(this, R.anim.anim_cloud);
         img_frac1.startAnimation(animFrac1);
         img_frac2.startAnimation(animFrac2);
         img_frac3.startAnimation(animFrac3);
         img_frac4.startAnimation(animFrac2);
         img_board.startAnimation(animBoard);
+        img_cloud1.startAnimation(animCloudBottom);
+
 
 
         for(int i=0; i<25; i++){

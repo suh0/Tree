@@ -79,7 +79,11 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (mediaPlayer != null) {
+                    mediaPlayer.stop();
+                }
                 Intent toMain = new Intent(ShopActivity.this, MainActivity.class);
+
                 startActivity(toMain);
             }
         });

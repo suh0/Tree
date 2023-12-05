@@ -412,6 +412,18 @@
             app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/frac3" />
 
+        <ImageView
+            android:id="@+id/img_frac4"
+            android:layout_width="58dp"
+            android:layout_height="56dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.269"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.949"
+            app:srcCompat="@drawable/frac4" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -424,7 +436,7 @@
         android:text="오늘 날짜"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintBottom_toTopOf="@+id/img_board"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -494,5 +506,8 @@
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.48" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

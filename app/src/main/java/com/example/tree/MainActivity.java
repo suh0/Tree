@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     ImageView btn_timer, btn_record, btn_shop;
-    ImageView img_frac1, img_frac2, img_frac3;
+    ImageView img_frac1, img_frac2, img_frac3, img_frac4;
     TextView txt_bgm, txt_money;
     TextView txtDate;
     ConstraintLayout img_board;
@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         img_frac1=findViewById(R.id.img_frac1);
         img_frac2=findViewById(R.id.img_frac2);
         img_frac3=findViewById(R.id.img_frac3);
+        img_frac4=findViewById(R.id.img_frac4);
         btn_timer = findViewById(R.id.btn_timer);
         btn_record = findViewById(R.id.btn_record);
         btn_shop = findViewById(R.id.btn_shop);
@@ -76,7 +77,10 @@ public class MainActivity extends AppCompatActivity {
         img_frac1.startAnimation(animFrac1);
         img_frac2.startAnimation(animFrac2);
         img_frac3.startAnimation(animFrac3);
+        img_frac4.startAnimation(animFrac2);
         img_board.startAnimation(animBoard);
+
+
         for(int i=0; i<25; i++){
             room[i]=findViewById(getResources().getIdentifier("room"+ i, "id", "com.example.tree"));
         }

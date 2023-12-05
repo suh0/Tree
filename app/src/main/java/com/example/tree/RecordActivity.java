@@ -27,13 +27,8 @@ public class RecordActivity extends AppCompatActivity {
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-        // 해당 월 가져오기 (현재 날짜를 기준으로)
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH) + 1; // 월은 0부터 시작하므로 1을 더해줍니다.
-        String targetMonth = String.format(Locale.getDefault(), "%04d-%02d", year, month);
 
-        Cursor cursor = db.rawQuery("SELECT * FROM records WHERE date LIKE ?", new String[]{targetMonth + "%"});
+        Cursor cursor = db.rawQuery("SELECT * FROM records WHERE date LIKE ?", new String[]{"%"});
 
         int durationIndex = cursor.getColumnIndex("duration");
         int hourNumIndex = cursor.getColumnIndex("hourNum");
@@ -58,7 +53,7 @@ public class RecordActivity extends AppCompatActivity {
         cursor.close();
 
         TextView summaryTextView = new TextView(this);
-        summaryTextView.setText(targetMonth + ", 5초: " + durationsCount[0] + "번, 30분: "
+        summaryTextView.setText( "5초: " + durationsCount[0] + "번, 30분: "
                 + durationsCount[1] + "번, 1시간: " + durationsCount[2] + "번, 2시간: "
                 + durationsCount[3] + "번");
         recordLayout.addView(summaryTextView);

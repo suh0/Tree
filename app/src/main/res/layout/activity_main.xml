@@ -460,21 +460,21 @@
 
         <ImageView
             android:id="@+id/btn_record"
-            android:layout_width="85dp"
+            android:layout_width="82dp"
             android:layout_height="45dp"
             android:background="@drawable/btn_user" />
 
         <ImageView
             android:id="@+id/btn_timer"
             android:layout_width="110dp"
-            android:layout_height="67dp"
+            android:layout_height="63dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:background="@drawable/btn_timer" />
 
         <ImageView
             android:id="@+id/btn_shop"
-            android:layout_width="85dp"
+            android:layout_width="82dp"
             android:layout_height="45dp"
             android:background="@drawable/btn_shop" />
 

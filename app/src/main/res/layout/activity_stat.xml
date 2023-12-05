@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/lexend_deca"
-        android:text="Records"
+        android:text="Statistics"
         android:textColor="@color/white"
         android:textFontWeight="1000"
         android:textSize="25sp"
@@ -49,36 +49,25 @@
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/btn_back" />
 
-    <TextView
-        android:id="@+id/txt_stat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/lexend_deca"
-        android:text="Statistics"
-        android:textColor="@color/white"
-        android:textFontWeight="500"
-        android:textSize="21sp"
-        tools:layout_editor_absoluteX="49dp"
-        tools:layout_editor_absoluteY="134dp" />
-
-    <TextView
-        android:id="@+id/txt_stat2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/lexend_deca"
-        android:text="Log"
-        android:textColor="@color/white"
-        android:textFontWeight="500"
-        android:textSize="21sp"
-        tools:layout_editor_absoluteX="49dp"
-        tools:layout_editor_absoluteY="441dp" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="298dp"
-        android:layout_height="204dp"
+        android:id="@+id/constraintLayout2"
+        android:layout_width="320dp"
+        android:layout_height="450dp"
         android:background="@drawable/area_user"
-        tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="190dp">
+        app:layout_constraintBottom_toTopOf="@+id/btn_log"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line_top"
+        app:layout_constraintVertical_bias="0.637">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total time"
+            android:textColor="#777777"
+            android:fontFamily="@font/lexend_deca"
+            />
 
 
         <ImageView
@@ -87,7 +76,19 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/line_user"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="49dp" />
+            tools:layout_editor_absoluteY="57dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/btn_log"
+        android:layout_width="130dp"
+        android:layout_height="59dp"
+        android:src="@drawable/btn_log"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.811"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.904" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

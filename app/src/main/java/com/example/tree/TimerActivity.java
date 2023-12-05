@@ -21,6 +21,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import static com.example.tree.MainActivity.mediaPlayer;
+import static com.example.tree.MainActivity.mediaPlayer06;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -56,7 +57,7 @@ public class TimerActivity extends AppCompatActivity {
 
 
     private int pausedPosition = 0; // 멈춘 위치 저장하는 변수
-
+    private int pausedPosition06 = 0; // mediaPlayer06의 위치
 
 
     @Override
@@ -125,6 +126,7 @@ public class TimerActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //showAlertDialog();
                 playMusic();
+                playMusic06();
 
             }
         });
@@ -142,6 +144,7 @@ public class TimerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 stopMusic();
+                stopMusic06();
 
             }
         });
@@ -163,12 +166,34 @@ public class TimerActivity extends AppCompatActivity {
 
     }
 
+    private void playMusic06() {
+        if (mediaPlayer06 != null && !mediaPlayer06.isPlaying()) {
+            mediaPlayer06.seekTo(pausedPosition06); // 멈췄을 때의 위치로 이동
+            mediaPlayer06.start();
+        }
+
+        backmusic_start.setVisibility(View.GONE);
+        backmusic_stop.setVisibility(View.VISIBLE);
+        isMusicPlaying = true;
+
+
+    }
+
 
 
     private void stopMusic() {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             pausedPosition = mediaPlayer.getCurrentPosition(); // 음악이 멈춘 위치 저장
             mediaPlayer.pause();
+        }
+        backmusic_start.setVisibility(View.VISIBLE);
+        backmusic_stop.setVisibility(View.GONE);
+    }
+
+    private void stopMusic06() {
+        if (mediaPlayer06 != null && mediaPlayer06.isPlaying()) {
+            pausedPosition06 = mediaPlayer06.getCurrentPosition(); // 음악이 멈춘 위치 저장
+            mediaPlayer06.pause();
         }
         backmusic_start.setVisibility(View.VISIBLE);
         backmusic_stop.setVisibility(View.GONE);

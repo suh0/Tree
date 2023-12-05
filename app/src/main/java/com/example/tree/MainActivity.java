@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
             if (mediaPlayer != null && mediaPlayer.isPlaying()) {
                 mediaPlayer06.setVolume(0.0f, 0.0f);
             }
-
             mediaPlayer06.start(); // 음악 재생
         } else {
             // 기본 설정: 볼륨 1.0f로 music06 재생
@@ -135,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showAlertDialog() {
-        mediaPlayer06.stop();
+       // mediaPlayer06.stop();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         LayoutInflater inflater = getLayoutInflater();
@@ -195,11 +194,14 @@ public class MainActivity extends AppCompatActivity {
                 //intent.putStringArrayListExtra("selectedMusicList", selectedMusicArrayList);
                 //startActivity(intent);
 
-
+                if (mediaPlayer06 != null && mediaPlayer06.isPlaying()) {
+                    mediaPlayer06.stop(); // 다이얼로그에서 음악 선택 시, mediaPlayer06을 중지
+                }
 
             }
         });
         dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(true); // 다이얼로그 외부 터치 시 닫히도록 설정
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
 

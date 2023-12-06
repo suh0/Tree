@@ -21,14 +21,12 @@ public class MusicItemDatabaseHelper extends SQLiteOpenHelper {
 
     public MusicItemDatabaseHelper(Context context) {
         super(context, TABLE_ITEMS, null, DATABASE_VERSION);
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        addInitialProducts(sqLiteDatabase);
-        sqLiteDatabase.close();
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(TABLE_ITEMS);
+        addInitialProducts(sqLiteDatabase);
     }
 
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {

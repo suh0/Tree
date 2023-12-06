@@ -65,7 +65,6 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
         recycle_tree.setAdapter(treeAdapter);
         recycle_bgm.setAdapter(bgmAdapter);
         initializeRecyclerView();
-        updateRecyclerView();
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,13 +76,11 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
 
     protected void onStart() {
         super.onStart();
-        updateRecyclerView();
         txt_money.setText(" " + coinHelper.getCurrentBalance());
     }
 
     protected void onResume() {
         super.onResume();
-        updateRecyclerView();
         txt_money.setText(" " + coinHelper.getCurrentBalance());
     }
 
@@ -102,35 +99,38 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
         Log.d("Init", "current bgmList: " + musicList.size());
 
         for(ProductTree tree : treeList) {
-            tree.setResId(R.drawable.tree_1); // test
-            treeAdapter.addItem(tree);
+            if(!tree.getIsPurchased()) {
+                tree.setResId(R.drawable.tree_1); // test
+                treeAdapter.addItem(tree);
+            }
+            else
+                Log.d("ShopActivity", "initializeRecyclerView: RecyclerView Initialization omitted(Tree)");
         }
         for(ProductBgm music : musicList) {
-            bgmAdapter.addItem(music);
+            if(!music.getIsPurchased())
+                bgmAdapter.addItem(music);
+            else
+                Log.d("ShopActivity", "initializeRecyclerView: RecyclerView Initialization omitted(BGM)");
         }
     }
 
+    /*
     private void updateRecyclerView() {
         // Tree
-        ArrayList<ProductTree> treeList = treeHelper.getAllTrees();
+        //ArrayList<ProductTree> treeList = treeHelper.getAllTrees();
         ArrayList<ProductBgm> musicList = musicHelper.getAllMusic();
 
-        int index = 0;
-        for(ProductTree tree : treeList) {
-            if(tree.getIsPurchased()) {
-                treeAdapter.setPurchased(recycle_tree, index);
-                index++;
-            }
-        }
+        treeAdapter.updateRecyclerView(recycle_tree);
         // Bgm
-        index = 0;
+        int index = 0;
         for(ProductBgm music : musicList) {
             if(music.getIsPurchased()) {
                 bgmAdapter.setPurchased(recycle_bgm, index);
-                index++;
             }
+            index++;
         }
     }
+    */
 
     @Override
     public void onItemClicked(ProductBgm productBgm, LinearLayout layout, TextView txtPrice) { // 브금 아이템 클릭 시
@@ -159,9 +159,8 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
                     musicHelper.applyPurchase(productBgm.getName());
                     coinHelper.addBalance(-1 * productBgm.getPrice()); // 잔액 차감
                     updateBalanceText();
-                    updateRecyclerView();
-                    /*txtPrice.setText("In Stock");
-                    layout.setBackgroundResource(R.drawable.area_shop_bgm_selected);*/
+                    txtPrice.setText("구매됨");
+                    layout.setBackgroundResource(R.drawable.area_shop_bgm_selected);
                 }
                 else{
                     Toast.makeText(ShopActivity.this, "Insufficient Balance", Toast.LENGTH_SHORT).show();
@@ -230,9 +229,8 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
                     treeHelper.applyPurchase(productTree.getName());
                     coinHelper.addBalance(-1 * productTree.getPrice());
                     updateBalanceText();
-                    updateRecyclerView();
-                    /*txtPrice.setText("In Stock");
-                    layout.setBackgroundResource(R.drawable.area_shop_tree_selected); */
+                    txtPrice.setText("구매됨");
+                    layout.setBackgroundResource(R.drawable.area_shop_tree_selected);
                 }
                 else{
                     Toast.makeText(ShopActivity.this, "Insufficient Balance", Toast.LENGTH_SHORT).show();

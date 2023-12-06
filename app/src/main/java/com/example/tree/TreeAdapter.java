@@ -1,6 +1,7 @@
 package com.example.tree;
 
 import android.content.Context;
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,11 +29,11 @@ public class TreeAdapter extends RecyclerView.Adapter<TreeAdapter.ViewHolder> {
 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
         LayoutInflater inflater=LayoutInflater.from(parent.getContext());
-        View itemView =inflater.inflate(R.layout.item_tree, parent, false);
+        View itemView = inflater.inflate(R.layout.item_tree, parent, false);
         return new ViewHolder(itemView);
     }
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position){ // << 빨간 줄 뜨는데, 실행은 됨.
-        ProductTree item=itemList.get(position);
+        ProductTree item = itemList.get(position);
         holder.setItem(item);
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
@@ -43,16 +44,6 @@ public class TreeAdapter extends RecyclerView.Adapter<TreeAdapter.ViewHolder> {
         });
     }
 
-    public void setPurchased(RecyclerView recyclerView, int position) {
-        TreeAdapter.ViewHolder viewHolder = (TreeAdapter.ViewHolder) recyclerView.findViewHolderForAdapterPosition(position);
-        if(viewHolder != null) {
-            TextView textView = viewHolder.txt_price;
-            LinearLayout layout = viewHolder.parentLayout;
-            textView.setText("In Stock");
-            layout.setBackgroundResource(R.drawable.area_shop_tree_selected);
-            notifyItemChanged(position);
-        }
-    }
     public int getItemCount(){
         return itemList.size();
     }
@@ -64,6 +55,7 @@ public class TreeAdapter extends RecyclerView.Adapter<TreeAdapter.ViewHolder> {
         this.notifyDataSetChanged();
         Log.d(TAG, "clearAllItems: current recyclerview size: " + this.getItemCount());
     }
+
     public static class ViewHolder extends RecyclerView.ViewHolder{
         TextView txt_price;
         ImageView img_tree;

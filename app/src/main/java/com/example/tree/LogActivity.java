@@ -36,7 +36,7 @@ public class LogActivity extends AppCompatActivity {
         LogAdapter logAdapter=new LogAdapter(this, itemList);
 
         for(int i=0; i<20; i++){ // 테스트용 더미데이터
-            logAdapter.addItem(new ItemLog("date"+i, "Success", 30+i));
+            logAdapter.addItem(new ItemLog("2023/12/"+i, "Success", 95+i));
         }
         recycle_log.setAdapter(logAdapter);
 

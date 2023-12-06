@@ -1,6 +1,7 @@
 package com.example.tree;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -10,10 +11,14 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+
 public class LogActivity extends AppCompatActivity {
 
-    ImageView btn_back, btn_clear;
-    RecyclerView recycle_log;
+    private ImageView btn_back, btn_clear;
+    private RecyclerView recycle_log;
+
+    ArrayList<ItemLog> itemList=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +30,15 @@ public class LogActivity extends AppCompatActivity {
         recycle_log=findViewById(R.id.recycle_log);
 
         Animation animButtonEffect= AnimationUtils.loadAnimation(this, R.anim.anim_btn_effect);
+
+        LinearLayoutManager logManager=new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        recycle_log.setLayoutManager(logManager);
+        LogAdapter logAdapter=new LogAdapter(this, itemList);
+
+        for(int i=0; i<20; i++){ // 테스트용 더미데이터
+            logAdapter.addItem(new ItemLog("date"+i, "Success", 30+i));
+        }
+        recycle_log.setAdapter(logAdapter);
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override

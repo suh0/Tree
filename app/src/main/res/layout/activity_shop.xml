@@ -41,7 +41,7 @@
         android:text="Shop"
         android:textColor="@color/white"
         android:textFontWeight="1000"
-        android:textSize="25sp"
+        android:textSize="23sp"
         app:layout_constraintBottom_toTopOf="@+id/line_top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

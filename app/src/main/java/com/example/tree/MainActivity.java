@@ -32,8 +32,10 @@ public class MainActivity extends AppCompatActivity {
             {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9}
     };
 
-    ImageView btn_timer, btn_record, btn_shop;
+    ImageView btn_timer, btn_stat, btn_shop;
     ImageView img_frac1, img_frac2, img_frac3, img_frac4;
+    Button btn_record;
+
     TextView txt_bgm, txt_money;
     TextView txtDate;
     ConstraintLayout img_board;
@@ -65,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         btn_timer = findViewById(R.id.btn_timer);
         btn_record = findViewById(R.id.btn_record);
         btn_shop = findViewById(R.id.btn_shop);
+        btn_stat=findViewById(R.id.btn_stat);
         txt_bgm=findViewById(R.id.txt_bgm);
         txt_money=findViewById(R.id.txt_money);
         img_board=findViewById(R.id.img_board);
@@ -106,6 +109,15 @@ public class MainActivity extends AppCompatActivity {
                 btn_timer.startAnimation(animButtonEffect);
                 Intent intent = new Intent(MainActivity.this , SelectHour.class);
                 startActivity(intent);
+            }
+        });
+
+        btn_stat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btn_stat.startAnimation(animButtonEffect);
+                Intent toStat=new Intent(MainActivity.this, StatActivity.class);
+                startActivity(toStat);
             }
         });
 

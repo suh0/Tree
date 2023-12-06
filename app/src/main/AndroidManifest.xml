@@ -12,7 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tree"
         tools:targetApi="33">
-
+        <activity
+            android:name=".LogActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StatActivity"
+            android:exported="false" />
         <activity
             android:name=".SplashActivity"
             android:exported="true">

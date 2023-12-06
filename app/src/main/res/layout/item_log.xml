@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
+    android:layout_height="wrap_content"
+    android:background="#00000000"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:gravity="center"
+            android:layout_weight="0.17"
+            android:textColor="#777777"
+            android:fontFamily="@font/lexend_deca"
+            android:textSize="16sp"
+            android:id="@+id/txt_number"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.36"
+            android:text="2023/12/06"
+            android:textColor="#777777"
+            android:fontFamily="@font/lexend_deca"
+            android:textSize="14sp"
+            android:textFontWeight="100"
+            android:id="@+id/txt_date"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:text="60m"
+            android:textColor="#777777"
+            android:fontFamily="@font/lexend_deca"
+            android:textSize="14sp"
+            android:textFontWeight="100"
+            android:id="@+id/txt_time"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.23"
+            android:text="Success"
+            android:textColor="#777777"
+            android:fontFamily="@font/lexend_deca"
+            android:textSize="14sp"
+            android:textFontWeight="100"
+            android:id="@+id/txt_sf"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/line_user"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="13dp"/>
+
+
+</LinearLayout>

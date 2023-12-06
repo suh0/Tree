@@ -51,6 +51,8 @@
         android:layout_width="320dp"
         android:layout_height="500dp"
         android:background="@drawable/area_log"
+        android:paddingHorizontal="20dp"
+        android:padding="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"

@@ -3,21 +3,15 @@ package com.example.tree;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 
 public class SelectHour extends AppCompatActivity {
 
@@ -35,50 +29,25 @@ public class SelectHour extends AppCompatActivity {
     int currentHour_number = 1;
     int currentTreeIndex = 1;
     final int max_tree_index = 4;
-    boolean readyToGo = true;
+    boolean ready = true;
 
-    // dbHelper
     RecordDatabaseHelper dbHelper;
     TreeItemDatabaseHelper treeHelper;
-
-    int[][] treeImages = {
-            {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9},
-            {R.drawable.img_tree1, R.drawable.img_tree2, R.drawable.img_tree3},
-            {R.drawable.img_tree4, R.drawable.img_tree5, R.drawable.img_tree6},
-            {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9}
-    };
-
-    /*
-    String[][] treeTexts = {
-            {"나무 1-1", "나무 1-2", "나무 1-3"},
-            {"나무 2-1", "나무 2-2", "나무 2-3"},
-            {"나무 3-1", "나무 3-2", "나무 3-3"},
-            {"나무 4-1", "나무 4-2", "나무 4-3"}
-    };
-    */
-
-    String[][] treeTexts = {
-            {"tree1_5s", "tree2_5s", "tree3_5s", "tree4_5s"},
-            {"tree1_30m", "tree2_30m", "tree3_30m", "tree4_30m"},
-            {"tree1_1h", "tree2_1h", "tree3_1h", "tree4_1h"},
-            {"tree1_2h", "tree2_2h", "tree3_2h", "tree4_2h"},
-    };
+    ArrayList<ProductTree> allTrees;
+    ProductTree[][] sortedTrees;
 
     void updateTree() {
-        if(currentTreeIndex >= 4) {
-            treeImage.setImageResource(R.drawable.img_tree2); // placeholder for trees over index 4
+        ProductTree currentTree = sortedTrees[currentHour_number - 1][currentTreeIndex - 1];
+        if(currentTree.getIsPurchased()) {
+            treeImage.setImageResource(currentTree.getResId());
+            ready = true;
         }
         else {
-            treeImage.setImageResource(treeImages[currentHour_number - 1][currentTreeIndex - 1]);
+            treeImage.setImageResource(currentTree.getResId2());
+            ready = false;
         }
-        treeInfo.setText(treeTexts[currentHour_number - 1][currentTreeIndex - 1]);
-        readyToGo = true;
-    }
 
-    void showNoItemAvailable() {
-        treeImage.setImageResource(treeImages[0][0]); // placeholder for non-purchased trees
-        treeInfo.setText("미보유");
-        readyToGo = false;
+        treeInfo.setText(currentTree.getName());
     }
 
     @Override
@@ -99,6 +68,16 @@ public class SelectHour extends AppCompatActivity {
         prev = findViewById(R.id.prev);
         next = findViewById(R.id.next);
         confirm = findViewById(R.id.confirm);
+
+        allTrees = treeHelper.getAllTrees();
+        sortedTrees = new ProductTree[4][max_tree_index];
+
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < max_tree_index; j++) {
+                sortedTrees[i][j] = allTrees.get(i * 4 + j);
+            }
+        }
+
         updateTree();
 
         // 시간 선택
@@ -129,10 +108,7 @@ public class SelectHour extends AppCompatActivity {
                 else
                     currentTreeIndex--;
 
-                if(treeHelper.getPurchase(treeTexts[currentHour_number-1][currentTreeIndex-1]) == 1)
-                    updateTree();
-                else
-                    showNoItemAvailable();
+                updateTree();
             }
         });
         // '다음' 버튼
@@ -145,17 +121,14 @@ public class SelectHour extends AppCompatActivity {
                 else
                     currentTreeIndex++;
 
-                if(treeHelper.getPurchase(treeTexts[currentHour_number-1][currentTreeIndex-1]) == 1)
-                    updateTree();
-                else
-                    showNoItemAvailable();
+                updateTree();
             }
         });
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!readyToGo) {
+                if(!ready) {
                     Toast.makeText(getApplicationContext(), "보유하지 않은 나무입니다.", Toast.LENGTH_SHORT).show();
                 }
                 else {

@@ -84,7 +84,6 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
         txt_money.setText(" " + coinHelper.getCurrentBalance());
     }
 
-
     public void updateBalanceText() {
         txt_money.setText(" " + coinHelper.getCurrentBalance());
     }
@@ -95,42 +94,16 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
 
         ArrayList<ProductTree> treeList = treeHelper.getAllTrees();
         ArrayList<ProductBgm> musicList = musicHelper.getAllMusic();
-        Log.d("Init", "current treeList: " + treeList.size());
-        Log.d("Init", "current bgmList: " + musicList.size());
 
         for(ProductTree tree : treeList) {
-            if(!tree.getIsPurchased()) {
-                tree.setResId(R.drawable.tree_1); // test
+            if(!tree.getIsPurchased())
                 treeAdapter.addItem(tree);
-            }
-            else
-                Log.d("ShopActivity", "initializeRecyclerView: RecyclerView Initialization omitted(Tree)");
         }
         for(ProductBgm music : musicList) {
             if(!music.getIsPurchased())
                 bgmAdapter.addItem(music);
-            else
-                Log.d("ShopActivity", "initializeRecyclerView: RecyclerView Initialization omitted(BGM)");
         }
     }
-
-    /*
-    private void updateRecyclerView() {
-        // Tree
-        //ArrayList<ProductTree> treeList = treeHelper.getAllTrees();
-        ArrayList<ProductBgm> musicList = musicHelper.getAllMusic();
-
-        treeAdapter.updateRecyclerView(recycle_tree);
-        // Bgm
-        int index = 0;
-        for(ProductBgm music : musicList) {
-            if(music.getIsPurchased()) {
-                bgmAdapter.setPurchased(recycle_bgm, index);
-            }
-            index++;
-        }
-    }
-    */
 
     @Override
     public void onItemClicked(ProductBgm productBgm, LinearLayout layout, TextView txtPrice) { // 브금 아이템 클릭 시

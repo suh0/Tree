@@ -2,6 +2,7 @@ package com.example.tree;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,10 +32,13 @@ public class MainActivity extends AppCompatActivity {
             {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9}
     };
 
-    ImageView btn_timer, btn_shop, btn_stat;
+    ImageView btn_timer, btn_stat, btn_shop;
+    ImageView img_frac1, img_frac2, img_frac3, img_frac4;
     Button btn_record;
+
     TextView txt_bgm, txt_money;
     TextView txtDate;
+    ConstraintLayout img_board;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +60,31 @@ public class MainActivity extends AppCompatActivity {
         coinHelper = new CoinDatabaseHelper(this);
 
         ImageView room[] = new ImageView[25];
+        img_frac1=findViewById(R.id.img_frac1);
+        img_frac2=findViewById(R.id.img_frac2);
+        img_frac3=findViewById(R.id.img_frac3);
+        img_frac4=findViewById(R.id.img_frac4);
         btn_timer = findViewById(R.id.btn_timer);
         btn_record = findViewById(R.id.btn_record);
         btn_shop = findViewById(R.id.btn_shop);
         btn_stat=findViewById(R.id.btn_stat);
         txt_bgm=findViewById(R.id.txt_bgm);
         txt_money=findViewById(R.id.txt_money);
+        img_board=findViewById(R.id.img_board);
         updateMoney(); // 돈 업데이트
+
+        Animation animFrac1=AnimationUtils.loadAnimation(this, R.anim.anim_frac);
+        Animation animFrac2=AnimationUtils.loadAnimation(this, R.anim.anim_frac2);
+        Animation animFrac3=AnimationUtils.loadAnimation(this, R.anim.anim_frac3);
+        Animation animFrac4=AnimationUtils.loadAnimation(this, R.anim.anim_frac4);
+        Animation animBoard=AnimationUtils.loadAnimation(this, R.anim.anim_board);
+        img_frac1.startAnimation(animFrac1);
+        img_frac2.startAnimation(animFrac2);
+        img_frac3.startAnimation(animFrac3);
+        img_frac4.startAnimation(animFrac4);
+        img_board.startAnimation(animBoard);
+
+
 
         for(int i=0; i<25; i++){
             room[i]=findViewById(getResources().getIdentifier("room"+ i, "id", "com.example.tree"));

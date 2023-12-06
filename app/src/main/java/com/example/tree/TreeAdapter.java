@@ -42,6 +42,7 @@ public class TreeAdapter extends RecyclerView.Adapter<TreeAdapter.ViewHolder> {
            }
         });
     }
+
     public void setPurchased(RecyclerView recyclerView, int position) {
         TreeAdapter.ViewHolder viewHolder = (TreeAdapter.ViewHolder) recyclerView.findViewHolderForAdapterPosition(position);
         if(viewHolder != null) {

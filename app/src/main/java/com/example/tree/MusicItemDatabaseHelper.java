@@ -94,7 +94,7 @@ public class MusicItemDatabaseHelper extends SQLiteOpenHelper {
             do {
                 ProductBgm temp = new ProductBgm();
                 temp.setName(cursor.getString(nameIndex));
-                if(cursor.getInt(cursor.getInt(purchasedIndex)) == 1)
+                if(cursor.getInt(purchasedIndex) == 1)
                     temp.setIsPurchased(true);
                 else
                     temp.setIsPurchased(false);

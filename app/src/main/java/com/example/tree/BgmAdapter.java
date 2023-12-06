@@ -52,7 +52,6 @@ public class BgmAdapter extends RecyclerView.Adapter<BgmAdapter.ViewHolder>{
            }
         });
 
-
         holder.btn_play.setOnClickListener(new View.OnClickListener(){ // 음악 재생 버튼 클릭
             public void onClick(View v){
                 bgmListener.onPButtonClicked(itemList.get(position), true);
@@ -65,8 +64,8 @@ public class BgmAdapter extends RecyclerView.Adapter<BgmAdapter.ViewHolder>{
             }
         });
     }
-    public void setPurchased(int position) {
-        ProductTree selected
+    public void setPurchased(RecyclerView recyclerView, int position) {
+        BgmAdapter.ViewHolder viewHolder = (BgmAdapter.ViewHolder) recyclerView.findViewHolderForAdapterPosition(position);
         if(viewHolder != null) {
             TextView textView = viewHolder.txt_price;
             LinearLayout layout = viewHolder.parentLayout;

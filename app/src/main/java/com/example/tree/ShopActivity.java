@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -27,8 +28,8 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
     private ImageView btn_back;
     private TreeAdapter treeAdapter;
     private BgmAdapter bgmAdapter;
-    ArrayList<ProductBgm> itemList=new ArrayList<>();
-    ArrayList<ProductTree> itemList2=new ArrayList<>();
+    ArrayList<ProductBgm> itemList = new ArrayList<>();
+    ArrayList<ProductTree> itemList2 = new ArrayList<>();
     public CoinDatabaseHelper coinHelper;
     public TreeItemDatabaseHelper treeHelper;
     public MusicItemDatabaseHelper musicHelper;
@@ -46,6 +47,8 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
 
         recycle_tree = (RecyclerView) findViewById(R.id.recycle_tree);
         recycle_bgm = (RecyclerView) findViewById(R.id.recycle_bgm);
+        recycle_tree.setHasFixedSize(true);
+        recycle_bgm.setHasFixedSize(true);
         txt_currentBgm = (TextView) findViewById(R.id.txt_currentBgm);
         btn_back = findViewById(R.id.btn_back);
         txt_money = findViewById(R.id.txt_money);
@@ -61,8 +64,8 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
 
         recycle_tree.setAdapter(treeAdapter);
         recycle_bgm.setAdapter(bgmAdapter);
-        //initializeRecyclerView();
-        //updateRecyclerView();
+        initializeRecyclerView();
+        updateRecyclerView();
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,14 +77,12 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
 
     protected void onStart() {
         super.onStart();
-        initializeRecyclerView();
         updateRecyclerView();
         txt_money.setText(" " + coinHelper.getCurrentBalance());
     }
 
     protected void onResume() {
         super.onResume();
-        initializeRecyclerView();
         updateRecyclerView();
         txt_money.setText(" " + coinHelper.getCurrentBalance());
     }
@@ -97,9 +98,11 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
 
         ArrayList<ProductTree> treeList = treeHelper.getAllTrees();
         ArrayList<ProductBgm> musicList = musicHelper.getAllMusic();
+        Log.d("Init", "current treeList: " + treeList.size());
+        Log.d("Init", "current bgmList: " + musicList.size());
 
         for(ProductTree tree : treeList) {
-            tree.setResId(R.drawable.tree_1);
+            tree.setResId(R.drawable.tree_1); // test
             treeAdapter.addItem(tree);
         }
         for(ProductBgm music : musicList) {
@@ -111,8 +114,8 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
         // Tree
         ArrayList<ProductTree> treeList = treeHelper.getAllTrees();
         ArrayList<ProductBgm> musicList = musicHelper.getAllMusic();
-        int index = 0;
 
+        int index = 0;
         for(ProductTree tree : treeList) {
             if(tree.getIsPurchased()) {
                 treeAdapter.setPurchased(recycle_tree, index);

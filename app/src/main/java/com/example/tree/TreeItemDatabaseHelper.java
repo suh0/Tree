@@ -21,9 +21,13 @@ public class TreeItemDatabaseHelper extends SQLiteOpenHelper {
                     "price INTEGER DEFAULT 0.0);";
 
     private static final int DATABASE_VERSION = 5;
+    ArrayList<ProductTree> tempList;
+    private boolean isDataLoaded = false;
 
     public TreeItemDatabaseHelper(Context context) {
         super(context, TABLE_ITEMS, null, DATABASE_VERSION);
+        tempList = new ArrayList<>();
+        readAllTrees();
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         addInitialProducts(sqLiteDatabase);
         sqLiteDatabase.close();
@@ -111,18 +115,26 @@ public class TreeItemDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<ProductTree> getAllTrees() {
-        ArrayList<ProductTree> tempList = new ArrayList<>();
+        if(!isDataLoaded) {
+            readAllTrees();
+            isDataLoaded = true;
+        }
+        return new ArrayList<>(tempList);
+    }
+
+    public void readAllTrees() {
+        tempList.clear();
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         String[] columns = {"item_name", "purchased", "price"};
         Cursor cursor = sqLiteDatabase.query("items", columns, null, null, null, null, null);
+        int nameIndex = cursor.getColumnIndex("item_name");
+        int purchasedIndex = cursor.getColumnIndex("purchased");
+        int priceIndex = cursor.getColumnIndex("price");
         if(cursor.moveToFirst()) {
-            int nameIndex = cursor.getColumnIndex("item_name");
-            int purchasedIndex = cursor.getColumnIndex("purchased");
-            int priceIndex = cursor.getColumnIndex("price");
             do {
                 ProductTree temp = new ProductTree();
                 temp.setName(cursor.getString(nameIndex));
-                if(cursor.getInt(cursor.getInt(purchasedIndex)) == 1)
+                if(cursor.getInt(purchasedIndex) == 1)
                     temp.setIsPurchased(true);
                 else
                     temp.setIsPurchased(false);
@@ -134,7 +146,7 @@ public class TreeItemDatabaseHelper extends SQLiteOpenHelper {
         else
             Log.d("TreeItemDataBaseHelper", "getAllTrees: cursor not found");
 
+        Log.d("TreeDatabase", "getAllTrees: current tempList: " + tempList.size());
         cursor.close();
-        return tempList;
     }
 }

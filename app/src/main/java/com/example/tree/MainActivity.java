@@ -214,6 +214,15 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+        txt_bgm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAlertDialog();
+            }
+        });
+
+
+        dialogItemList = new ArrayList<>();
 
 
     }
@@ -252,20 +261,8 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
 
-
-        txt_bgm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showAlertDialog();
-            }
-        });
-
-
-        dialogItemList = new ArrayList<>();
-
-
-
     }
+
 
     private void showAlertDialog() {
        // mediaPlayer06.stop();
@@ -320,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
                 selectedMusicList.add(resIdString);
                 saveSelectedMusicName(selectedMusic);// 선택한 음악 저장
 
-                TextView txt_currentBgm = findViewById(R.id.txt_currentBgm); // 선택한 음악 이름으로 TextView 업데이트
+                TextView txt_currentBgm = findViewById(R.id.txt_bgm); // 선택한 음악 이름으로 TextView 업데이트
                 txt_currentBgm.setText(": " + selectedMusic); // 선택한 음악 파일 이름으로 TextView 설정
 
                 // Intent intent = new Intent(MainActivity.this, TimerActivity.class);

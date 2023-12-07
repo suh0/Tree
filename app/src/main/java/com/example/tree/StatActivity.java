@@ -15,7 +15,7 @@ import android.widget.TextView;
 public class StatActivity extends AppCompatActivity {
 
     ImageView btn_back, btn_log;
-    TextView txt_totalTime, txt_totalSuccess, txt_totalFailure, txt_totalMoney;
+    TextView txt_totalTime, txt_totalSuccess, txt_totalFailure;
     RecordDatabaseHelper dbHelper;
 
     @Override
@@ -28,7 +28,6 @@ public class StatActivity extends AppCompatActivity {
         txt_totalTime=findViewById(R.id.txt_totalTime);
         txt_totalSuccess=findViewById(R.id.txt_totalSuccess);
         txt_totalFailure=findViewById(R.id.txt_totalFailure);
-        txt_totalMoney=findViewById(R.id.txt_totalMoney);
         Animation animButtonEffect= AnimationUtils.loadAnimation(this, R.anim.anim_btn_effect);
 
         dbHelper = new RecordDatabaseHelper(this);

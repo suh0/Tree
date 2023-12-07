@@ -1,6 +1,7 @@
 package com.example.tree;
 
 import android.content.Context;
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,11 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 
 public class TreeAdapter extends RecyclerView.Adapter<TreeAdapter.ViewHolder> {
     private final Context context;
@@ -28,26 +29,33 @@ public class TreeAdapter extends RecyclerView.Adapter<TreeAdapter.ViewHolder> {
 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
         LayoutInflater inflater=LayoutInflater.from(parent.getContext());
-        View itemView =inflater.inflate(R.layout.item_tree, parent, false);
+        View itemView = inflater.inflate(R.layout.item_tree, parent, false);
         return new ViewHolder(itemView);
     }
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position){ // << 빨간 줄 뜨는데, 실행은 됨.
-        ProductTree item=itemList.get(position);
+        ProductTree item = itemList.get(position);
         holder.setItem(item);
 
-        holder.parentLayout.setOnClickListener(new View.OnClickListener(){
+        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
            public void onClick(View v){
                Log.d(TAG, "On click: "+ itemList.get(position).price);
                listener.onItemClicked(itemList.get(position), holder.parentLayout, holder.txt_price);
            }
         });
     }
+
     public int getItemCount(){
         return itemList.size();
     }
     public void addItem(ProductTree item){
         itemList.add(item);
     }
+    public void clearAllItems() {
+        itemList.clear();
+        this.notifyDataSetChanged();
+        Log.d(TAG, "clearAllItems: current recyclerview size: " + this.getItemCount());
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder{
         TextView txt_price;
         ImageView img_tree;
@@ -64,5 +72,9 @@ public class TreeAdapter extends RecyclerView.Adapter<TreeAdapter.ViewHolder> {
             txt_price.setText("$"+item.getPrice());
             img_tree.setImageResource(item.getResId());
         }
+    }
+
+    public String getItemName(int index) {
+        return itemList.get(index).name;
     }
 }

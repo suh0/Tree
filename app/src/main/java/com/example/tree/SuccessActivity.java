@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 
+import java.util.ArrayList;
+
 public class SuccessActivity extends AppCompatActivity {
 
     LottieAnimationView light_lottie;
@@ -20,12 +22,18 @@ public class SuccessActivity extends AppCompatActivity {
     ImageView img_tree;
     ImageView btn_home;
     TextView txt_addMoney;
-    int[][] treeImages = {
+    int[][] treeImages;
+    final int max_tree_index = 4;
+    final int max_hour_index = 4;
+    ArrayList<ProductTree> allTrees;
+
+    TreeItemDatabaseHelper treeHelper;
+    /*= {
             {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9},
             {R.drawable.img_tree1, R.drawable.img_tree2, R.drawable.img_tree3},
             {R.drawable.img_tree4, R.drawable.img_tree5, R.drawable.img_tree6},
             {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9}
-    };
+    };*/
     private int receivedHourNumber;
     private int receivedTreeIndex;
     @Override
@@ -38,6 +46,15 @@ public class SuccessActivity extends AppCompatActivity {
         txt_success=findViewById(R.id.txt_success);
         btn_home=findViewById(R.id.btn_home);
         txt_addMoney=findViewById(R.id.txt_addMoney);
+        treeHelper = new TreeItemDatabaseHelper(this);
+        treeImages = new int[max_hour_index][max_tree_index];
+
+        allTrees = treeHelper.getAllTrees();
+        for(int i = 0; i < max_hour_index; i++) {
+            for(int j = 0; j < max_tree_index; j++) {
+                treeImages[i][j] = allTrees.get(i * max_hour_index + j).getResId();
+            }
+        }
 
         Animation animScale= AnimationUtils.loadAnimation(this, R.anim.anim_bboyong);
         Animation animTilting=AnimationUtils.loadAnimation(this, R.anim.anim_tilting);

@@ -17,20 +17,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecordDatabaseHelper dbHelper;
-    public CoinDatabaseHelper coinHelper;
 
-    int[][] treeImages = {
+    private CoinDatabaseHelper coinHelper;
+    private TreeItemDatabaseHelper treeHelper;
+    int[][] treeImages;
+    /*= {
             {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9},
             {R.drawable.img_tree1, R.drawable.img_tree2, R.drawable.img_tree3},
             {R.drawable.img_tree4, R.drawable.img_tree5, R.drawable.img_tree6},
             {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9}
-    };
+    };*/
 
     ImageView btn_timer, btn_stat, btn_shop;
     ImageView img_frac1, img_frac2, img_frac3, img_frac4;
@@ -39,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
     TextView txt_bgm, txt_money;
     TextView txtDate;
     ConstraintLayout img_board;
+
+    final int max_tree_index = 4;
+    final int max_hour_index = 4;
+    ArrayList<ProductTree> allTrees;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +59,17 @@ public class MainActivity extends AppCompatActivity {
         txtDate.setText(currentDate);
 
         dbHelper = new RecordDatabaseHelper(this);
+        coinHelper = new CoinDatabaseHelper(this);
+        treeHelper = new TreeItemDatabaseHelper(this);
+
+        treeImages = new int[max_hour_index][max_tree_index];
+        allTrees = treeHelper.getAllTrees();
+        for(int i = 0; i < max_hour_index; i++) {
+            for(int j = 0; j < max_tree_index; j++) {
+                treeImages[i][j] = allTrees.get(i * max_hour_index + j).getResId();
+            }
+        }
+
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM records", null);
         int randomIndex = cursor.getColumnIndex("random");
@@ -70,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
         btn_stat=findViewById(R.id.btn_stat);
         txt_bgm=findViewById(R.id.txt_bgm);
         txt_money=findViewById(R.id.txt_money);
+
         img_board=findViewById(R.id.img_board);
-        updateMoney(); // 돈 업데이트
 
         Animation animFrac1=AnimationUtils.loadAnimation(this, R.anim.anim_frac);
         Animation animFrac2=AnimationUtils.loadAnimation(this, R.anim.anim_frac2);
@@ -84,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         img_frac4.startAnimation(animFrac4);
         img_board.startAnimation(animBoard);
 
-
+        txt_money.setText(" " + coinHelper.getCurrentBalance());
 
         for(int i=0; i<25; i++){
             room[i]=findViewById(getResources().getIdentifier("room"+ i, "id", "com.example.tree"));
@@ -141,12 +160,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        updateMoney(); // 액티비티가 다시 시작될 때 돈 업데이트
-    }
-
-    private void updateMoney() {
+    protected void onStart() {
+        super.onStart();
         txt_money.setText(" " + coinHelper.getCurrentBalance());
     }
 

@@ -1,7 +1,6 @@
 package com.example.tree;
 
 import android.content.Context;
-import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +28,13 @@ public class BgmAdapter extends RecyclerView.Adapter<BgmAdapter.ViewHolder>{
         this.bgmListener=bgmListener;
     }
 
+    public class BgmViewHolder extends RecyclerView.ViewHolder {
+        public BgmViewHolder(View itemView) {
+            super(itemView);
+
+        }
+    }
+
 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viweType){
         LayoutInflater inflater=LayoutInflater.from(parent.getContext());
@@ -46,7 +52,6 @@ public class BgmAdapter extends RecyclerView.Adapter<BgmAdapter.ViewHolder>{
            }
         });
 
-
         holder.btn_play.setOnClickListener(new View.OnClickListener(){ // 음악 재생 버튼 클릭
             public void onClick(View v){
                 bgmListener.onPButtonClicked(itemList.get(position), true);
@@ -59,11 +64,26 @@ public class BgmAdapter extends RecyclerView.Adapter<BgmAdapter.ViewHolder>{
             }
         });
     }
+    public void setPurchased(RecyclerView recyclerView, int position) {
+        BgmAdapter.ViewHolder viewHolder = (BgmAdapter.ViewHolder) recyclerView.findViewHolderForAdapterPosition(position);
+        if(viewHolder != null) {
+            TextView textView = viewHolder.txt_price;
+            LinearLayout layout = viewHolder.parentLayout;
+            textView.setText("In Stock");
+            layout.setBackgroundResource(R.drawable.area_shop_bgm_selected);
+            this.notifyItemChanged(position);
+        }
+    }
     public int getItemCount(){
         return itemList.size();
     }
     public void addItem(ProductBgm item){
         itemList.add(item);
+    }
+    public void clearAllItems() { 
+        itemList.clear(); 
+        this.notifyDataSetChanged();
+        Log.d(TAG, "clearAllItems: current recyclerview size: " + this.getItemCount());
     }
     public static class ViewHolder extends RecyclerView.ViewHolder{
         TextView txt_title, txt_price;
@@ -80,10 +100,14 @@ public class BgmAdapter extends RecyclerView.Adapter<BgmAdapter.ViewHolder>{
             parentLayout=itemView.findViewById(R.id.layout_bgm);
         }
         public void setItem(ProductBgm item){
-            txt_title.setText(item.getTitle());
+            txt_title.setText(item.getName());
             txt_price.setText("$ "+item.getPrice());
             btn_play.setImageResource(R.drawable.btn_play);
             btn_pause.setImageResource(R.drawable.btn_pause);
         }
+    }
+
+    public String getItemName(int index) {
+        return itemList.get(index).name;
     }
 }

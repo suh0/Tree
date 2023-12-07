@@ -2,12 +2,11 @@ package com.example.tree;
 
 public class ItemLog {
 
-    String date, sf; // sf >> success 인지 fail 인지
+    String date; // sf >> success 인지 fail 인지
     long time;
 
-    public ItemLog(String date, String sf, long time){
+    public ItemLog(String date, long time){
         this.date=date;
-        this.sf=sf;
         this.time=time;
     }
 
@@ -19,7 +18,4 @@ public class ItemLog {
 
     public void setTime(long time){this.time=time;}
 
-    public String getSf(){return sf;}
-
-    public void setSf(String sf){this.sf=sf;}
 }

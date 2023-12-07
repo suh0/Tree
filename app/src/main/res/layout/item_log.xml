@@ -24,8 +24,9 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.36"
+            android:layout_weight="0.34"
             android:text="2023/12/06"
+            android:gravity="center"
             android:textColor="#777777"
             android:fontFamily="@font/lexend_deca"
             android:textSize="14sp"
@@ -37,22 +38,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:text="60m"
+            android:gravity="center"
             android:textColor="#777777"
             android:fontFamily="@font/lexend_deca"
             android:textSize="14sp"
             android:textFontWeight="100"
             android:id="@+id/txt_time"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.23"
-            android:text="Success"
-            android:textColor="#777777"
-            android:fontFamily="@font/lexend_deca"
-            android:textSize="14sp"
-            android:textFontWeight="100"
-            android:id="@+id/txt_sf"/>
 
     </LinearLayout>
 

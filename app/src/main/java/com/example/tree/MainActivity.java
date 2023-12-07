@@ -68,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
     String[] musicFiles = {"music03.mp3", "music04.mp3", "music05.mp3"};
     static MediaPlayer mediaPlayer;
     static MediaPlayer mediaPlayer06;
+    private int pausedPosition = 0;
+
 
 
 
@@ -88,29 +90,7 @@ public class MainActivity extends AppCompatActivity {
         txt_bgm = findViewById(R.id.txt_bgm);
 
 
-        Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("paused_position")) {
-            int pausedPosition = intent.getIntExtra("paused_position", 0); // 멈춘 위치 가져오기
 
-            if (mediaPlayer06 != null) {
-                mediaPlayer06.release(); // 이전 mediaPlayer06 해제
-            }
-
-            mediaPlayer06 = MediaPlayer.create(this, R.raw.music06);
-            mediaPlayer06.setLooping(true); // 반복 재생 설정
-            mediaPlayer06.seekTo(pausedPosition); // 멈춘 지점으로 이동
-
-            // 만약 mediaPlayer가 재생 중이라면 mediaPlayer06의 볼륨을 0으로 설정
-            if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-                mediaPlayer06.setVolume(0.0f, 0.0f);
-            }
-            mediaPlayer06.start(); // 음악 재생
-        } else {
-            // 기본 설정: 볼륨 1.0f로 music06 재생
-            mediaPlayer06 = MediaPlayer.create(this, R.raw.music06);
-            // mediaPlayer06.setLooping(true); // 반복 재생 설정
-            mediaPlayer06.start(); // 음악 재생
-        }//
 
 
 
@@ -147,6 +127,45 @@ public class MainActivity extends AppCompatActivity {
         img_frac3.startAnimation(animFrac3);
         img_frac4.startAnimation(animFrac4);
         img_board.startAnimation(animBoard);
+
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("paused_position")) {
+            int pausedPosition = intent.getIntExtra("paused_position", 0); // 멈춘 위치 가져오기
+
+            // 이전 mediaPlayer06 해제
+            if (mediaPlayer06 != null) {
+                mediaPlayer06.release();
+                mediaPlayer06 = null;
+            }
+
+            // mediaPlayer06 초기화 및 설정
+            mediaPlayer06 = MediaPlayer.create(this, R.raw.music06);
+            mediaPlayer06.setLooping(true); // 반복 재생 설정
+            mediaPlayer06.seekTo(pausedPosition); // 멈춘 지점으로 이동
+
+            // mediaPlayer가 재생 중이 아니라면 mediaPlayer06를 시작
+            if (mediaPlayer == null) {
+                Log.d("MediaPlayer", "mediaPlayer is NULL");
+                mediaPlayer06.start(); // 음악 재생
+            } else {
+                Log.d("MediaPlayer", "mediaPlayer is not NULL");
+                try {
+                    if (!mediaPlayer.isPlaying()) {
+                        mediaPlayer06.start(); // 음악 재생
+                    } else {
+                        mediaPlayer06.setVolume(0.0f, 0.0f); // mediaPlayer가 재생 중이면 볼륨을 0으로 설정
+                    }
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            // 기본 설정: 볼륨 1.0f로 music06 재생
+            mediaPlayer06 = MediaPlayer.create(this, R.raw.music06);
+            mediaPlayer06.start(); // 음악 재생
+        }
+
+
 
 
 
@@ -317,8 +336,8 @@ public class MainActivity extends AppCompatActivity {
                 selectedMusicList.add(resIdString);
                 saveSelectedMusicName(selectedMusic);// 선택한 음악 저장
 
-                TextView txt_currentBgm = findViewById(R.id.txt_bgm); // 선택한 음악 이름으로 TextView 업데이트
-                txt_currentBgm.setText(": " + selectedMusic); // 선택한 음악 파일 이름으로 TextView 설정
+                TextView txt_bgm = findViewById(R.id.txt_bgm); // 선택한 음악 이름으로 TextView 업데이트
+                txt_bgm.setText(": " + selectedMusic); // 선택한 음악 파일 이름으로 TextView 설정
 
                 // Intent intent = new Intent(MainActivity.this, TimerActivity.class);
                 //ArrayList<String> selectedMusicArrayList = new ArrayList<>(selectedMusicList);
@@ -393,9 +412,16 @@ public class MainActivity extends AppCompatActivity {
         String selectedMusicName = getSelectedMusicName(); // 선택한 음악 이름 가져오기
         txt_bgm.setText(": " + selectedMusicName); // 선택한 음악 파일 이름으로 TextView 설정
 
+       // int pausedPosition = 0;
+        // 저장된 위치가 있는 경우, 해당 위치부터 재생 재개
+        if (pausedPosition > 0) {
+            try {
 
-        if (mediaPlayer06 != null && !mediaPlayer06.isPlaying()) {
-            mediaPlayer06.start();
+                mediaPlayer.seekTo(pausedPosition);
+                mediaPlayer.start();
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -419,6 +445,9 @@ public class MainActivity extends AppCompatActivity {
 
         // SharedPreferences 값 초기화
         saveSelectedMusicName("No music");
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            pausedPosition = mediaPlayer.getCurrentPosition();
+        }
     }
 
 }

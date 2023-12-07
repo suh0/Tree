@@ -183,10 +183,6 @@ public class TimerActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        if (mediaPlayer != null) {
-            mediaPlayer.reset();
-            mediaPlayer.release();
-        }
         super.onDestroy();
         countDownTimer.cancel(); // 액티비티 종료 시 타이머 초기화
         dbHelper.close();

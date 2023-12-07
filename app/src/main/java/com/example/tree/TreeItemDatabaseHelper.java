@@ -39,25 +39,25 @@ public class TreeItemDatabaseHelper extends SQLiteOpenHelper {
     }
 
     private void addInitialProducts(SQLiteDatabase sqLiteDatabase) {    // 1이 구매. 기본품종은 1로 해놈
-        addProduct(sqLiteDatabase, "tree1_5s", R.drawable.img_tree1, R.drawable.img_tree1_gray, 1, 0);
-        addProduct(sqLiteDatabase, "tree2_5s", R.drawable.img_tree2, R.drawable.img_tree2_gray, 1, 0);
-        addProduct(sqLiteDatabase, "tree3_5s", R.drawable.img_tree3, R.drawable.img_tree3_gray, 1, 0);
-        addProduct(sqLiteDatabase, "tree4_5s", R.drawable.img_tree4, R.drawable.img_tree4_gray, 0, 100);
+        addProduct(sqLiteDatabase, "tree1_5s", R.drawable.img_tree4, R.drawable.img_tree4_gray, 1, 0);
+        addProduct(sqLiteDatabase, "tree2_5s", R.drawable.img_tree3, R.drawable.img_tree3_gray, 1, 0);
+        addProduct(sqLiteDatabase, "tree3_5s", R.drawable.img_tree2, R.drawable.img_tree2_gray, 1, 0);
+        addProduct(sqLiteDatabase, "tree4_5s", R.drawable.img_tree1, R.drawable.img_tree1_gray, 0, 100);
 
-        addProduct(sqLiteDatabase, "tree1_30m", R.drawable.img_tree5, R.drawable.img_tree5_gray, 1,  0);
-        addProduct(sqLiteDatabase, "tree2_30m", R.drawable.img_tree6, R.drawable.img_tree6_gray, 1, 0);
-        addProduct(sqLiteDatabase, "tree3_30m", R.drawable.img_tree7, R.drawable.img_tree7_gray, 1, 0);
-        addProduct(sqLiteDatabase, "tree4_30m", R.drawable.img_tree8, R.drawable.img_tree8_gray, 0, 200);
+        addProduct(sqLiteDatabase, "tree1_30m", R.drawable.img_tree1, R.drawable.img_tree1_gray, 1,  0);
+        addProduct(sqLiteDatabase, "tree2_30m", R.drawable.img_tree2, R.drawable.img_tree2_gray, 1, 0);
+        addProduct(sqLiteDatabase, "tree3_30m", R.drawable.img_tree3, R.drawable.img_tree3_gray, 1, 0);
+        addProduct(sqLiteDatabase, "tree4_30m", R.drawable.img_tree4, R.drawable.img_tree4_gray, 0, 200);
 
-        addProduct(sqLiteDatabase, "tree1_1h", R.drawable.img_tree9, R.drawable.img_tree9_gray, 1, 0);
-        addProduct(sqLiteDatabase, "tree2_1h", R.drawable.img_tree10, R.drawable.img_tree10_gray, 1, 0);
-        addProduct(sqLiteDatabase, "tree3_1h", R.drawable.img_tree11, R.drawable.img_tree11_gray, 1, 0);
-        addProduct(sqLiteDatabase, "tree4_1h", R.drawable.img_tree12, R.drawable.img_tree12_gray, 0, 300);
+        addProduct(sqLiteDatabase, "tree1_1h", R.drawable.img_tree5, R.drawable.img_tree5_gray, 1, 0);
+        addProduct(sqLiteDatabase, "tree2_1h", R.drawable.img_tree6, R.drawable.img_tree6_gray, 1, 0);
+        addProduct(sqLiteDatabase, "tree3_1h", R.drawable.img_tree7, R.drawable.img_tree7_gray, 1, 0);
+        addProduct(sqLiteDatabase, "tree4_1h", R.drawable.img_tree8, R.drawable.img_tree8_gray, 0, 300);
 
-        addProduct(sqLiteDatabase, "tree1_2h", R.drawable.img_tree4, R.drawable.img_tree4_gray, 1, 0);
-        addProduct(sqLiteDatabase, "tree2_2h", R.drawable.img_tree3, R.drawable.img_tree3_gray, 1, 0);
-        addProduct(sqLiteDatabase, "tree3_2h", R.drawable.img_tree2, R.drawable.img_tree2_gray, 1, 0);
-        addProduct(sqLiteDatabase, "tree4_2h", R.drawable.img_tree1, R.drawable.img_tree1_gray, 0, 400);
+        addProduct(sqLiteDatabase, "tree1_2h", R.drawable.img_tree9, R.drawable.img_tree9_gray, 1, 0);
+        addProduct(sqLiteDatabase, "tree2_2h", R.drawable.img_tree10, R.drawable.img_tree10_gray, 1, 0);
+        addProduct(sqLiteDatabase, "tree3_2h", R.drawable.img_tree11, R.drawable.img_tree11_gray, 1, 0);
+        addProduct(sqLiteDatabase, "tree4_2h", R.drawable.img_tree12, R.drawable.img_tree12_gray, 0, 400);
     }
 
     private void addProduct(SQLiteDatabase sqLiteDatabase, String item_name, int resId, int resId2, int purchased, int price) {

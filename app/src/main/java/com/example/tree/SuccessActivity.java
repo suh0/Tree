@@ -1,6 +1,8 @@
 package com.example.tree;
 
 import androidx.appcompat.app.AppCompatActivity;
+import static com.example.tree.MainActivity.mediaPlayer;
+import static com.example.tree.MainActivity.mediaPlayer06;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.tree.MainActivity;
 
 public class SuccessActivity extends AppCompatActivity {
 
@@ -20,6 +23,7 @@ public class SuccessActivity extends AppCompatActivity {
     ImageView img_tree;
     ImageView btn_home;
     TextView txt_addMoney;
+
     int[][] treeImages = {
             {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9},
             {R.drawable.img_tree1, R.drawable.img_tree2, R.drawable.img_tree3},
@@ -28,6 +32,10 @@ public class SuccessActivity extends AppCompatActivity {
     };
     private int receivedHourNumber;
     private int receivedTreeIndex;
+
+    private int pausedPosition = 0; // 멈춘 위치 저장하는 변수 추가
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,15 +60,23 @@ public class SuccessActivity extends AppCompatActivity {
         img_tree.startAnimation(animScale);
         txt_success.startAnimation(animTilting);
 
-        
+
 
 
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               // mediaPlayer06.stop(); // 음악 정지
                 btn_home.startAnimation(animButtonScale);
+                if (mediaPlayer06 != null && mediaPlayer06.isPlaying()) {
+                    pausedPosition = mediaPlayer06.getCurrentPosition(); // 현재 재생 위치 저장
+                    mediaPlayer06.pause();
+                }
                 Intent toMain=new Intent(SuccessActivity.this, MainActivity.class);
+                //toMain.putExtra("volume_music06", 0.0f);
+                toMain.putExtra("paused_position", pausedPosition); // 멈춘 위치를 Intent에 추가
                 startActivity(toMain);
+                finish();
             }
         });
 

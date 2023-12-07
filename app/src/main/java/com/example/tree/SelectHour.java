@@ -1,11 +1,14 @@
 package com.example.tree;
 
+import static com.example.tree.MainActivity.mediaPlayer;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -40,8 +43,10 @@ public class SelectHour extends AppCompatActivity {
     int currentTreeIndex = 1;
     final int max_tree_index = 3;
 
+//<<<<<<< HEAD
     // dbHelper
     RecordDatabaseHelper dbHelper;
+
 
     // 화면 업데이트
     int[][] treeImages = {
@@ -155,7 +160,15 @@ public class SelectHour extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 confirm.startAnimation(animButtonEffect);
+
+                Log.d("SelectHour", "Confirm button clicked");
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("stop_music", true);
+                setResult(RESULT_OK, resultIntent);
+
+
                 long selected_milliseconds = 0;
                 switch (currentHour_number){
                     case 1:
@@ -171,16 +184,20 @@ public class SelectHour extends AppCompatActivity {
                         selected_milliseconds = 1000 * 60 * 60 * 2; //2시간
                         break;
                 }
-
+               // mediaPlayer.stop();
                 Intent intent = new Intent(SelectHour.this, TimerActivity.class);
                 intent.putExtra("selected_milliseconds", selected_milliseconds); // 변경된 부분
+
                 intent.putExtra("currentHourNumber", currentHour_number);
                 intent.putExtra("currentTreeIndex", currentTreeIndex);
-
+                intent.putExtra("stop_music", true);
                 startActivityForResult(intent, 1); //넘기기
+                finish();
+
             }
         });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

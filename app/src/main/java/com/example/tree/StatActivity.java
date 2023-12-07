@@ -39,6 +39,9 @@ public class StatActivity extends AppCompatActivity {
         int totalRecords = getTotalRecordsCount();
         txt_totalSuccess.setText(String.valueOf(totalRecords));
 
+        int totalFailure = getTotalFailureCount();
+        txt_totalFailure.setText(String.valueOf(totalFailure));
+
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,5 +89,20 @@ public class StatActivity extends AppCompatActivity {
 
         db.close();
         return count;
+    }
+
+    private int getTotalFailureCount() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        int totalFailure = 0;
+
+        Cursor cursor = db.rawQuery("SELECT SUM(isFailure) FROM failures", null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            totalFailure = cursor.getInt(0);
+            cursor.close();
+        }
+
+        db.close();
+        return totalFailure;
     }
 }

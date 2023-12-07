@@ -132,7 +132,7 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
                     musicHelper.applyPurchase(productBgm.getName());
                     coinHelper.addBalance(-1 * productBgm.getPrice()); // 잔액 차감
                     updateBalanceText();
-                    txtPrice.setText("구매됨");
+                    txtPrice.setText("In Stock");
                     layout.setBackgroundResource(R.drawable.area_shop_bgm_selected);
                 }
                 else{
@@ -202,7 +202,7 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
                     treeHelper.applyPurchase(productTree.getName());
                     coinHelper.addBalance(-1 * productTree.getPrice());
                     updateBalanceText();
-                    txtPrice.setText("구매됨");
+                    txtPrice.setText("In Stock");
                     layout.setBackgroundResource(R.drawable.area_shop_tree_selected);
                 }
                 else{

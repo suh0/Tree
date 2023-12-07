@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -21,16 +22,22 @@ public class MainActivity extends AppCompatActivity {
 
     private RecordDatabaseHelper dbHelper;
     private CoinDatabaseHelper coinHelper;
-    int[][] treeImages = {
+    private TreeItemDatabaseHelper treeHelper;
+    int[][] treeImages;
+    /*= {
             {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9},
             {R.drawable.img_tree1, R.drawable.img_tree2, R.drawable.img_tree3},
             {R.drawable.img_tree4, R.drawable.img_tree5, R.drawable.img_tree6},
             {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9}
-    };
+    };*/
 
     ImageView btn_timer, btn_record, btn_shop;
     TextView txt_bgm, txt_money;
     TextView txtDate; // 날짜를 표시할 TextView 선언
+
+    final int max_tree_index = 4;
+    final int max_hour_index = 4;
+    ArrayList<ProductTree> allTrees;
 
 
     @Override
@@ -48,6 +55,16 @@ public class MainActivity extends AppCompatActivity {
 
         dbHelper = new RecordDatabaseHelper(this);
         coinHelper = new CoinDatabaseHelper(this);
+        treeHelper = new TreeItemDatabaseHelper(this);
+
+        treeImages = new int[max_hour_index][max_tree_index];
+        allTrees = treeHelper.getAllTrees();
+        for(int i = 0; i < max_hour_index; i++) {
+            for(int j = 0; j < max_tree_index; j++) {
+                treeImages[i][j] = allTrees.get(i * max_hour_index + j).getResId();
+            }
+        }
+
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM records", null);
         int randomIndex = cursor.getColumnIndex("random");

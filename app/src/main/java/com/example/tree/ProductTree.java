@@ -5,7 +5,6 @@ public class ProductTree {
     int resId2;
     String name;
     int price;
-
     Boolean isPurchased = false;
 
     public ProductTree(){}

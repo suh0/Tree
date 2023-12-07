@@ -29,6 +29,7 @@ public class SelectHour extends AppCompatActivity {
     int currentHour_number = 1;
     int currentTreeIndex = 1;
     final int max_tree_index = 4;
+    final int max_hour_index = 4;
     boolean ready = true;
 
     RecordDatabaseHelper dbHelper;
@@ -70,11 +71,11 @@ public class SelectHour extends AppCompatActivity {
         confirm = findViewById(R.id.confirm);
 
         allTrees = treeHelper.getAllTrees();
-        sortedTrees = new ProductTree[4][max_tree_index];
+        sortedTrees = new ProductTree[max_hour_index][max_tree_index];
 
-        for(int i = 0; i < 4; i++) {
+        for(int i = 0; i < max_hour_index; i++) {
             for(int j = 0; j < max_tree_index; j++) {
-                sortedTrees[i][j] = allTrees.get(i * 4 + j);
+                sortedTrees[i][j] = allTrees.get(i * max_hour_index + j);
             }
         }
 

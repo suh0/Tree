@@ -97,10 +97,24 @@ public class TreeItemDatabaseHelper extends SQLiteOpenHelper {
         return isPurchased;
     }
 
-    public long getDatabaseSize() {
+    public int getDatabaseSize() {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        return DatabaseUtils.queryNumEntries(sqLiteDatabase, "items");
+        return (int)DatabaseUtils.queryNumEntries(sqLiteDatabase, "items");
     }
+
+    /*
+    public int getColumnCount() {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        int columnCount = 0;
+
+        Cursor cursor = sqLiteDatabase.rawQuery("PRAGMA table_info(items)", null);
+        if(cursor != null) {
+            columnCount = cursor.getCount();
+            cursor.close();
+        }
+        return columnCount;
+    }
+    */
 
 
     public ArrayList<ProductTree> getAllTrees() {

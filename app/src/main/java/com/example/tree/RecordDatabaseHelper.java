@@ -2,8 +2,11 @@ package com.example.tree;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
 
 public class RecordDatabaseHelper extends SQLiteOpenHelper {
 
@@ -35,5 +38,21 @@ public class RecordDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS failures");
         db.execSQL("DROP TABLE IF EXISTS products");
         onCreate(db);
+    }
+    public ArrayList<ItemLog> getRecords() {
+        ArrayList<ItemLog> recordsList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT date, duration FROM records", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String date = cursor.getString(cursor.getColumnIndex("date"));
+                int duration = cursor.getInt(cursor.getColumnIndex("duration"));
+                recordsList.add(new ItemLog(date, duration));
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return recordsList;
     }
 }

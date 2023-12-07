@@ -37,11 +37,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img_cloud1"/>
-
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="138dp"
@@ -524,6 +519,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_cloud1"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:alpha="0.6"
+        android:src="@drawable/img_cloud1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.42" />
+
+    <ImageView
+        android:id="@+id/img_cloud2"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:alpha="0.6"
+        android:src="@drawable/img_cloud2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.28" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

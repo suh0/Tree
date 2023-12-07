@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             mediaPlayer06 = MediaPlayer.create(this, R.raw.music06);
             // mediaPlayer06.setLooping(true); // 반복 재생 설정
             mediaPlayer06.start(); // 음악 재생
-        }
+        }//
 
 
 

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class LogActivity extends AppCompatActivity {
 
-    private ImageView btn_back, btn_clear;
+    private ImageView btn_back;
     private RecyclerView recycle_log;
 
     ArrayList<ItemLog> itemList=new ArrayList<>();
@@ -26,7 +26,6 @@ public class LogActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log);
 
         btn_back=findViewById(R.id.btn_back);
-        btn_clear=findViewById(R.id.btn_clear);
         recycle_log=findViewById(R.id.recycle_log);
 
         Animation animButtonEffect= AnimationUtils.loadAnimation(this, R.anim.anim_btn_effect);
@@ -48,13 +47,6 @@ public class LogActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.anim_left_enter, R.anim.anim_right_exit);
             }
         });
-
-        btn_clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                btn_clear.startAnimation(animButtonEffect);
-                // 데이터 삭제 코드
-            }
-        });
+        
     }
 }

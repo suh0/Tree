@@ -23,7 +23,7 @@ public class SuccessActivity extends AppCompatActivity {
     ImageView btn_home;
     TextView txt_addMoney;
     int[][] treeImages;
-    final int max_tree_index = 4;
+    final int[] max_tree_index = {4, 4, 4, 5};
     final int max_hour_index = 4;
     ArrayList<ProductTree> allTrees;
 
@@ -47,11 +47,17 @@ public class SuccessActivity extends AppCompatActivity {
         btn_home=findViewById(R.id.btn_home);
         txt_addMoney=findViewById(R.id.txt_addMoney);
         treeHelper = new TreeItemDatabaseHelper(this);
-        treeImages = new int[max_hour_index][max_tree_index];
+
+        int max_tree_number = max_tree_index[0];
+        for(int i = 1; i < max_tree_index.length; i++) {
+            if(max_tree_number < max_tree_index[i])
+                max_tree_number = max_tree_index[i];
+        }
+        treeImages = new int[max_hour_index][max_tree_number];
 
         allTrees = treeHelper.getAllTrees();
         for(int i = 0; i < max_hour_index; i++) {
-            for(int j = 0; j < max_tree_index; j++) {
+            for(int j = 0; j < max_tree_index[i]; j++) {
                 treeImages[i][j] = allTrees.get(i * max_hour_index + j).getResId();
             }
         }

@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     TextView txtDate;
     ConstraintLayout img_board;
 
-    final int max_tree_index = 4;
+    final int[] max_tree_index = { 4, 4, 4, 5 };
     final int max_hour_index = 4;
     ArrayList<ProductTree> allTrees;
 
@@ -62,10 +62,15 @@ public class MainActivity extends AppCompatActivity {
         coinHelper = new CoinDatabaseHelper(this);
         treeHelper = new TreeItemDatabaseHelper(this);
 
-        treeImages = new int[max_hour_index][max_tree_index];
+        int max_tree_number = max_tree_index[0];
+        for(int i = 1; i < max_tree_index.length; i++) {
+            if(max_tree_number < max_tree_index[i])
+                max_tree_number = max_tree_index[i];
+        }
+        treeImages = new int[max_hour_index][max_tree_number];
         allTrees = treeHelper.getAllTrees();
         for(int i = 0; i < max_hour_index; i++) {
-            for(int j = 0; j < max_tree_index; j++) {
+            for(int j = 0; j < max_tree_index[i]; j++) {
                 treeImages[i][j] = allTrees.get(i * max_hour_index + j).getResId();
             }
         }

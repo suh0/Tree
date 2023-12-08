@@ -32,26 +32,26 @@ public class SelectHour extends AppCompatActivity {
     //index는 1부터
     int currentHour_number = 1;
     int currentTreeIndex = 1;
-    final int max_tree_index = 4;
+    final int[] max_tree_index = { 4, 4, 4, 5 };
     final int max_hour_index = 4;
     boolean ready = true;
 
     RecordDatabaseHelper dbHelper;
 
     // 화면 업데이트
-    int[][] treeImages = {
+    /* int[][] treeImages = {
             {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9}, //5초 test
             {R.drawable.img_tree1, R.drawable.img_tree2, R.drawable.img_tree3},
             {R.drawable.img_tree4, R.drawable.img_tree5, R.drawable.img_tree6},
             {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9}
-    };
+    };*/
 
-    String[][] treeTexts = {
+    /* String[][] treeTexts = {
             {"나무 1-1", "나무 1-2", "나무 1-3"}, //5초
             {"+ $100", "+ $100", "+ $100"}, //30분
             {"+ $150", "+ $150", "+ $150"}, //1시간
             {"+ $200", "+ $200", "+ $200"} //2시간
-    };
+    };*/
     TreeItemDatabaseHelper treeHelper;
     ArrayList<ProductTree> allTrees;
     ProductTree[][] sortedTrees;
@@ -92,11 +92,16 @@ public class SelectHour extends AppCompatActivity {
         confirm = findViewById(R.id.confirm);
         btn_back=findViewById(R.id.btn_back);
 
+        int max_tree_number = max_tree_index[0];
+        for(int i = 1; i < max_tree_index.length; i++) {
+            if(max_tree_number < max_tree_index[i])
+                max_tree_number = max_tree_index[i];
+        }
         allTrees = treeHelper.getAllTrees();
-        sortedTrees = new ProductTree[max_hour_index][max_tree_index];
+        sortedTrees = new ProductTree[max_hour_index][max_tree_number];
 
         for(int i = 0; i < max_hour_index; i++) {
-            for(int j = 0; j < max_tree_index; j++) {
+            for(int j = 0; j < max_tree_index[i]; j++) {
                 sortedTrees[i][j] = allTrees.get(i * max_hour_index + j);
             }
         }
@@ -157,7 +162,7 @@ public class SelectHour extends AppCompatActivity {
             {
                 prev.startAnimation(animButtonEffect);
                 if(currentTreeIndex <= 1)
-                    currentTreeIndex = max_tree_index;
+                    currentTreeIndex = max_tree_index[currentHour_number - 1];
                 else
                     currentTreeIndex--;
 
@@ -170,7 +175,7 @@ public class SelectHour extends AppCompatActivity {
             public void onClick(View view)
             {
                 next.startAnimation(animButtonEffect);
-                if(currentTreeIndex >= max_tree_index)
+                if(currentTreeIndex >= max_tree_index[currentHour_number - 1])
                     currentTreeIndex = 1;
                 else
                     currentTreeIndex++;

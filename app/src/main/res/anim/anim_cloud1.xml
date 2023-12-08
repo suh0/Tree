@@ -11,7 +11,7 @@
     <translate
         android:fromXDelta="-200%"
         android:toXDelta="200%"
-        android:duration="50000"
+        android:duration="45000"
         android:repeatMode="reverse"
         android:repeatCount="-1"/>
 

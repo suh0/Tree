@@ -73,19 +73,19 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
         TreeAdapter treeAdapter = new TreeAdapter(this, itemList2, this::onItemClicked);
 
         for (int i = 0; i < 4; i++) { // 테스트용 더미데이터 (리사이클러뷰에 들어가는 데이터 값 생성 ; 가격 등등)
-            treeAdapter.addItem(new ProductTree(R.drawable.tree_1, i * 100));
+            treeAdapter.addItem(new ProductTree(R.drawable.tree_1, R.drawable.tree_2,"Name",i * 100));
             if (i == 0) {
                 // 첫 번째 음악 추가
-                bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music02)); //music02하니까 실행 안됨
+                bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music02,false)); //music02하니까 실행 안됨
             } else if (i == 1) {
                 // 두 번째 음악 추가
-                bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music03));
+                bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music03,false));
             } else if (i == 2) {
                 // 두 번째 음악 추가
-                bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music04));
+                bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music04,false));
             } else if (i == 3) {
                 // 두 번째 음악 추가
-                bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music05));
+                bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music05,false));
             }
         }
 

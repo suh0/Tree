@@ -427,6 +427,15 @@ public class MainActivity extends AppCompatActivity {
         saveSelectedMusicName("No music");
 
     }
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        if (mediaPlayer06 != null) {
+            mediaPlayer06.stop();
+        }
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+        }
+    }
 
 }
 

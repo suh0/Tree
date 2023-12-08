@@ -106,21 +106,6 @@
             app:layout_constraintVertical_bias="0.548" />
 
         <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/lexend_deca"
-            android:text="Total money"
-            android:textColor="#777777"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/imageView6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5"
-            app:layout_constraintVertical_bias="0.551" />
-
-        <TextView
             android:id="@+id/txt_totalTime"
             android:layout_width="60sp"
             android:layout_height="wrap_content"
@@ -168,23 +153,6 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView4"
             app:layout_constraintVertical_bias="0.548" />
 
-        <TextView
-            android:id="@+id/txt_totalMoney"
-            android:layout_width="60sp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/lexend_deca"
-            android:gravity="right"
-            android:text="5555"
-            android:textColor="#777777"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/imageView6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.88"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5"
-            app:layout_constraintVertical_bias="0.551" />
-
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
@@ -219,18 +187,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.39"
-            app:srcCompat="@drawable/line_user" />
-
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.52"
             app:srcCompat="@drawable/line_user" />
 
 

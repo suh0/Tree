@@ -5,7 +5,6 @@ import static com.example.tree.MainActivity.mediaPlayer;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,16 +12,11 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 
 public class SelectHour extends AppCompatActivity {
 
@@ -41,10 +35,10 @@ public class SelectHour extends AppCompatActivity {
     //index는 1부터
     int currentHour_number = 1;
     int currentTreeIndex = 1;
-    final int max_tree_index = 3;
+    final int max_tree_index = 4;
+    final int max_hour_index = 4;
+    boolean ready = true;
 
-//<<<<<<< HEAD
-    // dbHelper
     RecordDatabaseHelper dbHelper;
 
 
@@ -62,13 +56,24 @@ public class SelectHour extends AppCompatActivity {
             {"+ $150", "+ $150", "+ $150"}, //1시간
             {"+ $200", "+ $200", "+ $200"} //2시간
     };
+    TreeItemDatabaseHelper treeHelper;
+    ArrayList<ProductTree> allTrees;
+    ProductTree[][] sortedTrees;
 
 
     void updateTree() {
-        treeImage.setImageResource(treeImages[currentHour_number - 1][currentTreeIndex - 1]);
 
-        //treeImage.setAlpha(0.5f); // 예시: 0.5는 이미지뷰의 투명도를 50%로 설정합니다.
-        treeInfo.setText(treeTexts[currentHour_number - 1][currentTreeIndex - 1]);
+        ProductTree currentTree = sortedTrees[currentHour_number - 1][currentTreeIndex - 1];
+        if(currentTree.getIsPurchased()) {
+            treeImage.setImageResource(currentTree.getResId());
+            ready = true;
+        }
+        else {
+            treeImage.setImageResource(currentTree.getResId2());
+            ready = false;
+        }
+
+        treeInfo.setText(currentTree.getName());
     }
 
     @Override
@@ -78,6 +83,7 @@ public class SelectHour extends AppCompatActivity {
         setContentView(R.layout.activity_select_hour);
 
         dbHelper = new RecordDatabaseHelper(this);
+        treeHelper = new TreeItemDatabaseHelper(this);
 
         show5s = findViewById(R.id.show5s);
         show30m = findViewById(R.id.show30m);
@@ -89,6 +95,16 @@ public class SelectHour extends AppCompatActivity {
         next = findViewById(R.id.next);
         confirm = findViewById(R.id.confirm);
         btn_back=findViewById(R.id.btn_back);
+
+        allTrees = treeHelper.getAllTrees();
+        sortedTrees = new ProductTree[max_hour_index][max_tree_index];
+
+        for(int i = 0; i < max_hour_index; i++) {
+            for(int j = 0; j < max_tree_index; j++) {
+                sortedTrees[i][j] = allTrees.get(i * max_hour_index + j);
+            }
+        }
+
         updateTree();
 
         Animation animButtonEffect= AnimationUtils.loadAnimation(this, R.anim.anim_btn_effect);
@@ -107,25 +123,35 @@ public class SelectHour extends AppCompatActivity {
         // 시간 선택
         show5s.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { currentHour_number = 1; updateTree(); }
+            public void onClick(View view) {
+                currentHour_number = 1;
+                currentTreeIndex = 1;
+                updateTree();
+            }
         });
         show30m.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                show30m.startAnimation(animButtonEffect);
-                currentHour_number = 2; updateTree(); }
+                currentHour_number = 2;
+                currentTreeIndex = 1;
+                updateTree();
+            }
         });
         show1h.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                show1h.startAnimation(animButtonEffect);
-                currentHour_number = 3; updateTree(); }
+                currentHour_number = 3;
+                currentTreeIndex = 1;
+                updateTree();
+            }
         });
         show2h.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                show2h.startAnimation(animButtonEffect);
-                currentHour_number = 4; updateTree(); }
+                currentHour_number = 4;
+                currentTreeIndex = 1;
+                updateTree();
+            }
         });
 
         // '이전' 버튼
@@ -162,38 +188,33 @@ public class SelectHour extends AppCompatActivity {
             public void onClick(View v) {
 
                 confirm.startAnimation(animButtonEffect);
-
-                Log.d("SelectHour", "Confirm button clicked");
-                Intent resultIntent = new Intent();
-                resultIntent.putExtra("stop_music", true);
-                setResult(RESULT_OK, resultIntent);
-
-
-                long selected_milliseconds = 0;
-                switch (currentHour_number){
-                    case 1:
-                        selected_milliseconds = 5000; //1000(1초) * 5
-                        break;
-                    case 2:
-                        selected_milliseconds = 1000 * 60 * 30; //30분 1000(1초) * 60(1분) * 30
-                        break;
-                    case 3:
-                        selected_milliseconds = 1000 * 60 * 60; //1시간
-                        break;
-                    case 4:
-                        selected_milliseconds = 1000 * 60 * 60 * 2; //2시간
-                        break;
+                if(!ready) {
+                    Toast.makeText(getApplicationContext(), "보유하지 않은 나무입니다.", Toast.LENGTH_SHORT).show();
                 }
-               // mediaPlayer.stop();
-                Intent intent = new Intent(SelectHour.this, TimerActivity.class);
-                intent.putExtra("selected_milliseconds", selected_milliseconds); // 변경된 부분
+                else {
+                    long selected_milliseconds = 0;
+                    switch (currentHour_number) {
+                        case 1:
+                            selected_milliseconds = 5000; //1000(1초) * 5
+                            break;
+                        case 2:
+                            selected_milliseconds = 1000 * 60 * 30; //30분 1000(1초) * 60(1분) * 30
+                            break;
+                        case 3:
+                            selected_milliseconds = 1000 * 60 * 60; //1시간
+                            break;
+                        case 4:
+                            selected_milliseconds = 1000 * 60 * 60 * 2; //2시간
+                            break;
+                    }
 
-                intent.putExtra("currentHourNumber", currentHour_number);
-                intent.putExtra("currentTreeIndex", currentTreeIndex);
-                intent.putExtra("stop_music", true);
-                startActivityForResult(intent, 1); //넘기기
-                finish();
+                    Intent intent = new Intent(SelectHour.this, TimerActivity.class);
+                    intent.putExtra("selected_milliseconds", selected_milliseconds); // 변경된 부분
+                    intent.putExtra("currentHourNumber", currentHour_number);
+                    intent.putExtra("currentTreeIndex", currentTreeIndex);
 
+                    startActivityForResult(intent, 1); //넘기기
+                }
             }
         });
     }

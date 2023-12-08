@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,10 +27,13 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
     private RecyclerView recycle_tree;
     private RecyclerView recycle_bgm;
     private ImageView btn_back;
-
-    ArrayList<ProductBgm> itemList=new ArrayList<>();
-    ArrayList<ProductTree> itemList2=new ArrayList<>();
+    private TreeAdapter treeAdapter;
+    private BgmAdapter bgmAdapter;
+    ArrayList<ProductBgm> itemList = new ArrayList<>();
+    ArrayList<ProductTree> itemList2 = new ArrayList<>();
     public CoinDatabaseHelper coinHelper;
+    public TreeItemDatabaseHelper treeHelper;
+    public MusicItemDatabaseHelper musicHelper;
 
 
     private TextView txt_money;
@@ -45,15 +49,14 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
         coinHelper = new CoinDatabaseHelper(this);
-        /*
-        if(coinHelper == null) {
-            Log.d("Error", "onCreate: dbHelper is a null object.");
-            return;
-        }
-        */
+        treeHelper = new TreeItemDatabaseHelper(this);
+        musicHelper = new MusicItemDatabaseHelper(this);
 
         recycle_tree = (RecyclerView) findViewById(R.id.recycle_tree);
         recycle_bgm = (RecyclerView) findViewById(R.id.recycle_bgm);
+
+        recycle_tree.setHasFixedSize(true);
+        recycle_bgm.setHasFixedSize(true);
         txt_currentBgm = (TextView) findViewById(R.id.txt_currentBgm);
         btn_back = findViewById(R.id.btn_back);
         txt_money = findViewById(R.id.txt_money);
@@ -88,7 +91,7 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
 
         recycle_tree.setAdapter(treeAdapter);
         recycle_bgm.setAdapter(bgmAdapter);
-
+        initializeRecyclerView();
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,22 +104,44 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
                 overridePendingTransition(R.anim.anim_left_enter, R.anim.anim_right_exit);
             }
         });
-
-
     }
 
-
-    public void updateBalanceText(){
+    protected void onStart() {
+        super.onStart();
         txt_money.setText(" " + coinHelper.getCurrentBalance());
-        //Toast.makeText(ShopActivity.this, coinHelper.getCurrentBalance(), Toast.LENGTH_SHORT);
+    }
 
+    protected void onResume() {
+        super.onResume();
+        txt_money.setText(" " + coinHelper.getCurrentBalance());
+    }
+
+    public void updateBalanceText() {
+        txt_money.setText(" " + coinHelper.getCurrentBalance());
+    }
+
+    private void initializeRecyclerView() {
+        treeAdapter.clearAllItems();
+        bgmAdapter.clearAllItems();
+
+        ArrayList<ProductTree> treeList = treeHelper.getAllTrees();
+        ArrayList<ProductBgm> musicList = musicHelper.getAllMusic();
+
+        for(ProductTree tree : treeList) {
+            if(!tree.getIsPurchased())
+                treeAdapter.addItem(tree);
+        }
+        for(ProductBgm music : musicList) {
+            if(!music.getIsPurchased())
+                bgmAdapter.addItem(music);
+        }
     }
 
     @Override
     public void onItemClicked(ProductBgm productBgm, LinearLayout layout, TextView txtPrice) { // 브금 아이템 클릭 시
         Animation btnScale = AnimationUtils.loadAnimation(this, R.anim.anim_btn_scale);
 
-        if (productBgm.getIsPurchased() == false) { // 보유 중이지 않은 아이템인 경우
+        if(musicHelper.getPurchase(productBgm.getName()) == 0){ // 보유 중이지 않은 아이템인 경우
             layout.startAnimation(btnScale);
             showPurchaseConfirmationDialog(productBgm, txtPrice, layout);
         } else { // 보유 중인 아이템인 경우
@@ -130,13 +155,12 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
         Animation noMoney = AnimationUtils.loadAnimation(this, R.anim.anim_no_money);
 
         builder.setTitle("Would you like to buy?");
-        builder.setMessage(" Title: " + productBgm.getTitle());
+        builder.setMessage(" Title: "+ productBgm.getName());
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() { // yes
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
-                if(coinHelper.getCurrentBalance()>=productBgm.getPrice()){
-                    productBgm.setIsPurchased(Boolean.TRUE);
+                if(coinHelper.getCurrentBalance() >= productBgm.getPrice()){
+                    musicHelper.applyPurchase(productBgm.getName());
                     coinHelper.addBalance(-1 * productBgm.getPrice()); // 잔액 차감
                     updateBalanceText();
                     txtPrice.setText("In Stock");
@@ -161,13 +185,14 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
     public void showChangeBgmDialog(ProductBgm productBgm) { // 이미 보유 중인 브금 아이템 클릭 시, 현재 브금 변경 가능
         AlertDialog.Builder builder = new AlertDialog.Builder(ShopActivity.this);
         builder.setTitle("Would you like to set the BGM?");
-        builder.setMessage(" Title: " + productBgm.getTitle());
+
+        builder.setMessage(" Title: "+ productBgm.getName());
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
                 // 브금 바꾸기
-                txt_currentBgm.setText(" : "+productBgm.getTitle()); // 텍스트로 현재 설정된 브금 표시.
+                txt_currentBgm.setText(" : "+productBgm.getName()); // 텍스트로 현재 설정된 브금 표시.
 
 
             }
@@ -187,7 +212,7 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
     public void onItemClicked(ProductTree productTree, LinearLayout layout, TextView txtPrice) { // 나무 아이템 클릭 시
         Animation btnScale = AnimationUtils.loadAnimation(this, R.anim.anim_btn_scale);
 
-        if (productTree.getIsPurchased() == false) {
+        if(treeHelper.getPurchase(productTree.getName()) == 0) {
             layout.startAnimation(btnScale);
             showPurchaseConfirmationDialog2(productTree, txtPrice, layout);
         } else {
@@ -207,7 +232,7 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
             public void onClick(DialogInterface dialogInterface, int i) {
 
                 if(coinHelper.getCurrentBalance()>=productTree.getPrice()){
-                    productTree.setIsPurchased(Boolean.TRUE);
+                    treeHelper.applyPurchase(productTree.getName());
                     coinHelper.addBalance(-1 * productTree.getPrice());
                     updateBalanceText();
                     txtPrice.setText("In Stock");

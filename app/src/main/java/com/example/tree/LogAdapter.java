@@ -49,7 +49,6 @@ public class LogAdapter extends RecyclerView.Adapter<LogAdapter.ViewHolder>{
             txt_date=itemView.findViewById(R.id.txt_date);
             txt_number=itemView.findViewById(R.id.txt_number);
             txt_time=itemView.findViewById(R.id.txt_time);
-            txt_sf=itemView.findViewById(R.id.txt_sf);
         }
         public void setItem(ItemLog item, int position){
             String number=""+(position+1);
@@ -57,11 +56,6 @@ public class LogAdapter extends RecyclerView.Adapter<LogAdapter.ViewHolder>{
             txt_date.setText(item.getDate());
             txt_time.setText(item.getTime()+"m");
 
-            if(item.getSf().equals("Success")){
-                txt_sf.setText("Success");
-            }else{
-                txt_sf.setText("Fail");
-            }
         }
     }
 }

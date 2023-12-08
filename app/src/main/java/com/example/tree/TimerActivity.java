@@ -17,6 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import static com.example.tree.MainActivity.mediaPlayer;
@@ -38,21 +39,25 @@ public class TimerActivity extends AppCompatActivity {
 
 
     private RecordDatabaseHelper dbHelper;
+    private TreeItemDatabaseHelper treeHelper;
     private long selectedMilliseconds;
     private int receivedHourNumber;
     private int receivedTreeIndex;
+    final int max_tree_index = 4;
+    final int max_hour_index = 4;
+    ArrayList<ProductTree> allTrees;
 
     private ProgressBar progressBarCircle;
 
     private ImageView timer_image1;
     private ImageView timer_image2;
-
-    int[][] treeImages = {
+    int[][] treeImages;
+    /*= {
             {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9},
             {R.drawable.img_tree1, R.drawable.img_tree2, R.drawable.img_tree3},
             {R.drawable.img_tree4, R.drawable.img_tree5, R.drawable.img_tree6},
             {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9}
-    };
+    };*/
 
     //private boolean isMusicPlaying = false;
     //MediaPlayer mediaPlayer = MainActivity.getMediaPlayer();
@@ -92,6 +97,15 @@ public class TimerActivity extends AppCompatActivity {
 //>>>>>>> chae_music_copy
 
         dbHelper = new RecordDatabaseHelper(this);
+        treeHelper = new TreeItemDatabaseHelper(this);
+        treeImages = new int[max_hour_index][max_tree_index];
+
+        allTrees = treeHelper.getAllTrees();
+        for(int i = 0; i < max_hour_index; i++) {
+            for(int j = 0; j < max_tree_index; j++) {
+                treeImages[i][j] = allTrees.get(i * max_hour_index + j).getResId();
+            }
+        }
 
         selectedMilliseconds = getIntent().getLongExtra("selected_milliseconds", 1000);
         receivedHourNumber = getIntent().getIntExtra("currentHourNumber", 1); // 1은 기본값
@@ -173,7 +187,10 @@ public class TimerActivity extends AppCompatActivity {
             }
         });
     }
-
+    protected void onUserLeaveHint() { //홈버튼 시 실패
+        super.onUserLeaveHint();
+        goToFailActivity();
+    }
 
 
     @Override

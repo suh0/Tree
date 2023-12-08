@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -19,6 +20,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import static com.example.tree.MainActivity.mediaPlayer;
+import static com.example.tree.MainActivity.mediaPlayer06;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 public class TimerActivity extends AppCompatActivity {
 
@@ -47,6 +59,23 @@ public class TimerActivity extends AppCompatActivity {
             {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9}
     };*/
 
+    //private boolean isMusicPlaying = false;
+    //MediaPlayer mediaPlayer = MainActivity.getMediaPlayer();
+    //private List<String> selectedMusicList = new ArrayList<>();
+
+    private boolean isMusicPlaying = true;
+
+
+
+    List<Map<String, Object>> dialogItemList;
+    ImageView backmusic_start;
+    ImageView backmusic_stop;
+
+
+    private int pausedPosition = 0; // 멈춘 위치 저장하는 변수
+    private int pausedPosition06 = 0; // mediaPlayer06의 위치
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +87,14 @@ public class TimerActivity extends AppCompatActivity {
         progressBarCircle = findViewById(R.id.progressBarCircle);
         timer_image1 = findViewById(R.id.timer_image1);
         timer_image2 = findViewById(R.id.timer_image2);
+
+        backmusic_start = findViewById(R.id.backmusic_start);
+        backmusic_stop = findViewById(R.id.backmusic_stop);
+        // selectedMusicList = getIntent().getStringArrayListExtra("selectedMusicList");
+
+
+
+//>>>>>>> chae_music_copy
 
         dbHelper = new RecordDatabaseHelper(this);
         treeHelper = new TreeItemDatabaseHelper(this);
@@ -124,16 +161,37 @@ public class TimerActivity extends AppCompatActivity {
         countDownTimer.start();
 
 
+
         exitButton.setOnClickListener(v -> {
             exitButton.startAnimation(animButtonEffect);
             countDownTimer.cancel();
             finishWithFailure();
+        });
+
+        backmusic_start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //showAlertDialog();
+                playMusic();
+                playMusic06();
+
+            }
+        });
+
+        backmusic_stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopMusic();
+                stopMusic06();
+
+            }
         });
     }
     protected void onUserLeaveHint() { //홈버튼 시 실패
         super.onUserLeaveHint();
         goToFailActivity();
     }
+
 
     @Override
     public void onBackPressed() {
@@ -147,6 +205,8 @@ public class TimerActivity extends AppCompatActivity {
         dbHelper.close();
     }
 
+
+
     private void saveRecord() {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -154,6 +214,7 @@ public class TimerActivity extends AppCompatActivity {
         values.put("duration", selectedMilliseconds);
         values.put("hourNum", receivedHourNumber);
         values.put("treeIndex", receivedTreeIndex);
+
 
         int randomValue = 0;
         int maxRandomCount = 25;
@@ -202,21 +263,12 @@ public class TimerActivity extends AppCompatActivity {
     private void setupProgressBar() {  //이거는 꽉 채운 상태부터 감소하는 것
                 progressBarCircle = findViewById(R.id.progressBarCircle);
                 //"timeCountInMilliSeconds"는 원형 프로그래스 바의 최대값을 설정하는 데 사용
-
-
                 int maxProgress = (int) (selectedMilliseconds / 1000);
-
                 progressBarCircle.setMax(maxProgress);
-            }
 
-            private void updateTimer(int seconds) {
-                int hours = seconds / 3600;
-                int minutes = (seconds % 3600) / 60;
-                int secs = seconds % 60;
-                String time = String.format(Locale.US, "%02d:%02d:%02d", hours, minutes, secs);
-                timerTextView.setText(time);
-                progressBarCircle.setProgress(seconds);
-            }
+    }
+
+
             private String getCurrentDate() {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-M-d", Locale.getDefault());
                 Date date = new Date();
@@ -236,6 +288,70 @@ public class TimerActivity extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
+        //dialogItemList = new ArrayList<>();
+
+
+
+
+    private void playMusic() {
+        if (mediaPlayer != null && !mediaPlayer.isPlaying()) {
+            mediaPlayer.seekTo(pausedPosition); // 멈췄을 때의 위치로 이동
+            mediaPlayer.start();
+        }
+
+        backmusic_start.setVisibility(View.GONE);
+        backmusic_stop.setVisibility(View.VISIBLE);
+        isMusicPlaying = true;
+
+
+    }
+
+    private void playMusic06() {
+        if (mediaPlayer06 != null && !mediaPlayer06.isPlaying()) {
+            mediaPlayer06.seekTo(pausedPosition06); // 멈췄을 때의 위치로 이동
+            mediaPlayer06.start();
+        }
+
+        backmusic_start.setVisibility(View.GONE);
+        backmusic_stop.setVisibility(View.VISIBLE);
+        isMusicPlaying = true;
+
+
+    }
+
+
+
+    private void stopMusic() {
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            pausedPosition = mediaPlayer.getCurrentPosition(); // 음악이 멈춘 위치 저장
+            mediaPlayer.pause();
+        }
+        backmusic_start.setVisibility(View.VISIBLE);
+        backmusic_stop.setVisibility(View.GONE);
+    }
+
+    private void stopMusic06() {
+        if (mediaPlayer06 != null && mediaPlayer06.isPlaying()) {
+            pausedPosition06 = mediaPlayer06.getCurrentPosition(); // 음악이 멈춘 위치 저장
+            mediaPlayer06.pause();
+        }
+        backmusic_start.setVisibility(View.VISIBLE);
+        backmusic_stop.setVisibility(View.GONE);
+    }
+
+
+    private void updateTimer(int seconds) {
+        int hours = seconds / 3600;
+        int minutes = (seconds % 3600) / 60;
+        int secs = seconds % 60;
+        String time = String.format("%02d:%02d:%02d", hours, minutes, secs);
+        timerTextView.setText(time);
+        progressBarCircle.setProgress(seconds);
+    }
+
+
+
+
 
 
 

@@ -1,10 +1,13 @@
 package com.example.tree;
 
+import static com.example.tree.MainActivity.mediaPlayer;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -37,6 +40,7 @@ public class SelectHour extends AppCompatActivity {
     boolean ready = true;
 
     RecordDatabaseHelper dbHelper;
+
 
     // 화면 업데이트
     int[][] treeImages = {
@@ -182,8 +186,8 @@ public class SelectHour extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 confirm.startAnimation(animButtonEffect);
-                
                 if(!ready) {
                     Toast.makeText(getApplicationContext(), "보유하지 않은 나무입니다.", Toast.LENGTH_SHORT).show();
                 }
@@ -214,6 +218,7 @@ public class SelectHour extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

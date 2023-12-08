@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_main_gradient"
+    android:padding="16dp"
     tools:context=".MainActivity">
 
 
@@ -443,6 +444,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.0" />
 
+
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
@@ -522,3 +524,6 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+

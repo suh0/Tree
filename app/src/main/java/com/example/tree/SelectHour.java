@@ -1,10 +1,13 @@
 package com.example.tree;
 
+import static com.example.tree.MainActivity.mediaPlayer;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -37,6 +40,10 @@ public class SelectHour extends AppCompatActivity {
     boolean ready = true;
 
     RecordDatabaseHelper dbHelper;
+
+    // 볼륨 값 가져오기
+    Intent intent = getIntent();
+    //float volumeMusic06 = intent.getFloatExtra("volume_music06", 0.0f); // music06의 기본 볼륨은 1.0f (최대 볼륨)
 
     // 화면 업데이트
     int[][] treeImages = {
@@ -208,12 +215,23 @@ public class SelectHour extends AppCompatActivity {
                     intent.putExtra("selected_milliseconds", selected_milliseconds); // 변경된 부분
                     intent.putExtra("currentHourNumber", currentHour_number);
                     intent.putExtra("currentTreeIndex", currentTreeIndex);
-
+                    intent.putExtra("stop_music", true);
                     startActivityForResult(intent, 1); //넘기기
+                    finish();
                 }
+//=======
+                Log.d("SelectHour", "Confirm button clicked");
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("stop_music", true);
+                setResult(RESULT_OK, resultIntent);
+
+
+
+//>>>>>>> chae_music_copy
             }
         });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

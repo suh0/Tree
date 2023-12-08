@@ -5,12 +5,15 @@ public class ProductBgm {
     String name;
     int price;
     Boolean isPurchased=false; // 보유 중인지 아닌지
+    int musicResId;
 
     public ProductBgm(){}
-    public ProductBgm(String name, int price){
-        this.name =name;
+
+    public ProductBgm(String name, int price,int musicResId){
+        this.name=name;
         this.price=price;
         isPurchased=false;
+        this.musicResId = musicResId;
     }
 
     public int getPrice(){
@@ -27,4 +30,11 @@ public class ProductBgm {
     }
     public Boolean getIsPurchased(){return isPurchased;}
     public void setIsPurchased(Boolean value){this.isPurchased=value;}
+
+    public int getMusicResId() {
+        return musicResId;
+    }
+    public void setMusicResId(int musicResId) {
+        this.musicResId = musicResId;
+    }
 }

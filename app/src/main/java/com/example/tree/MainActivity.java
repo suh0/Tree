@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private CoinDatabaseHelper coinHelper;
     private TreeItemDatabaseHelper treeHelper;
+    private MusicItemDatabaseHelper musicHelper;
     int[][] treeImages;
     /*= {
             {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9},
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         dbHelper = new RecordDatabaseHelper(this);
         coinHelper = new CoinDatabaseHelper(this);
         treeHelper = new TreeItemDatabaseHelper(this);
+        musicHelper = new MusicItemDatabaseHelper(this);
 
         int max_tree_number = max_tree_index[0];
         for(int i = 1; i < max_tree_index.length; i++) {
@@ -109,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
         img_board.startAnimation(animBoard);
 
         txt_money.setText(" " + coinHelper.getCurrentBalance());
+        setMusic();
 
         for(int i=0; i<25; i++){
             room[i]=findViewById(getResources().getIdentifier("room"+ i, "id", "com.example.tree"));
@@ -168,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         txt_money.setText(" " + coinHelper.getCurrentBalance());
+        setMusic();
     }
 
     @Override
@@ -187,5 +191,12 @@ public class MainActivity extends AppCompatActivity {
                 });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    private void setMusic() {
+        if(musicHelper.getWhatsPlaying() == null)
+            txt_bgm.setText("Not Playing");
+        else
+            txt_bgm.setText(musicHelper.getWhatsPlaying().getName());
     }
 }

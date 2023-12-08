@@ -135,10 +135,11 @@ public class TimerActivity extends AppCompatActivity {
             finishWithFailure();
         });
     }
+    /*
     protected void onUserLeaveHint() { //홈버튼 시 실패
         super.onUserLeaveHint();
         goToFailActivity();
-    }
+    }*/
 
     @Override
     public void onBackPressed() {

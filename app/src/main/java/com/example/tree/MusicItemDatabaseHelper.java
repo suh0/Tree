@@ -15,9 +15,10 @@ public class MusicItemDatabaseHelper extends SQLiteOpenHelper {
             "CREATE TABLE items (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "item_name TEXT, " +
                     "purchased INTEGER DEFAULT 0, " +
-                    "price INTEGER DEFAULT 0.0);";
+                    "price INTEGER DEFAULT 0.0," +
+                    "isPlaying INTEGER DEFAULT 0)";
 
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     public MusicItemDatabaseHelper(Context context) {
         super(context, TABLE_ITEMS, null, DATABASE_VERSION);
@@ -79,7 +80,6 @@ public class MusicItemDatabaseHelper extends SQLiteOpenHelper {
         return DatabaseUtils.queryNumEntries(sqLiteDatabase, "items");
     }
 
-
     public ArrayList<ProductBgm> getAllMusic() {
         ArrayList<ProductBgm> tempList = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
@@ -106,5 +106,53 @@ public class MusicItemDatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
 
         return tempList;
+    }
+
+    public int setPlaying(String item_name) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        ContentValues resetValue = new ContentValues();
+        resetValue.put("isPlaying", 0);
+        sqLiteDatabase.update("items", resetValue, null, null);
+
+        ContentValues setValue = new ContentValues();
+        setValue.put("isPlaying", 1);
+        String whereClause = "item_name=?";
+        String[] whereArgs = new String[]{item_name};
+
+        return sqLiteDatabase.update("items", setValue, whereClause, whereArgs);
+    }
+
+    public ProductBgm getWhatsPlaying() {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        ProductBgm temp = null;
+
+        String[] columns = {"item_name", "purchased", "price", "isPlaying"};
+        String selection = "isPlaying=?";
+        String[] selectionArgs = {"1"};
+        Cursor cursor = sqLiteDatabase.query("items", columns, selection, selectionArgs, null, null, null);
+
+        if(cursor != null && cursor.moveToFirst() && cursor.getCount() == 1) {
+            int nameIndex = cursor.getColumnIndex("item_name");
+            int isPurchasedIndex = cursor.getColumnIndex("purchased");
+            int priceIndex = cursor.getColumnIndex("price");
+            int isPlayingIndex = cursor.getColumnIndex("isPlaying");
+
+            temp = new ProductBgm();
+            temp.setName(cursor.getString(nameIndex));
+            if(cursor.getInt(isPurchasedIndex) == 1)
+                temp.setIsPurchased(true);
+            else
+                temp.setIsPurchased(false);
+            temp.setPrice(cursor.getInt(priceIndex));
+            if(cursor.getInt(isPlayingIndex) == 1)
+                temp.setIsPlaying(true);
+            else
+                temp.setIsPlaying(false);
+        }
+        else
+            return null;
+
+        return temp;
     }
 }

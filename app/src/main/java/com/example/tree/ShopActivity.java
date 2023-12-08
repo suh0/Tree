@@ -101,7 +101,7 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
                 treeAdapter.addItem(tree);
         }
         for(ProductBgm music : musicList) {
-            if(!music.getIsPurchased())
+            //if(!music.getIsPurchased())
                 bgmAdapter.addItem(music);
         }
     }
@@ -162,7 +162,7 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
             public void onClick(DialogInterface dialogInterface, int i) {
                 // 브금 바꾸기
                 txt_currentBgm.setText(" : "+productBgm.getName()); // 텍스트로 현재 설정된 브금 표시.
-
+                musicHelper.setPlaying(productBgm.getName());
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -175,8 +175,6 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
         builder.show();
     }
 
-
-
     @Override
     public void onItemClicked(ProductTree productTree, LinearLayout layout, TextView txtPrice) { // 나무 아이템 클릭 시
         Animation btnScale=AnimationUtils.loadAnimation(this, R.anim.anim_btn_scale);
@@ -185,7 +183,7 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
             layout.startAnimation(btnScale);
             showPurchaseConfirmationDialog2(productTree, txtPrice, layout);
         }
-        else{
+        else {
             layout.startAnimation(btnScale);
         }
 

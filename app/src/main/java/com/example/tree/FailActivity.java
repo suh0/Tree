@@ -62,6 +62,8 @@ public class FailActivity extends AppCompatActivity {
                 toMain.putExtra("paused_position", pausedPosition); // 멈춘 위치를 Intent에 추가
                 startActivity(toMain);
                 finish();
+
+
             }
         });
 

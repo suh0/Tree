@@ -84,10 +84,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 //<<<<<<< HEAD
-        txtDate = findViewById(R.id.txt_date);
+        //txtDate = findViewById(R.id.txt_date);
         SimpleDateFormat sdf = new SimpleDateFormat("M월 d일", Locale.getDefault());
         String currentDate = sdf.format(new Date());
-        txtDate.setText(currentDate);
+//        txtDate.setText(currentDate);
 
 
         Intent intent = getIntent();
@@ -227,6 +227,16 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+        txt_currentBgm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("MainActivity", "txt_bgm 버튼이 클릭되었습니다.");
+                showAlertDialog();
+            }
+        });
+
+
+        dialogItemList = new ArrayList<>();
 
 //<<<<<<< HEAD
     }
@@ -260,20 +270,7 @@ public class MainActivity extends AppCompatActivity {
                 });
         AlertDialog alert = builder.create();
         alert.show();
-//=======
-        txt_currentBgm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("MainActivity", "txt_bgm 버튼이 클릭되었습니다.");
-                showAlertDialog();
-            }
-        });
 
-
-        dialogItemList = new ArrayList<>();
-
-
-//>>>>>>> chae_music_copy
     }
 
     private void showAlertDialog() {

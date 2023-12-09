@@ -153,10 +153,12 @@ public class TimerActivity extends AppCompatActivity {
 
         countDownTimer.start();
 
-        exitButton.setOnClickListener(v -> {
-            exitButton.startAnimation(animButtonEffect);
-            countDownTimer.cancel();
-            finishWithFailure();
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                countDownTimer.cancel();
+                finishWithFailure();
+            }
         });
 
 
@@ -200,10 +202,7 @@ public class TimerActivity extends AppCompatActivity {
         countDownTimer.cancel(); // 액티비티 종료 시 타이머 초기화
         dbHelper.close();
 
-        if (mediaPlayer != null) {
-            mediaPlayer.reset();
-            mediaPlayer.release();
-        }
+
     }
 
     private void saveRecord() {

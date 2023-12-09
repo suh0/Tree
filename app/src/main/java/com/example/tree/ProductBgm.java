@@ -1,11 +1,13 @@
 package com.example.tree;
 
+import android.util.Log;
+
 public class ProductBgm {
 
-    String name;
-    int price;
-    Boolean isPurchased=false; // 보유 중인지 아닌지
-    int musicResId;
+     String name;
+    private int price;
+    private Boolean isPurchased=false; // 보유 중인지 아닌지
+    private int musicResId;
 
     public ProductBgm(){}
 
@@ -36,5 +38,6 @@ public class ProductBgm {
     }
     public void setMusicResId(int musicResId) {
         this.musicResId = musicResId;
+        Log.d("ProductBgm", "MusicResId set: " + musicResId); // 로그 추가
     }
 }

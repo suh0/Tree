@@ -74,18 +74,23 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
 
         for (int i = 0; i < 4; i++) { // 테스트용 더미데이터 (리사이클러뷰에 들어가는 데이터 값 생성 ; 가격 등등)
             treeAdapter.addItem(new ProductTree(R.drawable.tree_1, i * 100));
+            ProductBgm productBgm = new ProductBgm();
             if (i == 0) {
                 // 첫 번째 음악 추가
                 bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music02)); //music02하니까 실행 안됨
+                productBgm.setMusicResId(R.raw.music02);
             } else if (i == 1) {
                 // 두 번째 음악 추가
                 bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music03));
+                productBgm.setMusicResId(R.raw.music03);
             } else if (i == 2) {
                 // 두 번째 음악 추가
                 bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music04));
+                productBgm.setMusicResId(R.raw.music04);
             } else if (i == 3) {
                 // 두 번째 음악 추가
                 bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music05));
+                productBgm.setMusicResId(R.raw.music05);
             }
         }
 //>>>>>>> chae_music_copy
@@ -265,6 +270,7 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
             // 예기치 않은 상황에 대한 처리
             return;
         }
+        Log.d("MediaPlayer", "MusicResId: " + productBgm.getMusicResId()); // 이 부분에 로그 추가
 
         if (isPlay) {
             Toast.makeText(ShopActivity.this, "Play", Toast.LENGTH_SHORT).show();

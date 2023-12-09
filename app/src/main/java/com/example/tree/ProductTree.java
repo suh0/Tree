@@ -8,7 +8,7 @@ public class ProductTree {
     Boolean isPurchased = false;
 
     public ProductTree(){}
-    public ProductTree(int resId, int resId2, String name, int price) {
+    public ProductTree(int resId, int resId2) {
         this.name = name;
         this.resId=resId;
         this.resId2 = resId2;

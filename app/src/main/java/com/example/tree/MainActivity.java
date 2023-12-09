@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView img_frac1, img_frac2, img_frac3, img_frac4;
     Button btn_record;
 
-    TextView txt_bgm, txt_money;
+    TextView txt_money;
     TextView txtDate;
     ConstraintLayout img_board;
 
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     static MediaPlayer mediaPlayer;
     static MediaPlayer mediaPlayer06;
 
-   // TextView txt_currentBgm;
+    TextView txt_currentBgm;
 
 
     @Override
@@ -88,11 +88,6 @@ public class MainActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("M월 d일", Locale.getDefault());
         String currentDate = sdf.format(new Date());
         txtDate.setText(currentDate);
-//=======
-        btn_timer = findViewById(R.id.btn_timer);
-        btn_record = findViewById(R.id.btn_record); // 버튼 참조
-        btn_shop = findViewById(R.id.btn_shop);
-        txt_bgm = findViewById(R.id.txt_bgm);
 
 
         Intent intent = getIntent();
@@ -151,7 +146,8 @@ public class MainActivity extends AppCompatActivity {
         btn_record = findViewById(R.id.btn_record);
         btn_shop = findViewById(R.id.btn_shop);
         btn_stat=findViewById(R.id.btn_stat);
-        txt_bgm=findViewById(R.id.txt_bgm);
+        //txt_bgm=findViewById(R.id.txt_bgm);
+        txt_currentBgm = findViewById(R.id.txt_currentBgm);
         txt_money=findViewById(R.id.txt_money);
 
         img_board=findViewById(R.id.img_board);
@@ -265,9 +261,10 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
 //=======
-        txt_bgm.setOnClickListener(new View.OnClickListener() {
+        txt_currentBgm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("MainActivity", "txt_bgm 버튼이 클릭되었습니다.");
                 showAlertDialog();
             }
         });
@@ -281,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showAlertDialog() {
        // mediaPlayer06.stop();
-
+        Log.d("MainActivity", "showAlertDialog() 메서드가 호출되었습니다.");
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.activity_dialog, null);
@@ -332,8 +329,8 @@ public class MainActivity extends AppCompatActivity {
                 selectedMusicList.add(resIdString);
                 saveSelectedMusicName(selectedMusic);// 선택한 음악 저장
 
-                TextView txt_bgm = findViewById(R.id.txt_bgm); // 선택한 음악 이름으로 TextView 업데이트
-                txt_bgm.setText(": " + selectedMusic); // 선택한 음악 파일 이름으로 TextView 설정
+                TextView txt_currentBgm = findViewById(R.id.txt_currentBgm); // 선택한 음악 이름으로 TextView 업데이트
+                txt_currentBgm.setText(": " + selectedMusic); // 선택한 음악 파일 이름으로 TextView 설정
 
                 // Intent intent = new Intent(MainActivity.this, TimerActivity.class);
                 //ArrayList<String> selectedMusicArrayList = new ArrayList<>(selectedMusicList);
@@ -405,7 +402,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         String selectedMusicName = getSelectedMusicName(); // 선택한 음악 이름 가져오기
-        txt_bgm.setText(": " + selectedMusicName); // 선택한 음악 파일 이름으로 TextView 설정
+        txt_currentBgm.setText(": " + selectedMusicName); // 선택한 음악 파일 이름으로 TextView 설정
 
         if (mediaPlayer06 != null && !mediaPlayer06.isPlaying()) {
             mediaPlayer06.start();

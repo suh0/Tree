@@ -128,6 +128,7 @@ public class SelectHour extends AppCompatActivity {
         show30m.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                show30m.startAnimation(animButtonEffect);
                 currentHour_number = 2;
                 currentTreeIndex = 1;
                 updateTree();
@@ -136,6 +137,7 @@ public class SelectHour extends AppCompatActivity {
         show1h.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                show1h.startAnimation(animButtonEffect);
                 currentHour_number = 3;
                 currentTreeIndex = 1;
                 updateTree();
@@ -144,6 +146,7 @@ public class SelectHour extends AppCompatActivity {
         show2h.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                show2h.startAnimation(animButtonEffect);
                 currentHour_number = 4;
                 currentTreeIndex = 1;
                 updateTree();

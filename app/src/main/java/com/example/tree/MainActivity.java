@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     };*/
 
     ImageView btn_timer, btn_stat, btn_shop;
-    ImageView img_frac1, img_frac2, img_frac3, img_frac4;
+    ImageView img_frac1, img_frac2, img_frac3, img_frac4, img_cloud1, img_cloud2;
     Button btn_record;
 
     TextView txt_bgm, txt_money;
@@ -89,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
         btn_stat=findViewById(R.id.btn_stat);
         txt_bgm=findViewById(R.id.txt_bgm);
         txt_money=findViewById(R.id.txt_money);
+        img_cloud1=findViewById(R.id.img_cloud1);
+        img_cloud2=findViewById(R.id.img_cloud2);
 
         img_board=findViewById(R.id.img_board);
 
@@ -97,11 +99,15 @@ public class MainActivity extends AppCompatActivity {
         Animation animFrac3=AnimationUtils.loadAnimation(this, R.anim.anim_frac3);
         Animation animFrac4=AnimationUtils.loadAnimation(this, R.anim.anim_frac4);
         Animation animBoard=AnimationUtils.loadAnimation(this, R.anim.anim_board);
+        Animation animCloud1=AnimationUtils.loadAnimation(this, R.anim.anim_cloud1);
+        Animation animCloud2=AnimationUtils.loadAnimation(this, R.anim.anim_cloud2);
         img_frac1.startAnimation(animFrac1);
         img_frac2.startAnimation(animFrac2);
         img_frac3.startAnimation(animFrac3);
         img_frac4.startAnimation(animFrac4);
         img_board.startAnimation(animBoard);
+        img_cloud1.startAnimation(animCloud1);
+        img_cloud2.startAnimation(animCloud2);
 
         txt_money.setText(" " + coinHelper.getCurrentBalance());
 

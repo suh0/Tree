@@ -18,8 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.example.tree.R;
-
 import java.util.ArrayList;
 
 public class ShopActivity extends AppCompatActivity implements  SelectListener, SelectListener2, BgmListener {
@@ -60,16 +58,16 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
             treeAdapter.addItem(new ProductTree(R.drawable.tree_1, i * 100));
             if (i == 0) {
                 // 첫 번째 음악 추가
-                bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music02)); //music02하니까 실행 안됨
+                bgmAdapter.addItem(new ProductBgm()); //music02하니까 실행 안됨
             } else if (i == 1) {
                 // 두 번째 음악 추가
-                bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music03));
+                bgmAdapter.addItem(new ProductBgm());
             } else if (i == 2) {
                 // 두 번째 음악 추가
-                bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music04));
+                bgmAdapter.addItem(new ProductBgm());
             } else if (i == 3) {
                 // 두 번째 음악 추가
-                bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music05));
+                bgmAdapter.addItem(new ProductBgm());
             }
         }
 

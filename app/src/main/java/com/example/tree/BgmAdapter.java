@@ -65,6 +65,13 @@ public class BgmAdapter extends RecyclerView.Adapter<BgmAdapter.ViewHolder>{
     public void addItem(ProductBgm item){
         itemList.add(item);
     }
+
+    public void clearAllItems() {
+        itemList.clear();
+        this.notifyDataSetChanged();
+        Log.d(TAG, "clearAllItems: current recyclerview size: " + this.getItemCount());
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder{
         TextView txt_title, txt_price;
         ImageView btn_play, btn_pause;
@@ -85,5 +92,8 @@ public class BgmAdapter extends RecyclerView.Adapter<BgmAdapter.ViewHolder>{
             btn_play.setImageResource(R.drawable.btn_play);
             btn_pause.setImageResource(R.drawable.btn_pause);
         }
+    }
+    public String getItemName(int index) {
+        return itemList.get(index).name;
     }
 }

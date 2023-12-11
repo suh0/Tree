@@ -3,6 +3,7 @@ package com.example.tree;
 public class ProductBgm {
 
     String name;
+    String title;
     int price;
     Boolean isPurchased=false; // 보유 중인지 아닌지
     int musicResId;
@@ -38,7 +39,7 @@ public class ProductBgm {
     }
 
 
-    public int getTitle() {
+    public String getTitle() {
         return title;
     }
 }

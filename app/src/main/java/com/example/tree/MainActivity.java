@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             {R.drawable.img_tree7, R.drawable.img_tree8, R.drawable.img_tree9}
     };*/
 
-    ImageView btn_timer, btn_stat, btn_shop;
+    ImageView btn_timer, btn_stat, btn_shop, btn_music;
     ImageView img_frac1, img_frac2, img_frac3, img_frac4, img_cloud1, img_cloud2;
     Button btn_record;
 
@@ -87,11 +87,10 @@ public class MainActivity extends AppCompatActivity {
         btn_record = findViewById(R.id.btn_record);
         btn_shop = findViewById(R.id.btn_shop);
         btn_stat=findViewById(R.id.btn_stat);
-        txt_bgm=findViewById(R.id.txt_bgm);
         txt_money=findViewById(R.id.txt_money);
         img_cloud1=findViewById(R.id.img_cloud1);
         img_cloud2=findViewById(R.id.img_cloud2);
-
+        btn_music=findViewById(R.id.btn_music);
         img_board=findViewById(R.id.img_board);
 
         Animation animFrac1=AnimationUtils.loadAnimation(this, R.anim.anim_frac);
@@ -160,6 +159,13 @@ public class MainActivity extends AppCompatActivity {
                 btn_shop.startAnimation(animButtonEffect);
                 Intent intent = new Intent(MainActivity.this , ShopActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        btn_music.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btn_music.startAnimation(animButtonEffect);
             }
         });
 

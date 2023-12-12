@@ -116,7 +116,7 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
         }
         else{ // 보유 중인 아이템인 경우
             layout.startAnimation(btnScale);
-            showChangeBgmDialog(productBgm);
+            //showChangeBgmDialog(productBgm);  상점 창에서 bgm 안 바꾸니까 삭제함
         }
     }
 
@@ -147,28 +147,6 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(ShopActivity.this, "Canceled to purchase", Toast.LENGTH_SHORT).show();
-                // 구매를 취소하거나 다른 작업을 수행할 수 있습니다.
-            }
-        });
-        builder.show();
-    }
-
-    public void showChangeBgmDialog(ProductBgm productBgm){ // 이미 보유 중인 브금 아이템 클릭 시, 현재 브금 변경 가능
-        AlertDialog.Builder builder = new AlertDialog.Builder(ShopActivity.this);
-        builder.setTitle("Would you like to set the BGM?");
-        builder.setMessage(" Title: "+ productBgm.getName());
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                // 브금 바꾸기
-                txt_currentBgm.setText(" : "+productBgm.getName()); // 텍스트로 현재 설정된 브금 표시.
-
-            }
-        });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(ShopActivity.this, "Canceled to change", Toast.LENGTH_SHORT).show();
                 // 구매를 취소하거나 다른 작업을 수행할 수 있습니다.
             }
         });

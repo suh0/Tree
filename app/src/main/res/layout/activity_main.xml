@@ -456,7 +456,6 @@
         android:id="@+id/imageView"
         android:layout_width="130dp"
         android:layout_height="35dp"
-        android:layout_marginBottom="11dp"
         app:layout_constraintBottom_toTopOf="@+id/img_board"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.943"
@@ -532,8 +531,10 @@
         android:textSize="17sp"
         app:layout_constraintBottom_toTopOf="@+id/img_cloud2"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.37"
         app:layout_constraintStart_toEndOf="@+id/btn_bgm"
         app:layout_constraintTop_toBottomOf="@+id/txt_date"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
     <ImageView
@@ -541,15 +542,11 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_gravity="center_vertical"
-        android:layout_marginStart="66dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/icon_currentbgm"
         app:layout_constraintBottom_toTopOf="@+id/img_board"
-        app:layout_constraintEnd_toStartOf="@+id/txt_bgm"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_setting" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"

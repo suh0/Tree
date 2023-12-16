@@ -35,7 +35,6 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
     public MusicItemDatabaseHelper musicHelper;
 
     private TextView txt_money;
-    private TextView txt_currentBgm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +48,6 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
         recycle_bgm = (RecyclerView) findViewById(R.id.recycle_bgm);
         recycle_tree.setHasFixedSize(true);
         recycle_bgm.setHasFixedSize(true);
-        txt_currentBgm = (TextView) findViewById(R.id.txt_currentBgm);
         btn_back = findViewById(R.id.btn_back);
         txt_money = findViewById(R.id.txt_money);
         txt_money.setText(" " + coinHelper.getCurrentBalance());

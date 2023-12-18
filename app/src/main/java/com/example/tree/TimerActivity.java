@@ -167,6 +167,7 @@ public class TimerActivity extends AppCompatActivity {
         if (mediaPlayer != null && !mediaPlayer.isPlaying()) {
             mediaPlayer.seekTo(pausedPosition); // 멈췄을 때의 위치로 이동
             mediaPlayer.start();
+            mediaPlayer.setLooping(true);
         }
 
         backmusic_start.setVisibility(View.GONE);
@@ -180,13 +181,12 @@ public class TimerActivity extends AppCompatActivity {
         if (mediaPlayer06 != null && !mediaPlayer06.isPlaying()) {
             mediaPlayer06.seekTo(pausedPosition06); // 멈췄을 때의 위치로 이동
             mediaPlayer06.start();
+            mediaPlayer06.setLooping(true);
         }
 
         backmusic_start.setVisibility(View.GONE);
         backmusic_stop.setVisibility(View.VISIBLE);
         isMusicPlaying = true;
-
-
     }
 
     private void stopMusic() {

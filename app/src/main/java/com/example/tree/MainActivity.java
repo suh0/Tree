@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             // 기본 설정: 볼륨 1.0f로 music06 재생
             mediaPlayer06 = MediaPlayer.create(this, R.raw.music06);
-            // mediaPlayer06.setLooping(true); // 반복 재생 설정
+            mediaPlayer06.setLooping(true); // 반복 재생 설정
             mediaPlayer06.start(); // 음악 재생
         }
 

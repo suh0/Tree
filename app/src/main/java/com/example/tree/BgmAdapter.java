@@ -21,6 +21,7 @@ public class BgmAdapter extends RecyclerView.Adapter<BgmAdapter.ViewHolder>{
     private SelectListener listener;
     private BgmListener bgmListener;
 
+
     public BgmAdapter(Context context, ArrayList<ProductBgm> itemList, SelectListener listener, BgmListener bgmListener){
         this.context=context;
         this.itemList=itemList;
@@ -35,7 +36,8 @@ public class BgmAdapter extends RecyclerView.Adapter<BgmAdapter.ViewHolder>{
         }
     }
 
-
+    @NonNull
+    @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viweType){
         LayoutInflater inflater=LayoutInflater.from(parent.getContext());
         View itemView=inflater.inflate(R.layout.item_bgm, parent, false);
@@ -46,6 +48,9 @@ public class BgmAdapter extends RecyclerView.Adapter<BgmAdapter.ViewHolder>{
         ProductBgm item=itemList.get(position);
         holder.setItem(item);
 
+
+
+
         holder.parentLayout.setOnClickListener(new View.OnClickListener(){ // 전체 레이아웃 클릭 >> 구매 창
            public void onClick(View v){
                listener.onItemClicked(itemList.get(position), holder.parentLayout, holder.txt_price);
@@ -55,6 +60,7 @@ public class BgmAdapter extends RecyclerView.Adapter<BgmAdapter.ViewHolder>{
         holder.btn_play.setOnClickListener(new View.OnClickListener(){ // 음악 재생 버튼 클릭
             public void onClick(View v){
                 bgmListener.onPButtonClicked(itemList.get(position), true);
+
             }
         });
 
@@ -77,8 +83,11 @@ public class BgmAdapter extends RecyclerView.Adapter<BgmAdapter.ViewHolder>{
     public int getItemCount(){
         return itemList.size();
     }
-    public void addItem(ProductBgm item){
+    public void addItem(ProductBgm item) {
+
+
         itemList.add(item);
+        notifyDataSetChanged(); // RecyclerView에 데이터가 변경되었음을 알림
     }
     public void clearAllItems() { 
         itemList.clear(); 
@@ -106,6 +115,8 @@ public class BgmAdapter extends RecyclerView.Adapter<BgmAdapter.ViewHolder>{
             btn_pause.setImageResource(R.drawable.btn_pause);
         }
     }
+
+
 
     public String getItemName(int index) {
         return itemList.get(index).name;

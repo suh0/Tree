@@ -1,6 +1,7 @@
 package com.example.tree;
 
 import androidx.appcompat.app.AppCompatActivity;
+import static com.example.tree.MainActivity.mediaPlayer06;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -19,6 +20,7 @@ public class FailActivity extends AppCompatActivity {
     TextView txt_fail, txt_tryAgain;
     ImageView btn_home;
     private RecordDatabaseHelper dbHelper;
+    private int pausedPosition = 0; // 멈춘 위치 저장하는 변수 추가
 
 
     @Override
@@ -40,8 +42,14 @@ public class FailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 btn_home.startAnimation(animButtonScale);
+                if (mediaPlayer06 != null && mediaPlayer06.isPlaying()) {
+                    pausedPosition = mediaPlayer06.getCurrentPosition(); // 현재 재생 위치 저장
+                    mediaPlayer06.pause();
+                }
                 Intent toMain=new Intent(FailActivity.this, MainActivity.class);
+                toMain.putExtra("paused_position", pausedPosition);
                 startActivity(toMain);
+                //finish(); 이거 쓰면 안됨(음악 멈추고 오류남)
             }
         });
         dbHelper = new RecordDatabaseHelper(this);

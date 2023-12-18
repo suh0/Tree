@@ -1,6 +1,7 @@
 package com.example.tree;
 
 import androidx.appcompat.app.AppCompatActivity;
+import static com.example.tree.MainActivity.mediaPlayer06;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -17,6 +18,7 @@ public class StatActivity extends AppCompatActivity {
     ImageView btn_back, btn_log;
     TextView txt_totalTime, txt_totalSuccess, txt_totalFailure;
     RecordDatabaseHelper dbHelper;
+    private int pausedPosition = 0; // 멈춘 위치 저장하는 변수 추가
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,12 @@ public class StatActivity extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (mediaPlayer06 != null && mediaPlayer06.isPlaying()) {
+                    pausedPosition = mediaPlayer06.getCurrentPosition(); // 현재 재생 위치 저장
+                    mediaPlayer06.pause();
+                }
                 Intent toMain=new Intent(StatActivity.this, MainActivity.class);
+                toMain.putExtra("paused_position", pausedPosition); // 멈춘 위치를 MainActivity로 전달
                 startActivity(toMain);
                 overridePendingTransition(R.anim.anim_left_enter, R.anim.anim_right_exit);
             }

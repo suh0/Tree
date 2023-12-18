@@ -211,8 +211,10 @@ public class SelectHour extends AppCompatActivity {
                     intent.putExtra("selected_milliseconds", selected_milliseconds); // 변경된 부분
                     intent.putExtra("currentHourNumber", currentHour_number);
                     intent.putExtra("currentTreeIndex", currentTreeIndex);
+                    //intent.putExtra("stop_music", true);
 
                     startActivityForResult(intent, 1); //넘기기
+                    finish();
                 }
             }
         });

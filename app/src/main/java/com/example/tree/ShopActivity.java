@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,6 +37,7 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
 
     private TextView txt_money;
     private TextView txt_currentBgm;
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,12 +64,33 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
         bgmAdapter = new BgmAdapter(this, itemList, this, this::onPButtonClicked);
         treeAdapter = new TreeAdapter(this, itemList2, this::onItemClicked);
 
+        for (int i = 0; i < 4; i++) { // 테스트용 더미데이터 (리사이클러뷰에 들어가는 데이터 값 생성 ; 가격 등등)
+            //   treeAdapter.addItem(new ProductTree(R.drawable.tree_1, i * 100));
+            if (i == 0) {
+                // 첫 번째 음악 추가
+                bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music02)); //music02하니까 실행 안됨
+            } else if (i == 1) {
+                // 두 번째 음악 추가
+                bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music03));
+            } else if (i == 2) {
+                // 두 번째 음악 추가
+                bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music04));
+            } else if (i == 3) {
+                // 두 번째 음악 추가
+                bgmAdapter.addItem(new ProductBgm("Title " + i, i * 100, R.raw.music05));
+            }
+        }
+
+
         recycle_tree.setAdapter(treeAdapter);
         recycle_bgm.setAdapter(bgmAdapter);
         initializeRecyclerView();
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (mediaPlayer != null) {
+                    mediaPlayer.stop();
+                }
                 Intent toMain = new Intent(ShopActivity.this, MainActivity.class);
                 startActivity(toMain);
                 overridePendingTransition(R.anim.anim_left_enter, R.anim.anim_right_exit);
@@ -226,11 +249,26 @@ public class ShopActivity extends AppCompatActivity implements  SelectListener, 
 
     @Override
     public void onPButtonClicked(ProductBgm productBgm, Boolean isPlay) {
-        if(isPlay==true){
-            Toast.makeText(ShopActivity.this, "Play", Toast.LENGTH_SHORT).show(); // 테스트용
-        }
-        else{
+        if (isPlay == true) {
+            Toast.makeText(ShopActivity.this, "Play", Toast.LENGTH_SHORT).show();
+
+            productBgm.setMusicResId(R.raw.music07);
+
+            int musicResId = productBgm.getMusicResId();
+            Log.d("ProductBgm", "Retrieved Music Resource ID: " + musicResId);
+
+            if (musicResId != 0) { // 0이 아닌 경우에만 MediaPlayer를 초기화하도록 변경
+                mediaPlayer = MediaPlayer.create(this, musicResId);
+                mediaPlayer.start(); // MediaPlayer를 시작하여 음악을 재생합니다.
+            } else {
+                Log.e("ProductBgm", "Invalid Music Resource ID: " + musicResId);
+                // 음악 리소스 ID가 0이거나 잘못된 경우, 에러를 로그에 기록합니다.
+            }
+        } else {
             Toast.makeText(ShopActivity.this, "Pause", Toast.LENGTH_SHORT).show();
+            if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+                mediaPlayer.pause(); // MediaPlayer가 null이 아니고 재생 중인 경우 일시 중지합니다.
+            }
         }
     }
 }

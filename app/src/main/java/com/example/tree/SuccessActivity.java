@@ -1,6 +1,7 @@
 package com.example.tree;
 
 import androidx.appcompat.app.AppCompatActivity;
+import static com.example.tree.MainActivity.mediaPlayer06;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ public class SuccessActivity extends AppCompatActivity {
     };*/
     private int receivedHourNumber;
     private int receivedTreeIndex;
+    private int pausedPosition = 0; // 멈춘 위치 저장하는 변수 추가
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,8 +78,14 @@ public class SuccessActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 btn_home.startAnimation(animButtonScale);
+                if (mediaPlayer06 != null && mediaPlayer06.isPlaying()) {
+                    pausedPosition = mediaPlayer06.getCurrentPosition(); // 현재 재생 위치 저장
+                    mediaPlayer06.pause();
+                }
                 Intent toMain=new Intent(SuccessActivity.this, MainActivity.class);
+                toMain.putExtra("paused_position", pausedPosition); // 멈춘 위치를 Intent에 추가
                 startActivity(toMain);
+                finish();
             }
         });
 

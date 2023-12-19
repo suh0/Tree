@@ -48,7 +48,7 @@ public class RecordActivity extends AppCompatActivity {
             int treeIndex = cursor.getInt(treeIndexIndex);
 
             TextView recordTextView = new TextView(this);
-            recordTextView.setText("날짜: " + date + ", 시간: " + duration + " 밀리초, 랜덤: "
+            recordTextView.setText("날짜: " + date + ", 시간: " + duration + " 초, 랜덤: "
                     + random + ", hourNum: " + hourNum + ", treeIndex: " + treeIndex);
             recordLayout.addView(recordTextView);
         }

@@ -233,7 +233,7 @@ public class TimerActivity extends AppCompatActivity {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("date", getCurrentDate());
-        values.put("duration", selectedMilliseconds);
+        values.put("duration", selectedMilliseconds/1000);
         values.put("hourNum", receivedHourNumber);
         values.put("treeIndex", receivedTreeIndex);
 

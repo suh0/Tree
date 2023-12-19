@@ -26,17 +26,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/btn_setting"
-        android:layout_width="58dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="44dp"
-        android:background="@drawable/btn_setting"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.101"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/img_board"
         android:layout_width="370dp"
@@ -460,8 +449,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.943"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/area_money" />
 
     <TextView
@@ -547,17 +534,6 @@
         android:background="@drawable/icon_currentbgm"
         app:layout_constraintBottom_toTopOf="@+id/img_board"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="138dp"
-        android:layout_height="25dp"
-        tools:layout_editor_absoluteX="269dp"
-        tools:layout_editor_absoluteY="101dp"
-        android:orientation="horizontal"
-        tools:ignore="MissingConstraints">
-
-    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
